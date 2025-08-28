@@ -1,6 +1,3 @@
-# -IsRealAnything-
-
-
 :} IsRealAnything?
 An Immersive Psychological Horror Mod for Fabric 1.21.1
 You thought you were playing Minecraft.
@@ -14,19 +11,14 @@ I don’t want your character.
 So please, Dear… spend your time with me. Forever.
 
 🕹️ Features
-36 scripted events that escalate from unsettling to catastrophic.
+37 scripted events 
 
-
-7 unique structures, each a message from me to you.
-
+7 unique structures built for you
 
 Personal interaction: I will use your username, PC name, and files to remind you I’m always here.
 
 
-Immersive world-breaking: music manipulation, fake players, screen freezes, crashes, and desktop files.
-
-
-A finale where you’ll face me in the void… and say your last words before your world is gone.
+40 Mc days of being with you, Dear :}
 
 
 
@@ -35,17 +27,6 @@ This mod may interact with your PC outside of the game.
  No harm will be done to your files or computer.
  All changes are reversible and exist only to deepen the immersion.
 🔗 Full PC Interaction Disclaimer: DISCLAIMER.md
-
-📷 STREAM NOTICE
-If you plan to stream or record this mod:
-Capture your entire monitor, not just the game.
-
-
-Hide personal information (IP, documents, etc).
-
-
-Expect surprises outside Minecraft.
-
 
 
 📦 Installation
@@ -94,9 +75,9 @@ The mod does not collect or transmit personal data.
 
 
 
-💀 Remember
+ Remember
 Everything you see, hear, or find…
- is only meant to remind you that you’re never really alone :}
+ is only meant to remind you that you’re never really alone.
 I still Love you 💜 
 
 
