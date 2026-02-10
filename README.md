@@ -69,26 +69,7 @@ isrealanything/
 - Java 21 or higher
 - Gradle 8.10.2+ (included via wrapper)
 
-### Build Steps
 
-1. Clone the repository:
-```bash
-git clone https://github.com/epicspymain/IsRealAnything.git
-cd IsRealAnything
-```
-
-2. Build the mod:
-```bash
-./gradlew build
-```
-
-3. The compiled JAR will be in `build/libs/isrealanything-1.0.0.jar`
-
-### Running in Development
-
-```bash
-./gradlew runClient
-```
 
 ## Installation
 
@@ -98,53 +79,12 @@ cd IsRealAnything
 4. Place the JAR file in your `.minecraft/mods` folder
 5. Launch Minecraft with the Fabric profile
 
-## Configuration
 
-- **Mod ID**: `isrealanything`
-- **Namespace**: All resources use the `isrealanything` namespace
-- **Data Collection**: Disabled by default, can be enabled in source code
 
-## Refactoring Details
-
-### What Changed from SplitSelf
-
-| Old (SplitSelf) | New (IsRealAnything) |
-|----------------|---------------------|
-| Mod ID: `splitself` | Mod ID: `isrealanything` |
-| Package: `com.pryzmm.splitself` | Package: `com.epicspymain.isrealanything` |
-| Assets: `assets/splitself/` | Assets: `assets/isrealanything/` |
-| Data: `data/splitself/` | Data: `data/isrealanything/` |
-| `splitself.mixins.json` | `isrealanything.mixins.json` |
-| `splitself.accesswidener` | `isrealanything.accesswidener` |
-| `split-self-refmap.json` | `isrealanything-refmap.json` |
-
-### Complete Namespace Migration
-
-All references have been updated:
-- ✅ Java package names and imports
-- ✅ Class references and annotations
-- ✅ String literals in code
-- ✅ JSON files (models, lang, recipes, etc.)
-- ✅ Resource paths
-- ✅ Mixin configurations
-- ✅ Fabric metadata
-
-## Development
-
-### Adding New Features
-
-1. Create your feature classes in the appropriate package
-2. Update mixins if modifying vanilla behavior
-3. Add resources to `assets/isrealanything/` or `data/isrealanything/`
-4. Update language files in `assets/isrealanything/lang/`
-
-### Contributing
+### Contributing :)
 
 This is a personal project, but contributions are welcome:
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
+and wow look at that N o t h i n g.
 
 ## License
 
@@ -154,13 +94,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ⚠️ **IMPORTANT**: The data collection features included in this mod are for educational and research purposes only. They are disabled by default and should only be enabled with explicit user consent and awareness. Use of these features without proper authorization may violate privacy laws and terms of service.
 
-## Credits
-
-- Original SplitSelf mod concept by pryzmm
-- Refactored and rebuilt by epicspymain
-- Built with [Fabric](https://fabricmc.net/)
-- Minecraft by Mojang Studios
-
----
-
-**Remember**: Be Prepared To Get Your Socks Blown Off In Shock! 👻
