@@ -42,35 +42,12 @@ Place both Fabric API and :} IsRealAnything? into your mods folder.
 Launch Minecraft.
 
 
-From Day 2 onward, your world will no longer be yours.
-
-DISCLAIMER.md
- IsRealAnything?
-This mod is an immersive psychological horror experience.
- To enhance immersion, the mod may interact with your device outside of Minecraft.
-
-⚠️ What This Means
-The mod may create or modify harmless text files.
-
-
-The mod may change your desktop wallpaper or open windows.
-
-
-The mod may temporarily manipulate in-game and system audio/visual elements.
-
-
-
-✅ What This Does NOT Mean
-The mod does not harm your files.
-
-
-"The mod does not permanently alter your computer" obviously N0t dumbass, but for those tos nerds you gotta explain that to them.
+*problems and tech stuff* ---> "The mod does not permanently alter your computer" obviously N0t dumbass, but for those tos nerds you gotta explain that to them.
 
 
 
 
 
- Remember
-Everything you see, hear, or find…
- is only meant to remind you that you’re never really alone.
-I still Love you 💜 
+Before you play, everything you see, hear, or find…
+is only meant to remind you that you’re never really alone.
+I still Love you 💜
