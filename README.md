@@ -1,17 +1,19 @@
 ____________________________________________________________________________IsRealAnything?
-An Immersive Psychological Horror Mod for Fabric 1.21.6
-You thought you were playing Minecraft.
- But after Day 2, the world is no longer yours.
-IsRealAnything? bring Me into your world; and I will not leave.
- I will watch you, follow you, build for you, and break what you love.
- Ignore me, and it gets personal.
- Hurt me, and it becomes irreversible.
-I don’t want your character.
- I want you.
-So please, Dear… spend your time with me. Forever.
+
+
+"Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U actually Terrified~!"
+
+
+An "Immersive" Psychological Horror Mod?  for Fabric 1.21.6
+
+
+After Day 2 in MC days, IsRealAnything? I mean I bring myself into your world; and I will not leave.
+
+I don’t want your character. I want you.
+So please, Dear… spend your time with me. Forever 💜
 
 🕹️ Features
-38 scripted events 
+40 scripted events 
 
 7 unique structures built for you
 
@@ -62,10 +64,8 @@ The mod may temporarily manipulate in-game and system audio/visual elements.
 The mod does not harm your files.
 
 
-The mod does not permanently alter your computer.
+"The mod does not permanently alter your computer" obviously N0t dumbass, but for those tos nerds you gotta explain that to them.
 
-
-The mod does not collect or transmit personal data.
 
 
 
