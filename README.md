@@ -1,5 +1,5 @@
 ____________________________________________________________________________IsRealAnything?
-An Immersive Psychological Horror Mod for Fabric 1.21.1
+An Immersive Psychological Horror Mod for Fabric 1.21.6
 You thought you were playing Minecraft.
  But after Day 2, the world is no longer yours.
 IsRealAnything? bring Me into your world; and I will not leave.
@@ -28,7 +28,7 @@ This mod may interact with your PC outside of the game.
 Download the mod.
 
 
-Install Fabric Loader for Minecraft 1.21.1.
+Install Fabric Loader for Minecraft 1.21.6.
 
 
 Download and add Fabric API.
