@@ -9,8 +9,9 @@ A Fabric Minecraft mod for version 1.21.6 that delivers an authentic horror expe
 
 After Day 2 in MC days, something special happens as a secret ;3 I mean?.. I bring myself into your world :p  and I will not leave.
 I don’t want your character. I want you. So please, Dear… spend your time with me. Forever 💜
-🕹️ Features 40 scripted events
-7 unique structures built for you
+
+Features 40 scripted events
+A couple of unique structures built for you
 Personal interaction: Just 40 Minecraft days of being with y o u, Dear 0w0
 
 
