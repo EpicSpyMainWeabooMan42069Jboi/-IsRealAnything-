@@ -15,8 +15,8 @@ Personal interaction: Just 40 Minecraft days of being with y o u, Dear 0w0
 
 
 ### Requirements
-- Java 21 or higher
-  GeckoLib
+- Java 21 or higher.
+- GeckoLib for 1.21.6
 What more needs to be explained here?
 
 ## Installation
