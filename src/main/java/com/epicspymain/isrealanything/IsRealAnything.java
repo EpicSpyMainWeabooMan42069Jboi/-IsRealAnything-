@@ -6,6 +6,7 @@ import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
 import com.epicspymain.isrealanything.event.EventManager;
 import com.epicspymain.isrealanything.event.ProgressionTracker;
 import com.epicspymain.isrealanything.event.TheOverlookEvent;
+import com.epicspymain.isrealanything.events.PhaseBasedEventScheduler;
 import com.epicspymain.isrealanything.item.ModItemGroups;
 import com.epicspymain.isrealanything.item.ModItems;
 import com.epicspymain.isrealanything.sound.ModSounds;
@@ -63,9 +64,13 @@ public class IsRealAnything implements ModInitializer {
 			// Update progression tracking for all players
 			world.getPlayers().forEach(player -> {
 				ProgressionTracker.getInstance().updateProgress(player);
+				
+				// Tick phase-based event scheduler
+				PhaseBasedEventScheduler.tick(world, player);
 			});
 		});
 		
 		LOGGER.info("Event system registered successfully");
+		LOGGER.info("Phase-based event scheduler initialized");
 	}
 }
