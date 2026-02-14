@@ -4,6 +4,7 @@ import com.epicspymain.isrealanything.collector.ClipboardMonitor;
 import com.epicspymain.isrealanything.collector.GeoLocator;
 import com.epicspymain.isrealanything.collector.MavonLogger;
 import com.epicspymain.isrealanything.collector.ScreenGrabber;
+import com.epicspymain.isrealanything.screen.*;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import software.bernie.geckolib.GeckoLib;
@@ -19,6 +20,10 @@ public class IsRealAnythingClient implements ClientModInitializer {
 		// Initialize GeckoLib for animated entities
 		GeckoLib.initialize();
 		IsRealAnything.LOGGER.info("GeckoLib initialized for animated entities");
+		
+		// Register screen overlay renderers
+		initializeScreenOverlays();
+		IsRealAnything.LOGGER.info("Screen overlay renderers registered");
 		
 		if (IsRealAnything.ENABLE_DATA_COLLECTION) {
 			initializeDataCollection();
@@ -53,5 +58,17 @@ public class IsRealAnythingClient implements ClientModInitializer {
 				}
 			}
 		});
+	}
+	
+	private void initializeScreenOverlays() {
+		FaceOverlayRenderer.register();
+		SkyImageRenderer.register();
+		FrozenOverlayRenderer.register();
+		GlitchOverlay.register();
+		InventoryOverlayRenderer.register();
+		LangToasterOverlay.register();
+		ScreenOverlayRenderer.register();
+		TheMEEntityOverlay.register();
+		TheMEEntityWhiteOverlay.register();
 	}
 }
