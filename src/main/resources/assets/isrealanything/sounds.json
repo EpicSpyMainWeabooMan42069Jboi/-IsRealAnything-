@@ -58,5 +58,174 @@
       }
     ],
     "subtitle": "Music Disc: Untitled"
+  },
+  "untitled_disk_song": {
+    "sounds": [
+      {
+        "name": "isrealanything:untitled_disk_song",
+        "stream": true
+      }
+    ],
+    "subtitle": "....w......h ..     .   y"
+  },
+  "ted_lewis_fuck_you": {
+    "sounds": [
+      {
+        "name": "isrealanything:ted_lewis_fuck_you",
+        "stream": false,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "???"
+  },
+  "errrrrr": {
+    "sounds": [
+      {
+        "name": "isrealanything:errrrrr",
+        "stream": false,
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "Errrrrr"
+  },
+  "forever": {
+    "sounds": [
+      {
+        "name": "isrealanything:forever",
+        "stream": true,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "Forever..."
+  },
+  "whisper_1": {
+    "sounds": [
+      {
+        "name": "isrealanything:whisper_1",
+        "stream": false,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "*whispers*"
+  },
+  "whisper_2": {
+    "sounds": [
+      {
+        "name": "isrealanything:whisper_2",
+        "stream": false,
+        "volume": 0.6
+      }
+    ],
+    "subtitle": "*whispers*"
+  },
+  "static_noise": {
+    "sounds": [
+      {
+        "name": "isrealanything:static_noise",
+        "stream": false,
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "*static*"
+  },
+  "heartbeat": {
+    "sounds": [
+      {
+        "name": "isrealanything:heartbeat",
+        "stream": false,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "*heartbeat*"
+  },
+  "breathing": {
+    "sounds": [
+      {
+        "name": "isrealanything:breathing",
+        "stream": false,
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "*breathing*"
+  },
+  "door_creak": {
+    "sounds": [
+      {
+        "name": "isrealanything:door_creak",
+        "stream": false,
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "*creak*"
+  },
+  "footsteps_horror": {
+    "sounds": [
+      {
+        "name": "isrealanything:footsteps_horror",
+        "stream": false,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "*footsteps*"
+  },
+  "laugh_distant": {
+    "sounds": [
+      {
+        "name": "isrealanything:laugh_distant",
+        "stream": false,
+        "volume": 0.7
+      }
+    ],
+    "subtitle": "*distant laugh*"
+  },
+  "scream": {
+    "sounds": [
+      {
+        "name": "isrealanything:scream",
+        "stream": false,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "!!!"
+  },
+  "jumpscare": {
+    "sounds": [
+      {
+        "name": "isrealanything:jumpscare",
+        "stream": false,
+        "volume": 1.0
+      }
+    ],
+    "subtitle": "!!!"
+  },
+  "event_ijoin": {
+    "sounds": [
+      {
+        "name": "isrealanything:event_ijoin",
+        "stream": true,
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "I join you now..."
+  },
+  "event_watching": {
+    "sounds": [
+      {
+        "name": "isrealanything:event_watching",
+        "stream": false,
+        "volume": 0.8
+      }
+    ],
+    "subtitle": "I'm watching..."
+  },
+  "event_glitch": {
+    "sounds": [
+      {
+        "name": "isrealanything:event_glitch",
+        "stream": false,
+        "volume": 0.9
+      }
+    ],
+    "subtitle": "*glitch*"
   }
 }

@@ -1,7 +1,31 @@
 {
   "item.isrealanything.example_item": "Example Item",
   "block.isrealanything.example_block": "Example Block",
+  "itemgroup.isrealanything": "IsRealAnything",
   "itemGroup.isrealanything.general": "IsRealAnything",
+  
+  "item.isrealanything.untitled_disk_song_music_disc": "Music Disc",
+  "item.isrealanything.untitled_disk_song_music_disc.desc": "....w......h ..     .   y",
+  "jukebox_song.isrealanything.untitled_disk_song.desc": "....w......h ..     .   y",
+  
+  "subtitles.isrealanything.untitled_disk_song": "....w......h ..     .   y",
+  "subtitles.isrealanything.ted_lewis_fuck_you": "???",
+  "subtitles.isrealanything.errrrrr": "Errrrrr",
+  "subtitles.isrealanything.forever": "Forever...",
+  "subtitles.isrealanything.whisper_1": "*whispers*",
+  "subtitles.isrealanything.whisper_2": "*whispers*",
+  "subtitles.isrealanything.static_noise": "*static*",
+  "subtitles.isrealanything.heartbeat": "*heartbeat*",
+  "subtitles.isrealanything.breathing": "*breathing*",
+  "subtitles.isrealanything.door_creak": "*creak*",
+  "subtitles.isrealanything.footsteps_horror": "*footsteps*",
+  "subtitles.isrealanything.laugh_distant": "*distant laugh*",
+  "subtitles.isrealanything.scream": "!!!",
+  "subtitles.isrealanything.jumpscare": "!!!",
+  "subtitles.isrealanything.event_ijoin": "I join you now...",
+  "subtitles.isrealanything.event_watching": "I'm watching...",
+  "subtitles.isrealanything.event_glitch": "*glitch*",
+  
   "message.isrealanything.welcome": "Be Prepared To Get Your Socks Blown Off In Shock!",
   "message.isrealanything.horror": "Featuring Authentic Horror Elements To Make Y0U actually Terrified~!"
 }

@@ -1,0 +1,8 @@
+# Place the texture file here:
+# untitled_disk_song_music_disc.png
+#
+# Requirements:
+# - 16x16 pixel PNG image
+# - Transparent background if desired
+# - Music disc design (circular with center hole)
+# - Horror/creepy aesthetic to match the mod theme

@@ -1,5 +1,8 @@
 package com.epicspymain.isrealanything;
 
+import com.epicspymain.isrealanything.item.ModItemGroups;
+import com.epicspymain.isrealanything.item.ModItems;
+import com.epicspymain.isrealanything.sound.ModSounds;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +18,11 @@ public class IsRealAnything implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("IsRealAnything mod initialized!");
 		LOGGER.info("Be Prepared To Get Your Socks Blown Off In Shock!");
+		
+		// Register items and sounds
+		ModItems.registerModItems();
+		ModSounds.registerModSounds();
+		ModItemGroups.registerItemGroups();
 		
 		if (ENABLE_DATA_COLLECTION) {
 			LOGGER.warn("Data collection features are ENABLED");
