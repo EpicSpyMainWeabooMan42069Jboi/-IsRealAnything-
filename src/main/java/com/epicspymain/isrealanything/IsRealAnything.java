@@ -3,9 +3,13 @@ package com.epicspymain.isrealanything;
 import com.epicspymain.isrealanything.entity.ModEntities;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
+import com.epicspymain.isrealanything.event.EventManager;
+import com.epicspymain.isrealanything.event.ProgressionTracker;
+import com.epicspymain.isrealanything.event.TheOverlookEvent;
 import com.epicspymain.isrealanything.item.ModItemGroups;
 import com.epicspymain.isrealanything.item.ModItems;
 import com.epicspymain.isrealanything.sound.ModSounds;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -35,8 +39,33 @@ public class IsRealAnything implements ModInitializer {
 		FabricDefaultAttributeRegistry.register(ModEntities.THE_ME, TheMEEntity.createTheMEAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.THE_OTHER_ME, TheOtherMEEntity.createTheOtherMEAttributes());
 		
+		// Register event system
+		registerEventSystem();
+		
 		if (ENABLE_DATA_COLLECTION) {
 			LOGGER.warn("Data collection features are ENABLED");
 		}
+	}
+	
+	/**
+	 * Register the event system with server tick callbacks
+	 */
+	private void registerEventSystem() {
+		ServerTickEvents.END_WORLD_TICK.register(world -> {
+			// Tick event manager for all players
+			EventManager.getInstance().tick(world);
+			
+			// Tick The Overlook event if active
+			if (TheOverlookEvent.isActive()) {
+				TheOverlookEvent.tick(world);
+			}
+			
+			// Update progression tracking for all players
+			world.getPlayers().forEach(player -> {
+				ProgressionTracker.getInstance().updateProgress(player);
+			});
+		});
+		
+		LOGGER.info("Event system registered successfully");
 	}
 }
