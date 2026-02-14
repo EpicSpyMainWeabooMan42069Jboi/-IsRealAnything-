@@ -6,6 +6,7 @@ import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
 import com.epicspymain.isrealanything.event.EventManager;
 import com.epicspymain.isrealanything.event.ProgressionTracker;
+import com.epicspymain.isrealanything.event.TheOverlook;
 import com.epicspymain.isrealanything.event.TheOverlookEvent;
 import com.epicspymain.isrealanything.events.PhaseBasedEventScheduler;
 import com.epicspymain.isrealanything.item.ModItemGroups;
@@ -59,6 +60,9 @@ public class IsRealAnything implements ModInitializer {
 	 */
 	private void registerEventSystem() {
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
+			// Tick The Overlook system (highest priority)
+			TheOverlook.tick(world);
+			
 			// Tick event manager for all players
 			EventManager.getInstance().tick(world);
 			
@@ -78,5 +82,6 @@ public class IsRealAnything implements ModInitializer {
 		
 		LOGGER.info("Event system registered successfully");
 		LOGGER.info("Phase-based event scheduler initialized");
+		LOGGER.info("The Overlook failsafe system active");
 	}
 }

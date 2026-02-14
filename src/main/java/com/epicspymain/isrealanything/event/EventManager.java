@@ -24,8 +24,8 @@ public class EventManager {
     private final ContextualMessageManager messageManager = ContextualMessageManager.getInstance();
     
     // Global event flags
-    private static boolean OVERLOOK_TRIGGERED = false;
-    private static boolean OVERLOOK_COMPLETED = false;
+    private static boolean normalSchedulingHalted = false;
+    private static final Set<Integer> triggeredEvents = new HashSet<>();
     
     // Configuration loaded from EventConfig
     
@@ -39,6 +39,11 @@ public class EventManager {
      * Tick all active player events - call from server tick
      */
     public void tick(ServerWorld world) {
+        // OVERLOOK OVERRIDE: Stop all normal scheduling if triggered
+        if (TheOverlook.OVERLOOK_TRIGGERED) {
+            return;
+        }
+        
         for (ServerPlayerEntity player : world.getPlayers()) {
             PlayerEventState state = getOrCreateState(player);
             tickPlayerEvents(world, player, state);
@@ -52,7 +57,7 @@ public class EventManager {
         state.ticksPlayed++;
         
         // Skip all events if Overlook is triggered or peaceful mode
-        if (OVERLOOK_TRIGGERED || !EventConfig.shouldRunEvents()) {
+        if (TheOverlook.OVERLOOK_TRIGGERED || !EventConfig.shouldRunEvents()) {
             return;
         }
         
@@ -237,32 +242,53 @@ public class EventManager {
     }
     
     /**
-     * Manually trigger The Overlook event
+     * Halt all normal event scheduling (called by TheOverlook)
      */
-    public void triggerOverlook(ServerWorld world, ServerPlayerEntity player) {
-        if (OVERLOOK_TRIGGERED) {
-            return;
-        }
-        
-        OVERLOOK_TRIGGERED = true;
-        TheOverlookEvent.start(world, player);
+    public static void haltNormalScheduling() {
+        normalSchedulingHalted = true;
     }
     
     /**
-     * Check if The Overlook has been triggered
+     * Check if event has occurred
      */
-    public static boolean isOverlookTriggered() {
-        return OVERLOOK_TRIGGERED;
+    public static boolean hasEventOccurred(int eventId) {
+        return triggeredEvents.contains(eventId);
     }
     
     /**
-     * Mark The Overlook as completed
+     * Mark event as occurred
      */
-    public static void setOverlookCompleted(boolean completed) {
-        OVERLOOK_COMPLETED = completed;
-        if (completed) {
-            OVERLOOK_TRIGGERED = false; // Reset for potential replay
+    public static void markEventOccurred(int eventId) {
+        triggeredEvents.add(eventId);
+    }
+    
+    /**
+     * Force run all events except specified one (called by TheOverlook)
+     */
+    public static void forceRunAllExcept(int excludedEventId) {
+        // Mark all events as triggered except the excluded one
+        for (int i = 1; i <= 42; i++) {
+            if (i != excludedEventId) {
+                triggeredEvents.add(i);
+            }
         }
+    }
+    
+    /**
+     * Process chat message for forbidden commands
+     */
+    public static void processChatMessage(ServerPlayerEntity player, String message) {
+        // Check for forbidden commands
+        if (TheOverlook.checkForbiddenCommand(message)) {
+            TheOverlook.trigger(player, player.getServer());
+        }
+    }
+    
+    /**
+     * Handle entity death for Overlook detection
+     */
+    public static void onEntityDeath(ServerPlayerEntity killer, net.minecraft.entity.LivingEntity victim) {
+        TheOverlook.onEntityDeath(killer, victim);
     }
     
     /**

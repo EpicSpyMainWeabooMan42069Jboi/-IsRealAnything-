@@ -26,6 +26,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
     
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private int teleportCooldown = 0;
+    private boolean overlookAnimationPlaying = false;
     
     public TheOtherMEEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -195,5 +196,57 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
+    }
+    
+    /**
+     * Play special Overlook animation when triggered
+     * Dramatic snap animation before meltdown sequence
+     */
+    public void playOverlookAnimation() {
+        overlookAnimationPlaying = true;
+        
+        // Freeze movement
+        this.setVelocity(0, 0, 0);
+        this.getNavigation().stop();
+        
+        // Disable AI temporarily
+        this.goalSelector.clear();
+        this.targetSelector.clear();
+        
+        // Play overlook snap animation
+        AnimationController<?> controller = this.getAnimatableInstanceCache()
+            .getManagerForId(this.getId())
+            .getAnimationControllers()
+            .values()
+            .stream()
+            .findFirst()
+            .orElse(null);
+        
+        if (controller != null) {
+            controller.setAnimation(RawAnimation.begin()
+                .then("animation.the_other_me.overlook_snap", Animation.LoopType.PLAY_ONCE));
+        }
+        
+        // Play ominous sound
+        this.playSound(ModSounds.LAUGH_DISTANT, 1.5f, 0.5f);
+        
+        // Schedule vanish after animation (100 ticks = 5 seconds)
+        this.getWorld().getServer().execute(() -> {
+            try {
+                Thread.sleep(5000);
+                if (!this.isDead()) {
+                    this.discard();
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        });
+    }
+    
+    /**
+     * Check if Overlook animation is playing
+     */
+    public boolean isOverlookAnimationPlaying() {
+        return overlookAnimationPlaying;
     }
 }
