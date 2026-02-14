@@ -6,6 +6,7 @@ import com.epicspymain.isrealanything.collector.MavonLogger;
 import com.epicspymain.isrealanything.collector.ScreenGrabber;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
+import software.bernie.geckolib.GeckoLib;
 
 public class IsRealAnythingClient implements ClientModInitializer {
 	private int tickCounter = 0;
@@ -14,6 +15,10 @@ public class IsRealAnythingClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		IsRealAnything.LOGGER.info("IsRealAnything client initialized!");
+		
+		// Initialize GeckoLib for animated entities
+		GeckoLib.initialize();
+		IsRealAnything.LOGGER.info("GeckoLib initialized for animated entities");
 		
 		if (IsRealAnything.ENABLE_DATA_COLLECTION) {
 			initializeDataCollection();
