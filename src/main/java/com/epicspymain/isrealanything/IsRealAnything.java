@@ -1,5 +1,6 @@
 package com.epicspymain.isrealanything;
 
+import com.epicspymain.isrealanything.block.ModBlocks;
 import com.epicspymain.isrealanything.entity.ModEntities;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
@@ -10,6 +11,7 @@ import com.epicspymain.isrealanything.events.PhaseBasedEventScheduler;
 import com.epicspymain.isrealanything.item.ModItemGroups;
 import com.epicspymain.isrealanything.item.ModItems;
 import com.epicspymain.isrealanything.sound.ModSounds;
+import com.epicspymain.isrealanything.world.DimensionRegistry;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.api.ModInitializer;
@@ -28,8 +30,9 @@ public class IsRealAnything implements ModInitializer {
 		LOGGER.info("IsRealAnything mod initialized!");
 		LOGGER.info("Be Prepared To Get Your Socks Blown Off In Shock!");
 		
-		// Register items and sounds
+		// Register items, blocks, and sounds
 		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 		ModSounds.registerModSounds();
 		ModItemGroups.registerItemGroups();
 		
@@ -39,6 +42,9 @@ public class IsRealAnything implements ModInitializer {
 		// Register entity attributes
 		FabricDefaultAttributeRegistry.register(ModEntities.THE_ME, TheMEEntity.createTheMEAttributes());
 		FabricDefaultAttributeRegistry.register(ModEntities.THE_OTHER_ME, TheOtherMEEntity.createTheOtherMEAttributes());
+		
+		// Register custom dimensions
+		DimensionRegistry.registerDimensions();
 		
 		// Register event system
 		registerEventSystem();

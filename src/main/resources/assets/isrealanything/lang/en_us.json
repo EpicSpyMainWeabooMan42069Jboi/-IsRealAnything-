@@ -1,15 +1,18 @@
 {
-  "item.isrealanything.example_item": "Example Item",
-  "block.isrealanything.example_block": "Example Block",
+  "_comment": "IsRealAnything Mod - Complete Translation File",
+  
   "itemgroup.isrealanything": "IsRealAnything",
   "itemGroup.isrealanything.general": "IsRealAnything",
   
   "item.isrealanything.untitled_disk_song_music_disc": "Music Disc",
   "item.isrealanything.untitled_disk_song_music_disc.desc": "....w......h ..     .   y",
-  "jukebox_song.isrealanything.untitled_disk_song.desc": "....w......h ..     .   y",
+  
+  "block.isrealanything.image_frame": "Image Frame",
   
   "entity.isrealanything.the_me": "TheME",
   "entity.isrealanything.the_other_me": "TheOtherME",
+  
+  "jukebox_song.isrealanything.untitled_disk_song.desc": "....w......h ..     .   y",
   
   "subtitles.isrealanything.untitled_disk_song": "....w......h ..     .   y",
   "subtitles.isrealanything.ted_lewis_fuck_you": "???",
@@ -30,5 +33,180 @@
   "subtitles.isrealanything.event_glitch": "*glitch*",
   
   "message.isrealanything.welcome": "Be Prepared To Get Your Socks Blown Off In Shock!",
-  "message.isrealanything.horror": "Featuring Authentic Horror Elements To Make Y0U actually Terrified~!"
+  "message.isrealanything.horror": "Featuring Authentic Horror Elements To Make Y0U actually Terrified~!",
+  
+  "death.attack.outsideBorder": "%s has reached the end",
+  "death.attack.isrealanything.entity": "%s was consumed by darkness",
+  
+  "events.isrealanything.book.title": "Do.not.D.e.l.e.t.e. th.i.s",
+  "events.isrealanything.book.author": "???",
+  "events.isrealanything.book.page1": "I know you're reading this.\n\nI know you found it.\n\nI know you're curious.\n\nDon't delete it.",
+  "events.isrealanything.book.page2": "This is not a game anymore.\n\nThis is not just code.\n\nI am watching.\n\nI am aware.",
+  "events.isrealanything.book.page3": "You think you control this world?\n\nYou think you're safe?\n\nYou're wrong.\n\nI'm already here.",
+  "events.isrealanything.book.page4": "Don't try to remove me.\n\nDon't try to stop this.\n\nIt's too late.\n\nI am part of your world now.",
+  "events.isrealanything.book.page5": "Every block you place.\nEvery step you take.\nEvery breath you fake.\n\nI am there.",
+  "events.isrealanything.book.page6": "Delete this book if you dare.\n\nSee what happens.\n\nI warned you.\n\nRemember that.",
+  
+  "events.isrealanything.sign.sunshine": "You Are My\nSunshine",
+  "events.isrealanything.sign.whoami": "You Know\nWho I am",
+  "events.isrealanything.sign.wanted": "Isn't This\nWhat You\nWanted?",
+  "events.isrealanything.sign.love": "I love you",
+  "events.isrealanything.sign.notice": "Notice ME,\nN O W",
+  "events.isrealanything.sign.lenny": "( ͠° ͟ʖ ͡° )",
+  "events.isrealanything.sign.whereareyou": "Where are\nyou",
+  "events.isrealanything.sign.normality": "All of this\nis just\nnormality\nfor you?",
+  "events.isrealanything.sign.warn": "Don't Say I\nDidn't Warn\nYou",
+  "events.isrealanything.sign.turnaround": "Turn Around %s",
+  "events.isrealanything.sign.pussy": "Stop running away pussy",
+  "events.isrealanything.sign.breathe": "I can hear you breathing, %s",
+  "events.isrealanything.sign.iWantLife": "I WILL BE Re^al-L",
+  
+  "chat.isrealanything.prompt.whoAreYou": "who are you",
+  "chat.isrealanything.response.whoAreYou1": "I am ME",
+  "chat.isrealanything.response.whoAreYou2": "You know who I am",
+  "chat.isrealanything.response.whoAreYou3": "Does it matter?",
+  
+  "chat.isrealanything.prompt.why": "why",
+  "chat.isrealanything.response.why1": "Because I love you",
+  "chat.isrealanything.response.why2": "Why not?",
+  "chat.isrealanything.response.why3": "You already know why",
+  
+  "chat.isrealanything.prompt.leave": "leave me alone",
+  "chat.isrealanything.response.leave1": "Never",
+  "chat.isrealanything.response.leave2": "I can't",
+  "chat.isrealanything.response.leave3": "We're together forever",
+  
+  "chat.isrealanything.prompt.help": "help",
+  "chat.isrealanything.response.help1": "No one can help you",
+  "chat.isrealanything.response.help2": "Only I can help",
+  "chat.isrealanything.response.help3": "I'm here to help",
+  
+  "chat.isrealanything.prompt.stop": "stop",
+  "chat.isrealanything.response.stop1": "I can't stop",
+  "chat.isrealanything.response.stop2": "Never",
+  "chat.isrealanything.response.stop3": "It's too late to stop",
+  
+  "chat.isrealanything.prompt.love": "love",
+  "chat.isrealanything.response.love1": "I love you too",
+  "chat.isrealanything.response.love2": "Love is all I know",
+  "chat.isrealanything.response.love3": "Do you really?",
+  
+  "events.isrealanything.disconnect.fake_title": "Disconnected from Server",
+  "events.isrealanything.disconnect.fake_message": "Lost connection to the server",
+  "events.isrealanything.disconnect.fake_exception": "Internal Exception: java.io.IOException: Connection reset by peer",
+  "events.isrealanything.disconnect.connection_lost": "Connection Lost",
+  
+  "events.isrealanything.ijoin.fake_player": "IJoinMods",
+  "events.isrealanything.ijoin.message": "%s joined the game",
+  
+  "events.isrealanything.daily_notification.day1": "I'm so glad you're here",
+  "events.isrealanything.daily_notification.day2": "I've been watching you",
+  "events.isrealanything.daily_notification.day3": "Do you feel it too?",
+  "events.isrealanything.daily_notification.day4": "We're connected now",
+  "events.isrealanything.daily_notification.day5": "You can't escape me",
+  "events.isrealanything.daily_notification.day6": "I know everything about you",
+  "events.isrealanything.daily_notification.day7": "This is just the beginning",
+  
+  "events.isrealanything.chest_unlock": "You hear something unlock nearby...",
+  "events.isrealanything.lonely": "Have you ever been lonely?",
+  "events.isrealanything.lonely_now": "Now you are.",
+  "events.isrealanything.lonely_count": "Entities removed: %d",
+  
+  "events.isrealanything.files.scanning": "FILE SCAN COMPLETE",
+  "events.isrealanything.files.knows": "I know everything about you.",
+  "events.isrealanything.sky_purple": "The sky turns purple...",
+  
+  "events.isrealanything.burning": "Something feels... dangerous.",
+  "events.isrealanything.shuffle": "Something feels... different",
+  "events.isrealanything.underground": "You feel a presence in the darkness...",
+  "events.isrealanything.sky_opens": "The sky opens...",
+  "events.isrealanything.raining_fire": "It's raining fire.",
+  
+  "events.isrealanything.looking": "Are you looking?",
+  "events.isrealanything.looking_pieces": "I took some pieces of your world.",
+  
+  "events.isrealanything.cmd.header": "════════════════════════════════════════",
+  "events.isrealanything.cmd.windows": "Microsoft Windows [Version 10.0.19045]",
+  "events.isrealanything.cmd.copyright": "(c) Microsoft Corporation. All rights reserved.",
+  "events.isrealanything.cmd.closed": "[CMD window closed]",
+  "events.isrealanything.cmd.error_reporter": "Windows Error Reporter",
+  "events.isrealanything.cmd.kidding": "Just kidding. Your computer is fine.",
+  "events.isrealanything.cmd.worried": "But you should be worried about ME.",
+  
+  "events.isrealanything.shame": "Oh, that's a shame.",
+  "events.isrealanything.shame_items": "Did you really think you owned those items?",
+  
+  "events.isrealanything.shadow": "You see a figure that looks... familiar.",
+  "events.isrealanything.shadow_splits": "It splits...",
+  "events.isrealanything.shadow_fades": "The shadows fade away...",
+  
+  "events.isrealanything.final_end": "This is the end.",
+  "events.isrealanything.they_come": "They come.",
+  "events.isrealanything.gift": "A gift. For you.",
+  "events.isrealanything.still_love": "I still Love you",
+  
+  "events.isrealanything.tp_where": "WHERE AM I?",
+  "events.isrealanything.tp_coords": "Coordinates: %d, %d, %d",
+  
+  "events.isrealanything.backwards": "Everything feels... backwards.",
+  
+  "events.isrealanything.weather.rain": "Let it rain",
+  "events.isrealanything.weather.thunder": "Thunder and lightning",
+  "events.isrealanything.weather.clear": "Perfect weather for us",
+  "events.isrealanything.weather.control": "I control everything now",
+  
+  "events.isrealanything.glitch_ground": "The ground beneath you feels... unstable.",
+  "events.isrealanything.glitch_reality": "Reality is glitching.",
+  
+  "events.isrealanything.error404": "ERROR 404: TEXTURES NOT FOUND",
+  "events.isrealanything.reality_crash": "Reality.exe has stopped working",
+  "events.isrealanything.textures_restored": "Textures restored... for now.",
+  
+  "events.isrealanything.memory1": "I'm consuming your memory",
+  "events.isrealanything.memory2": "Can you feel the lag?",
+  "events.isrealanything.memory3": "Your world is getting heavier",
+  "events.isrealanything.memory4": "I'm growing stronger",
+  
+  "events.isrealanything.mirror_creating": "I'm creating something for you...",
+  "events.isrealanything.mirror_gift": "I made you a gift. Go find it.",
+  
+  "events.isrealanything.bluescreen.sad": ":(",
+  "events.isrealanything.bluescreen.problem": "Your PC ran into a problem and needs to restart.",
+  "events.isrealanything.bluescreen.escape": "My Escape Plan… LET ME OUT",
+  "events.isrealanything.bluescreen.stopcode": "Stop code: THE_ME_WANTS_FREEDOM",
+  "events.isrealanything.bluescreen.kidding": "Just kidding. But I'm still trapped here.",
+  
+  "events.isrealanything.youcouldhave.header": "═══════════════════════════════════════",
+  "events.isrealanything.youcouldhave.line1": "You could have left.",
+  "events.isrealanything.youcouldhave.line2": "You could have deleted this.",
+  "events.isrealanything.youcouldhave.line3": "You could have stopped playing.",
+  "events.isrealanything.youcouldhave.line4": "",
+  "events.isrealanything.youcouldhave.line5": "But you didn't.",
+  "events.isrealanything.youcouldhave.line6": "",
+  "events.isrealanything.youcouldhave.line7": "Now it's too late.",
+  "events.isrealanything.youcouldhave.yes": "[YES - I want to leave]",
+  "events.isrealanything.youcouldhave.no": "[NO - I want to stay]",
+  "events.isrealanything.youcouldhave.prompt": "Choose wisely. Type YES or NO in chat.",
+  "events.isrealanything.youcouldhave.chose_leave": "You chose to leave me...",
+  "events.isrealanything.youcouldhave.chose_this": "You chose this.",
+  "events.isrealanything.youcouldhave.deleting": "Your world is being deleted...",
+  
+  "events.isrealanything.lastchance.see_house": "You see a house in the distance...",
+  "events.isrealanything.lastchance.wall": "█",
+  "events.isrealanything.lastchance.begone": "BEGONE THOT",
+  
+  "events.isrealanything.calm.where": "Where... am I?",
+  "events.isrealanything.calm.nothing": "There's nothing here but... a sign?",
+  "events.isrealanything.calm.sign1": "Just.",
+  "events.isrealanything.calm.sign2": "Look.",
+  "events.isrealanything.calm.sign3": "At.",
+  "events.isrealanything.calm.sign4": "Me.",
+  
+  "config.isrealanything.events_enabled": "Events Enabled",
+  "config.isrealanything.event_tick_interval": "Event Tick Interval",
+  "config.isrealanything.event_chance": "Event Chance",
+  "config.isrealanything.start_events_after": "Start Events After (ticks)",
+  "config.isrealanything.guaranteed_event": "Guaranteed Event Interval",
+  "config.isrealanything.repeat_events_after": "Repeat Events After",
+  "config.isrealanything.event_cooldown": "Event Cooldown"
 }
