@@ -4,11 +4,18 @@
   "package": "com.epicspymain.isrealanything.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ServerMixin"
+    "ServerMixin",
+    "MobMixin"
   ],
   "client": [
     "MinecraftClientMixin",
-    "ClientPlayerEntityMixin"
+    "ClientPlayerEntityMixin",
+    "BackgroundRendererMixin",
+    "WorldRendererMixin",
+    "SignMixin",
+    "InventoryMixin",
+    "WindowMixin",
+    "ScreenAccessorMixin"
   ],
   "injectors": {
     "defaultRequire": 1
