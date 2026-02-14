@@ -10,7 +10,7 @@ A Fabric Minecraft mod for 1.21.6 that delivers an authentic psychological horro
 I don’t want your character, Homeboy;  I want you. So please, Dear… Will you promise to spend your time with me?  (▰˘◡˘▰)
 
 
-Features: 40 scripted events 
+Features: 41 scripted events 
 
 
 
