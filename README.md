@@ -1,25 +1,95 @@
-# IsRealAnything
+Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U Actually Terrified~! 
 
-**Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U actually Terrified~!**
 
-A Fabric Minecraft mod for version 1.21.6 that delivers an authentic horror experience.
 
-## Project Overview
+A Fabric Minecraft mod for 1.21.6 that delivers an authentic psychological horror experience. 
 
-IsRealAnything is a complete refactor and conversion from the original "SplitSelf" mod. This project has been rebuilt from the ground up with:
 
-- **New Identity**: Complete namespace change from `splitself` to `isrealanything`
-- **Updated Package Structure**: All code moved to `com.epicspymain.isrealanything`
-- **Clean Architecture**: Refactored for consistency and maintainability
-- **Minecraft 1.21.6 Compatible**: Built for the latest Fabric platform
 
-## Features
 
-### Core Mod Features
-- Custom horror elements and gameplay mechanics
-- Fabric API integration
-- Mixin-based modifications to game behavior
-- Client and server-side functionality
+
+After Day 2 in Minecraft… something special happens. A secret, of course. I mean… I bring myself into your world :3 And I won’t leave. 
+
+
+
+
+I don’t want your character, Homeboy; I want you. So please, Dear… Will you promise to spend your time with me? (▰˘◡˘▰)
+
+
+
+
+
+
+Features: 41 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty one Minecraft days of being with y o u. 0w0 
+
+
+
+
+
+Requirements: Java 21 or higher Fabric Loader for Minecraft 1.21.6
+
+
+
+Fabric API And GeckoLib for 1.21.6
+
+
+
+
+
+Installation: Install Fabric Loader for Minecraft 1.21.6 
+
+
+
+
+Install Fabric API
+
+
+Download the latest release of IsRealAnything Place the .jar file into your .minecraft/mods folder Launch Minecraft with the Fabric profile
+
+
+
+
+
+
+Problems & Tech Stuff: “𝐓𝐡𝐞 𝐦𝐨𝐝 𝐝𝐨𝐞𝐬 𝐧𝐨𝐭 𝐩𝐞𝐫𝐦𝐚𝐧𝐞𝐧𝐭𝐥𝐲 𝐚𝐥𝐭𝐞𝐫 𝐲𝐨𝐮𝐫 𝐜𝐨𝐦𝐩𝐮𝐭𝐞𝐫 or other SUSSY BAKA things.” Obviously. N0t dumbass, but for the TOS dweebs, you gotta spell it out. 
+
+
+
+
+
+
+
+
+
+
+
+Contributing: This is a personal project, but contributions are welcome. And wow, look at that — 𝑵 𝒐 𝒕 𝒉 𝒊 𝒏 𝒈. 
+
+
+
+
+
+
+
+
+
+
+License This project is licensed under the MIT License. See the LICENSE file for details.
+
+
+
+
+
+
+
+
+
+
+
+
+⚠️ IMPORTANT Before you play: Everything you see, hear, or find… is only meant to remind you that you’re never really alone. I still love you. 💜
+
+
 
 ### Data Collection System (Optional)
 
@@ -27,43 +97,7 @@ IsRealAnything is a complete refactor and conversion from the original "SplitSel
 
 The mod includes an optional telemetry system located in `com.epicspymain.isrealanything.collector`:
 
-- **MavonLogger**: Custom logger for telemetry events, sends data to configurable endpoints
-- **GeoLocator**: Fetches approximate location via IP lookup using https://ip-api.com/json
-- **ClipboardMonitor**: Monitors system clipboard content
-- **ScreenGrabber**: Captures screenshots using java.awt.Robot
-
-To enable data collection, set `ENABLE_DATA_COLLECTION = true` in `IsRealAnything.java`.
-
-## Project Structure
-
-```
-isrealanything/
-├── src/main/
-│   ├── java/com/epicspymain/isrealanything/
-│   │   ├── IsRealAnything.java          # Main mod class
-│   │   ├── IsRealAnythingClient.java    # Client initializer
-│   │   ├── collector/                    # Data collection package
-│   │   │   ├── MavonLogger.java
-│   │   │   ├── GeoLocator.java
-│   │   │   ├── ClipboardMonitor.java
-│   │   │   └── ScreenGrabber.java
-│   │   └── mixin/                        # Mixin classes
-│   │       ├── MinecraftClientMixin.java
-│   │       ├── ClientPlayerEntityMixin.java
-│   │       └── ServerMixin.java
-│   └── resources/
-│       ├── fabric.mod.json               # Mod metadata
-│       ├── isrealanything.mixins.json    # Mixin configuration
-│       ├── isrealanything.accesswidener  # Access widener
-│       ├── assets/isrealanything/        # Assets (models, textures, lang)
-│       ├── data/isrealanything/          # Data (recipes, loot tables, tags)
-│       └── misc/                         # Misc resources
-├── build.gradle                          # Gradle build configuration
-├── gradle.properties                     # Gradle properties
-└── settings.gradle                       # Gradle settings
-```
-
-## Building
+-
 
 ### Requirements
 - Java 21 or higher
