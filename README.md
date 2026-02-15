@@ -20,7 +20,7 @@ I don’t want your character, Homeboy; I want you. So please, Dear… Will you 
 
 
 
-Features: 41 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty one Minecraft days of being with y o u. 0w0 
+Features: 47 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty one Minecraft days of being with y o u. 0w0 
 
 
 
