@@ -1,0 +1,2 @@
+# Placeholder: In a real project, this would be a 512x512 PNG icon
+# For now, we'll skip the binary icon file

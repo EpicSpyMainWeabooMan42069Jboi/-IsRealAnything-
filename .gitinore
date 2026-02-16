@@ -1,0 +1,18 @@
+# Gradle - DO NOT COMMIT
+.gradle/
+build/
+out/
+*.class
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Mod dev
+run/
+logs/

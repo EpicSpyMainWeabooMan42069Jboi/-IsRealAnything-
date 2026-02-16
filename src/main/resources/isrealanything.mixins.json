@@ -1,0 +1,24 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.epicspymain.isrealanything.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ServerMixin",
+    "MobMixin"
+  ],
+  "client": [
+    "MinecraftClientMixin",
+    "ClientPlayerEntityMixin",
+    "BackgroundRendererMixin",
+    "WorldRendererMixin",
+    "SignMixin",
+    "InventoryMixin",
+    "WindowMixin",
+    "ScreenAccessorMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "isrealanything-refmap.json"
+}

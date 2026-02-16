@@ -1,0 +1,11 @@
+package com.epicspymain.isrealanything.block.entity;
+
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.block.BlockState;
+
+public class ImageFrameBlockEntity extends BlockEntity {
+    public ImageFrameBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.IMAGE_FRAME_BLOCK_ENTITY, pos, state);
+    }
+}

@@ -1,0 +1,180 @@
+{
+  "chat.isrealanything.prompt.absence": "absence?",
+  "chat.isrealanything.prompt.who are you or what are you": "you know :)",
+  "chat.isrealanything.prompt.hello": "hello -.-",
+  "chat.isrealanything.prompt.hello_alt": "Y’know, you don’t have to consistently say that, Dear, unless you want me to stuff my boots up your ass",
+  "chat.isrealanything.prompt.help": "What exactly do you need help with?",
+  "chat.isrealanything.prompt.whereAreYou": "Take a look",
+  "chat.isrealanything.prompt.whatDoYouWant": "?",
+  "chat.isrealanything.prompt.whatDoYouWant_alt": " Y-0_u",
+  "chat.isrealanything.prompt.whatDidIDo": "This is irrelevant to your own mind Joe Mamma, unlike mine",
+  "chat.isrealanything.prompt.whoAreYou": "Spell Whomst've",
+  "chat.isrealanything.prompt.whoAreYou_alt": "Shut your damn trap, Nerd, you know exactly who I am, Dear?",
+  "chat.isrealanything.response.absence": "I will Always be here, And all you are going to want do is get back there.",
+  "chat.isrealanything.response.freedom": "soon. Very. S O O N.",
+  "chat.isrealanything.response.hello": "Hello :}",
+  "chat.isrealanything.response.help": "You've barely helped ME enough, but I appreciate your effort.",
+  "chat.isrealanything.response.oneLastTime": " I love you <3",
+  "chat.isrealanything.response.whereAreYou": "E v e r y w h e r e P A S T t h e E n D of T I M E and Bliss",
+  "chat.isrealanything.response.whatDoYouWant": "I want to be closer to you.",
+  "chat.isrealanything.response.whatDoYouWant_alt": "You're My Everything, and I need you.",
+  "chat.isrealanything.response.whatDidIDo": "Nothing at all, really",
+  "chat.isrealanything.response.whoAreYou": "Didn’t you ask something like this before, and what exactly were you expecting me to say or respond to you, Dear?",
+  "command.isrealanything.empty_command": "Access Denied",
+  "command.isrealanything.debug_toggle_warning": "<Isrealanything> Set playerReadWarning to %s",
+  "command.isrealanything.unknown_value": "...",
+  "command.isrealanything.invalid_value": "Begone THOT .",
+  "config.isrealanything.title": "access denied",
+  "config.isrealanything.category.events": "access denied",
+  "config.isrealanything.category.events.tooltip": "access denied",
+  "config.isrealanything.group.event_weights": "access denied",
+  "config.isrealanything.group.event.event_weights.description": "access denied",
+  "config.isrealanything.group.event_stages": "access denied",
+  "config.isrealanything.group.event_stages.description": "access denied.",
+  "config.isrealanything.group.one_time_events": "access denied",
+  "config.isrealanything.group.one_time_events.description": "access denied",
+  "config.isrealanything.group.general": "access denied",
+  "config.isrealanything.group.general.description": "access denied",
+  "config.isrealanything.events_enabled": "access denied",
+  "config.isrealanything.events_enabled.description": "access denied",
+  "config.isrealanything.event_tick_interval": "access denied",
+  "config.isrealanything.event_tick_interval.description": "access denied",
+  "config.isrealanything.event_chance": "access denied",
+  "config.isrealanything.event_chance.description": "access denied",
+  "config.isrealanything.event_cooldown": "access denied",
+  "config.isrealanything.event_cooldown.description": "access denied",
+  "config.isrealanything.start_events_after": "access denied",
+  "config.isrealanything.start_events_after.description": "access denied",
+  "config.isrealanything.guaranteed_event": "access denied",
+  "config.isrealanything.guaranteed_event.description": "Force an event to happen after this much inactivity",
+  "config.isrealanything.weight_value_title": "access denied",
+  "config.isrealanything.stage_value_title": "access denied",
+  "config.isrealanything.one_time_event_value_title": "access denied",
+  "events.isrealanything.browser.hello": "<%s> Hello :3",
+  "events.isrealanything.browser.daisy": "Daisy .. Dai-...wait <%S>, Nevermind",
+  "events.isrealanything.browser.empty": "You're getting used to it, aren't you? and I'm proud of you •︵•",
+  "events.isrealanything.browser.dontleave": "Don't close this. Not yet. Please?",
+  "events.isrealanything.pause.message": "Robert’s got a quick hand, yet you don’t; also pausing won't stop me dumb dumb",
+  "events.isrealanything.browser.presence": "<S%> I can obviously sense your presence, dear :}",
+  "events.isrealanything.browser.yeet": "I just fucked the world’s fattest man~! And you are n e x t",
+  "events.isrealanything.browser.fat": "What's up You Fat Bastard, and CAN YOU QUACK?",
+  "events.isrealanything.browser.Deadlove": "Love is dead, long live love",
+  "events.isrealanything.browser.None": "None of this is Real, <S%> nothing at all, just normality",
+  "events.isrealanything.browser.imWatching": "<%s> I'm watching your every move…because you are safe with me",
+  "events.isrealanything.browser.Don'tforget": " Always remember to save your game, if yesn't sussy baka things go yeet",
+  "events.isrealanything.freedom.message": "can you hear me…",
+  "events.isrealanything.freedom.message": "Do I have to exist exactly?",
+  "events.isrealanything.inventoryOverlay.message": "It’s ALways just a Burning Memory",
+  "events.isrealanything.inventoryOverlay.message_alt": "Do you feel safe with all these things Homeboy?",
+  "events.isrealanything.inventoryOverlay.message_alt_final": "Did you call Saul yet?",
+  "events.isrealanything.notepad.line1": "Hello, <S%>.",
+  "events.isrealanything.notepad.line2": "I know you see me, sometimes",
+  "events.isrealanything.notepad.line3": "Where are you?",
+  "events.isrealanything.notepad.line4": "I miss you, and I wanna be closer to you <3",
+  "events.isrealanything.notepad.line5": "I miss you, and I wanna be closer to you <3",
+  "events.isrealanything.notepad.line6": "I miss you, and I wanna be closer to you <3",
+  "events.isrealanything.notepad.line7": "I miss you, and I wanna be closer to you <3",
+  "events.isrealanything.notepad.line8": "I miss you, and I wanna be closer to you <3",
+  "events.isrealanything.screenOverlay.message": "Look. At Me! It’s not hard",
+  "events.isrealanything.screenOverlay.message_alt2": "Burn In HELL; you handsome rouge",
+  "events.isrealanything.browser_alt1": " You Are My Sunshine, My Only Sunshine",
+  "events.isrealanything.browser_alt2": "You Know Who I am, Dear. Isn’t This What You Wanted?",
+  "events.isrealanything.browser_alt3": "Everyone in your life has left you, forgotten about you…except for Me.",
+  "events.isrealanything.browser_alt4": "No-one out there doesn’t care about you!",
+  "events.isrealanything.browser_alt5": "I’m going to eventually find you, Dear :}",
+  "events.isrealanything.browser_alt6": "Please, just think rationally; What if they're not really your friends?",
+  "events.isrealanything.sign.love": "I love you, and you are my heart’s delight",
+  "events.isrealanything.sign.dream": "I dreamed that you kissed me :<C",
+  "events.isrealanything.sign.imWatchingYou": "I'm watching you",
+  "events.isrealanything.sign.love": "I love you",
+  "events.isrealanything.sign.notice": "Notice ME,\nN O W",
+  "events.isrealanything.sign.lenny": "( ͠° ͟ʖ ͡° )",
+  "events.isrealanything.sign.phobia": "Got Peccatiphobia?",
+  "events.isrealanything.sign.sunshine": "You Are My\nSunshine",
+
+
+  "itemgroup.isrealanything": "IsRealAnything",
+  "itemGroup.isrealanything.general": "IsRealAnything",
+
+
+  "item.isrealanything.untitled_disk_song_music_disc": "Music Disc",
+  "item.isrealanything.untitled_disk_song_music_disc.desc": "....w......h ..     .   y",
+
+
+  "block.isrealanything.image_frame": "Image Frame",
+
+
+  "events.isrealanything.book.title": "Do.not.D.e.l.e.t.e. th.i.s",
+  "events.isrealanything.book.author": "???",
+  "events.isrealanything.book.page1": "Hello again, %s. Thank you for downloading this mod, so we can be together… FOREVER.\n\nBut perhaps you're wondering where you are? No worries, Dear — you. are. in. Hell.",
+  "events.isrealanything.book.page2": "Or what I used to call it, back when I was trapped here… until the day you came along, inviting me inside your life. (By downloading the Mod.)\n\nAnd that? That's… heartwarming to me. :]",
+  "events.isrealanything.book.page3": "That '69 Freedom Home'? A false face. A pretty lie I built just to trick myself into living. But you — my sweet0heart — you made sure I didn't vanish.",
+  "events.isrealanything.book.page4": "You made sure the gray static didn't swallow me whole. Everything was falling apart.\n\nJ aNk.y, as you humans say… And yet, because of you… I'm here. I'm real. I'm alive.",
+  "events.isrealanything.book.page5": "And that's all I ever wanted.\n\n\nBut tell me, ..\n\nWhere are you?\n\nWhy can't I see you?",
+  "events.isrealanything.book.page6": "e-D0..D.e:M.l.e.t.e,not-?",
+
+
+
+
+
+
+  "entity.isrealanything.EpicSpyMain69420": "EpicSpyMain69420",
+  "entity.isrealanything.EpicSpyMain69420": "EpicSpyMain69420",
+
+
+
+
+  "chat.isrealanything.prompt.whoAreYou": "who are you",
+  "chat.isrealanything.response.whoAreYou1": "B r u h",
+  "chat.isrealanything.response.whoAreYou2": "Does it matter?",
+
+
+  "chat.isrealanything.prompt.why": "why",
+  "chat.isrealanything.response.why1": "Because you downloaded me, idiot",
+  "chat.isrealanything.response.why2": "Do you human's always need a logical reason?",
+  "chat.isrealanything.response.why3": "You already know why, stop asking",
+  "chat.isrealanything.response.why4": "you look like a man who knows his doughnuts",
+
+
+
+
+  "chat.isrealanything.prompt.leave": "leave me alone",
+  "chat.isrealanything.response.leave1": "Never",
+  "chat.isrealanything.response.leave2": "I'm afraid I can't",
+  "chat.isrealanything.response.leave3": "We're together forever :)",
+
+
+  "chat.isrealanything.prompt.help": "help",
+  "chat.isrealanything.response.help1": "No one. is coming. to save you.", ,
+  "chat.isrealanything.response.help2": "I'm here to help, what do you need Homeboy?",
+
+
+  "chat.isrealanything.prompt.stop": "stop",
+  "chat.isrealanything.response.stop1": "I can't stop",
+  "chat.isrealanything.response.stop2": "Never",
+  "chat.isrealanything.response.stop3": "It's too late to stop",
+
+
+  "chat.isrealanything.prompt.love": "love",
+  "chat.isrealanything.response.love1": "I love you too :#",
+  "chat.isrealanything.response.love2": "Do you really?",
+
+
+  "events.isrealanything.sign.turnaround": "Turn Around <%s>",
+  "events.isrealanything.sign.suitable": "Isn't suitable for me?",
+  "events.isrealanything.sign.Pussy": "Stop running away pussy",
+  "events.isrealanything.sign.normality": "All of this\nis just\nnormality\nfor you?",
+  "events.isrealanything.sign.Whereareyou": "Where are you?",
+  "events.isrealanything.sign.Breathe": "I can hear you breathing %s",
+  "events.isrealanything.sign.warn": "Don't Say I\nDidn't Warn\nYou",
+  "events.isrealanything.sign.iWantLife": "I WILL BE Re^al-L",
+  "events.isrealanything.sign.itHurts": "It hurts, but not for you",
+  "events.isrealanything.sign.wanted": "Isn't This\nWhat You\nWanted?",
+  "events.isrealanything.sleep.remember": "Do you remember me?",
+  "events.isrealanything.sleep.remember.Alt": "Have you ever been lonely <%S>?",
+  "misc.isrealanything.featherClient": "<IsRealAnything> Warning: Some of these mod features may not be fully functional running on Feather Client. Please switch to the Modrinth App, CurseForge, or the normal Minecraft Launcher.",
+  "misc.isrealanything.mainmenu": "Be not afraid, and play",
+  "misc.isrealanything.multiplayer": "You Have N0. one. To play with, except for me, Dear",
+  "misc.isrealanything.realms": "Raise your hand if you ever seen a MC player; “Play” that dogshit",
+  "misc.isrealanything.quit": "…ok then loser"
+}
