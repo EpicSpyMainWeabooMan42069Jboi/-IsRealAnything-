@@ -28,8 +28,7 @@ public class StructureManager {
     ) {
         try {
             // Load structure
-            InputStream stream = StructureManager.class.getResourceAsStream(
-                "/assets/isrealanything/structures/" + structureName + ".nbt"
+            InputStream stream = StructureManager.class.getResourceAsStream("/data/isrealanything/structures/" + structureName + ".nbt"
             );
             
             if (stream == null) {
@@ -71,7 +70,7 @@ public class StructureManager {
     ) {
         try {
             InputStream stream = StructureManager.class.getResourceAsStream(
-                "/assets/isrealanything/structures/" + structureName + ".nbt"
+                "/data/isrealanything/structures/" + structureName + ".nbt"
             );
             
             if (stream == null) {

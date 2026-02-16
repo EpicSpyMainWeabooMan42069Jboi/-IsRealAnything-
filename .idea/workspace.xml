@@ -4,7 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af534466-8fea-4f6d-b16f-a5c60cfdaaa4" name="Changes" comment="&quot;Initial commit - IsRealAnything mod complete implementation&quot;" />
+    <list default="true" id="af534466-8fea-4f6d-b16f-a5c60cfdaaa4" name="Changes" comment="&quot;Initial commit - IsRealAnything mod complete implementation&quot;">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/fabric.mod.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_me.animation.json.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_me.animation.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/MODELS_README.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/icon.png.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/blockstates/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/lang/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/lang_overlay_mgs.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/models/block/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/sounds.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/sounds/untitled_disk_song_music_disc.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds/untitled_disk_song_music_disc.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/texts/splashes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/texts/splashes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/block/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/entity/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/gui/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/gui/title/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/lang_tost/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/misc/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/.placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/isrealanything.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/isrealanything.mixins.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,7 +119,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -97,6 +136,12 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\porte\IdeaProjects\IsRealAnything\src\main\resources\assets\isrealanything\sounds" />
+      <recent name="C:\Users\porte\IdeaProjects\IsRealAnything\src\main\resources" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.Minecraft Client" />
   <component name="SharedIndexes">
     <attachedChunks>
@@ -125,12 +170,15 @@
       <workItem from="1771089749924" duration="1224000" />
       <workItem from="1771091104223" duration="3801000" />
       <workItem from="1771131302940" duration="11000" />
-      <workItem from="1771132126133" duration="41090000" />
+      <workItem from="1771132126133" duration="51891000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ogg" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="&quot;Initial commit - IsRealAnything mod complete implementation&quot;" />

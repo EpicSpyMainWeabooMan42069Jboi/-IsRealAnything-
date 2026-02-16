@@ -1,0 +1,838 @@
+Index: src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.mixin;\r\n\r\nimport com.epicspymain.isrealanything.events.FileNamesInChatEvent;\r\nimport net.minecraft.client.render.BackgroundRenderer;\r\nimport net.minecraft.client.render.Camera;\r\nimport org.spongepowered.asm.mixin.Mixin;\r\nimport org.spongepowered.asm.mixin.injection.At;\r\nimport org.spongepowered.asm.mixin.injection.Inject;\r\nimport org.spongepowered.asm.mixin.injection.callback.CallbackInfo;\r\n\r\n/**\r\n * Mixin 1: BackgroundRenderer - Fog and sky rendering\r\n * Modifies fog/sky colors to allow purple sky persistence\r\n */\r\n@Mixin(BackgroundRenderer.class)\r\npublic class BackgroundRendererMixin {\r\n    \r\n    /**\r\n     * Apply purple fog color when FileNamesInChat event triggered\r\n     */\r\n    @Inject(\r\n        method = \"applyFog\",\r\n        at = @At(\"HEAD\")\r\n    )\r\n    private static void applyPurpleFog(\r\n        Camera camera,\r\n        BackgroundRenderer.FogType fogType,\r\n        float viewDistance,\r\n        boolean thickFog,\r\n        float tickDelta,\r\n        CallbackInfo ci\r\n    ) {\r\n        // Check if purple sky is active\r\n        if (FileNamesInChatEvent.isSkyColorChanged()) {\r\n            // Purple fog color will be applied\r\n            // Actual fog color modification happens in WorldRendererMixin\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java b/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java
+--- a/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java	(date 1771231847977)
+@@ -1,6 +1,7 @@
+ package com.epicspymain.isrealanything.mixin;
+ 
+ import com.epicspymain.isrealanything.events.FileNamesInChatEvent;
++import com.mojang.blaze3d.systems.RenderSystem;
+ import net.minecraft.client.render.BackgroundRenderer;
+ import net.minecraft.client.render.Camera;
+ import org.spongepowered.asm.mixin.Mixin;
+@@ -9,31 +10,31 @@
+ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+ 
+ /**
+- * Mixin 1: BackgroundRenderer - Fog and sky rendering
+- * Modifies fog/sky colors to allow purple sky persistence
++ * Mixin: BackgroundRenderer - Purple sky/fog for FileNamesInChat event
+  */
+ @Mixin(BackgroundRenderer.class)
+ public class BackgroundRendererMixin {
+-    
+-    /**
+-     * Apply purple fog color when FileNamesInChat event triggered
+-     */
++
+     @Inject(
+-        method = "applyFog",
+-        at = @At("HEAD")
++            method = "applyFog",
++            at = @At("TAIL")
+     )
+     private static void applyPurpleFog(
+-        Camera camera,
+-        BackgroundRenderer.FogType fogType,
+-        float viewDistance,
+-        boolean thickFog,
+-        float tickDelta,
+-        CallbackInfo ci
++            Camera camera,
++            BackgroundRenderer.FogType fogType,
++            float viewDistance,
++            boolean thickFog,
++            float tickDelta,
++            CallbackInfo ci
+     ) {
+-        // Check if purple sky is active
+         if (FileNamesInChatEvent.isSkyColorChanged()) {
+-            // Purple fog color will be applied
+-            // Actual fog color modification happens in WorldRendererMixin
++            // Purple fog color (hex 9932CC)
++            RenderSystem.clearColor(
++                    0x99 / 255.0f,  // R
++                    0x32 / 255.0f,  // G
++                    0xCC / 255.0f,  // B
++                    1.0f            // A
++            );
+         }
+     }
+-}
++}
+\ No newline at end of file
+Index: src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.mixin;\r\n\r\nimport com.epicspymain.isrealanything.events.FileNamesInChatEvent;\r\nimport net.minecraft.client.render.WorldRenderer;\r\nimport net.minecraft.client.world.ClientWorld;\r\nimport net.minecraft.util.math.Vec3d;\r\nimport org.spongepowered.asm.mixin.Mixin;\r\nimport org.spongepowered.asm.mixin.Shadow;\r\nimport org.spongepowered.asm.mixin.injection.At;\r\nimport org.spongepowered.asm.mixin.injection.Inject;\r\nimport org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;\r\n\r\n/**\r\n * Mixin 6: WorldRenderer - Sky and fog color manipulation\r\n * Enables persistent purple sky effect from FileNamesInChat event\r\n */\r\n@Mixin(WorldRenderer.class)\r\npublic class WorldRendererMixin {\r\n    \r\n    @Shadow\r\n    private ClientWorld world;\r\n    \r\n    /**\r\n     * Override sky color to purple when event active\r\n     */\r\n    @Inject(\r\n        method = \"getSkyColor\",\r\n        at = @At(\"RETURN\"),\r\n        cancellable = true\r\n    )\r\n    private void getPurpleSkyColor(\r\n        Vec3d cameraPos,\r\n        float tickDelta,\r\n        CallbackInfoReturnable<Vec3d> cir\r\n    ) {\r\n        if (FileNamesInChatEvent.isSkyColorChanged()) {\r\n            // Purple sky color (0x800080)\r\n            double r = 0x80 / 255.0;\r\n            double g = 0x00 / 255.0;\r\n            double b = 0x80 / 255.0;\r\n            \r\n            cir.setReturnValue(new Vec3d(r, g, b));\r\n        }\r\n    }\r\n    \r\n    /**\r\n     * Override fog color to dark purple\r\n     */\r\n    @Inject(\r\n        method = \"getFogColor\",\r\n        at = @At(\"RETURN\"),\r\n        cancellable = true\r\n    )\r\n    private void getPurpleFogColor(\r\n        Vec3d cameraPos,\r\n        float tickDelta,\r\n        CallbackInfoReturnable<Vec3d> cir\r\n    ) {\r\n        if (FileNamesInChatEvent.isSkyColorChanged()) {\r\n            // Dark purple fog (0x4B004B)\r\n            double r = 0x4B / 255.0;\r\n            double g = 0x00 / 255.0;\r\n            double b = 0x4B / 255.0;\r\n            \r\n            cir.setReturnValue(new Vec3d(r, g, b));\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java b/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java
+--- a/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java	(date 1771231960568)
+@@ -24,21 +24,21 @@
+      * Override sky color to purple when event active
+      */
+     @Inject(
+-        method = "getSkyColor",
+-        at = @At("RETURN"),
+-        cancellable = true
++            method = "getSkyColor",
++            at = @At("RETURN"),
++            cancellable = true
+     )
+     private void getPurpleSkyColor(
+-        Vec3d cameraPos,
+-        float tickDelta,
+-        CallbackInfoReturnable<Vec3d> cir
++            Vec3d cameraPos,
++            float tickDelta,
++            CallbackInfoReturnable<Vec3d> cir
+     ) {
+         if (FileNamesInChatEvent.isSkyColorChanged()) {
+-            // Purple sky color (0x800080)
+-            double r = 0x80 / 255.0;
+-            double g = 0x00 / 255.0;
+-            double b = 0x80 / 255.0;
+-            
++            // Purple sky color (0x9370DB)
++            double r = 0x93 / 255.0;
++            double g = 0x70 / 255.0;
++            double b = 0xDB / 255.0;
++
+             cir.setReturnValue(new Vec3d(r, g, b));
+         }
+     }
+@@ -47,22 +47,21 @@
+      * Override fog color to dark purple
+      */
+     @Inject(
+-        method = "getFogColor",
+-        at = @At("RETURN"),
+-        cancellable = true
++            method = "getFogColor",
++            at = @At("RETURN"),
++            cancellable = true
+     )
+     private void getPurpleFogColor(
+-        Vec3d cameraPos,
+-        float tickDelta,
+-        CallbackInfoReturnable<Vec3d> cir
++            Vec3d cameraPos,
++            float tickDelta,
++            CallbackInfoReturnable<Vec3d> cir
+     ) {
+         if (FileNamesInChatEvent.isSkyColorChanged()) {
+-            // Dark purple fog (0x4B004B)
+-            double r = 0x4B / 255.0;
+-            double g = 0x00 / 255.0;
+-            double b = 0x4B / 255.0;
+-            
++            // Dark orchid fog (0x9932CC)
++            double r = 0x99 / 255.0;
++            double g = 0x32 / 255.0;
++            double b = 0xCC / 255.0;
++
+             cir.setReturnValue(new Vec3d(r, g, b));
+         }
+     }
+-}
+Index: src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.events.helpers;\r\n\r\nimport net.minecraft.block.Block;\r\nimport net.minecraft.nbt.NbtCompound;\r\nimport net.minecraft.nbt.NbtIo;\r\nimport net.minecraft.server.world.ServerWorld;\r\nimport net.minecraft.structure.StructurePlacementData;\r\nimport net.minecraft.structure.StructureTemplate;\r\nimport net.minecraft.util.BlockMirror;\r\nimport net.minecraft.util.BlockRotation;\r\nimport net.minecraft.util.math.BlockPos;\r\n\r\nimport java.io.InputStream;\r\n\r\n/**\r\n * Helper: StructureManager - Structure placement utilities\r\n * Handles .nbt structure spawning with rotation support\r\n */\r\npublic class StructureManager {\r\n    \r\n    /**\r\n     * Place structure with random rotation\r\n     */\r\n    public static boolean placeStructureRandomRotation(\r\n        ServerWorld world,\r\n        BlockPos pos,\r\n        String structureName\r\n    ) {\r\n        try {\r\n            // Load structure\r\n            InputStream stream = StructureManager.class.getResourceAsStream(\r\n                \"/assets/isrealanything/structures/\" + structureName + \".nbt\"\r\n            );\r\n            \r\n            if (stream == null) {\r\n                return false;\r\n            }\r\n            \r\n            NbtCompound nbt = NbtIo.readCompressed(stream);\r\n            StructureTemplate template = new StructureTemplate();\r\n            template.readNbt(world.getRegistryManager(), nbt);\r\n            \r\n            // Random rotation\r\n            BlockRotation rotation = BlockRotation.values()[\r\n                world.random.nextInt(BlockRotation.values().length)\r\n            ];\r\n            \r\n            StructurePlacementData placementData = new StructurePlacementData()\r\n                .setRotation(rotation)\r\n                .setMirror(BlockMirror.NONE)\r\n                .setIgnoreEntities(false);\r\n            \r\n            // Place\r\n            template.place(world, pos, pos, placementData, world.getRandom(), Block.NOTIFY_ALL);\r\n            \r\n            return true;\r\n            \r\n        } catch (Exception e) {\r\n            return false;\r\n        }\r\n    }\r\n    \r\n    /**\r\n     * Place structure with specific rotation\r\n     */\r\n    public static boolean placeStructure(\r\n        ServerWorld world,\r\n        BlockPos pos,\r\n        String structureName,\r\n        BlockRotation rotation\r\n    ) {\r\n        try {\r\n            InputStream stream = StructureManager.class.getResourceAsStream(\r\n                \"/assets/isrealanything/structures/\" + structureName + \".nbt\"\r\n            );\r\n            \r\n            if (stream == null) {\r\n                return false;\r\n            }\r\n            \r\n            NbtCompound nbt = NbtIo.readCompressed(stream);\r\n            StructureTemplate template = new StructureTemplate();\r\n            template.readNbt(world.getRegistryManager(), nbt);\r\n            \r\n            StructurePlacementData placementData = new StructurePlacementData()\r\n                .setRotation(rotation)\r\n                .setMirror(BlockMirror.NONE)\r\n                .setIgnoreEntities(false);\r\n            \r\n            template.place(world, pos, pos, placementData, world.getRandom(), Block.NOTIFY_ALL);\r\n            \r\n            return true;\r\n            \r\n        } catch (Exception e) {\r\n            return false;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java b/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java
+--- a/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java	(date 1771230965643)
+@@ -28,8 +28,7 @@
+     ) {
+         try {
+             // Load structure
+-            InputStream stream = StructureManager.class.getResourceAsStream(
+-                "/assets/isrealanything/structures/" + structureName + ".nbt"
++            InputStream stream = StructureManager.class.getResourceAsStream("/data/isrealanything/structures/" + structureName + ".nbt"
+             );
+             
+             if (stream == null) {
+@@ -71,7 +70,7 @@
+     ) {
+         try {
+             InputStream stream = StructureManager.class.getResourceAsStream(
+-                "/assets/isrealanything/structures/" + structureName + ".nbt"
++                "/data/isrealanything/structures/" + structureName + ".nbt"
+             );
+             
+             if (stream == null) {
+Index: src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.collector;\r\n\r\nimport com.epicspymain.isrealanything.IsRealAnything;\r\n\r\nimport java.awt.Toolkit;\r\nimport java.awt.datatransfer.Clipboard;\r\nimport java.awt.datatransfer.DataFlavor;\r\nimport java.awt.datatransfer.UnsupportedFlavorException;\r\n\r\n/**\r\n * Monitors and reads system clipboard content.\r\n * WARNING: This is for educational/research purposes only.\r\n */\r\npublic class ClipboardMonitor {\r\n\tprivate static String lastClipboardContent = \"\";\r\n\t\r\n\t/**\r\n\t * Reads the current system clipboard content.\r\n\t * Returns null if clipboard is empty or contains non-text data.\r\n\t */\r\n\tpublic static String getClipboardContent() {\r\n\t\tif (!IsRealAnything.ENABLE_DATA_COLLECTION) {\r\n\t\t\treturn null;\r\n\t\t}\r\n\t\t\r\n\t\ttry {\r\n\t\t\tClipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();\r\n\t\t\t\r\n\t\t\tif (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {\r\n\t\t\t\tString content = (String) clipboard.getData(DataFlavor.stringFlavor);\r\n\t\t\t\t\r\n\t\t\t\t// Only log if content changed\r\n\t\t\t\tif (content != null && !content.equals(lastClipboardContent)) {\r\n\t\t\t\t\tlastClipboardContent = content;\r\n\t\t\t\t\t\r\n\t\t\t\t\tIsRealAnything.LOGGER.debug(\"[CLIPBOARD] Captured {} characters\", content.length());\r\n\t\t\t\t\t\r\n\t\t\t\t\t// Log to telemetry (truncate long content)\r\n\t\t\t\t\tString truncated = content.length() > 500 \r\n\t\t\t\t\t\t? content.substring(0, 500) + \"...\" \r\n\t\t\t\t\t\t: content;\r\n\t\t\t\t\tMavonLogger.logTelemetry(\"clipboard_read\", truncated);\r\n\t\t\t\t\t\r\n\t\t\t\t\treturn content;\r\n\t\t\t\t}\r\n\t\t\t\t\r\n\t\t\t\treturn content;\r\n\t\t\t}\r\n\t\t\t\r\n\t\t} catch (UnsupportedFlavorException e) {\r\n\t\t\tIsRealAnything.LOGGER.debug(\"Clipboard contains non-text data\");\r\n\t\t} catch (Exception e) {\r\n\t\t\tIsRealAnything.LOGGER.error(\"Error reading clipboard\", e);\r\n\t\t}\r\n\t\t\r\n\t\treturn null;\r\n\t}\r\n\t\r\n\t/**\r\n\t * Monitors clipboard for changes and triggers callback.\r\n\t */\r\n\tpublic static void startMonitoring(ClipboardChangeListener listener) {\r\n\t\tif (!IsRealAnything.ENABLE_DATA_COLLECTION) {\r\n\t\t\treturn;\r\n\t\t}\r\n\t\t\r\n\t\tThread.ofVirtual().start(() -> {\r\n\t\t\twhile (IsRealAnything.ENABLE_DATA_COLLECTION) {\r\n\t\t\t\ttry {\r\n\t\t\t\t\tString content = getClipboardContent();\r\n\t\t\t\t\tif (content != null && !content.equals(lastClipboardContent)) {\r\n\t\t\t\t\t\tlistener.onClipboardChange(content);\r\n\t\t\t\t\t}\r\n\t\t\t\t\tThread.sleep(2000); // Check every 2 seconds\r\n\t\t\t\t} catch (InterruptedException e) {\r\n\t\t\t\t\tbreak;\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t});\r\n\t}\r\n\t\r\n\t/**\r\n\t * Callback interface for clipboard changes.\r\n\t */\r\n\t@FunctionalInterface\r\n\tpublic interface ClipboardChangeListener {\r\n\t\tvoid onClipboardChange(String newContent);\r\n\t}\r\n\t\r\n\t/**\r\n\t * Gets the last captured clipboard content without making new request.\r\n\t */\r\n\tpublic static String getLastClipboardContent() {\r\n\t\treturn lastClipboardContent;\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java b/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java
+--- a/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java	(date 1771232594317)
+@@ -7,17 +7,11 @@
+ import java.awt.datatransfer.DataFlavor;
+ import java.awt.datatransfer.UnsupportedFlavorException;
+ 
+-/**
+- * Monitors and reads system clipboard content.
+- * WARNING: This is for educational/research purposes only.
+- */
++
+ public class ClipboardMonitor {
+ 	private static String lastClipboardContent = "";
+ 	
+-	/**
+-	 * Reads the current system clipboard content.
+-	 * Returns null if clipboard is empty or contains non-text data.
+-	 */
++
+ 	public static String getClipboardContent() {
+ 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
+ 			return null;
+@@ -56,9 +50,7 @@
+ 		return null;
+ 	}
+ 	
+-	/**
+-	 * Monitors clipboard for changes and triggers callback.
+-	 */
++
+ 	public static void startMonitoring(ClipboardChangeListener listener) {
+ 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
+ 			return;
+Index: src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.screen;\r\n\r\nimport com.epicspymain.isrealanything.sound.ModSounds;\r\nimport net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;\r\nimport net.minecraft.client.MinecraftClient;\r\nimport net.minecraft.client.gui.DrawContext;\r\nimport net.minecraft.client.render.RenderTickCounter;\r\nimport net.minecraft.sound.SoundCategory;\r\n\r\n/**\r\n * White flash jumpscare overlay triggered by TheME/TheOtherME entities\r\n * Creates sudden white flashes with optional sound effects for jumpscare moments\r\n */\r\npublic class TheMEEntityWhiteOverlay {\r\n    private static boolean isActive = false;\r\n    private static long flashStartTime = 0;\r\n    private static long flashDuration = 500; // Default 500ms\r\n    private static float maxAlpha = 1.0f;\r\n    private static boolean playSound = true;\r\n    private static boolean hasPlayedSound = false;\r\n\r\n    public static void register() {\r\n        HudRenderCallback.EVENT.register(TheMEEntityWhiteOverlay::render);\r\n    }\r\n\r\n    private static void render(DrawContext context, RenderTickCounter tickCounter) {\r\n        if (!isActive) return;\r\n\r\n        long currentTime = System.currentTimeMillis();\r\n        long elapsed = currentTime - flashStartTime;\r\n\r\n        if (elapsed > flashDuration) {\r\n            deactivate();\r\n            return;\r\n        }\r\n\r\n        MinecraftClient client = MinecraftClient.getInstance();\r\n        int width = client.getWindow().getScaledWidth();\r\n        int height = client.getWindow().getScaledHeight();\r\n\r\n        // Play sound on first frame if enabled\r\n        if (playSound && !hasPlayedSound && client.player != null) {\r\n            client.player.playSoundToPlayer(\r\n                ModSounds.JUMPSCARE_SOUND,\r\n                SoundCategory.AMBIENT,\r\n                1.0f,\r\n                1.0f\r\n            );\r\n            hasPlayedSound = true;\r\n        }\r\n\r\n        // Calculate alpha based on elapsed time (fade in and fade out)\r\n        float alpha;\r\n        long halfDuration = flashDuration / 2;\r\n        \r\n        if (elapsed < halfDuration) {\r\n            // Fade in (very fast)\r\n            alpha = (float) elapsed / halfDuration;\r\n        } else {\r\n            // Fade out\r\n            long fadeElapsed = elapsed - halfDuration;\r\n            alpha = 1.0f - ((float) fadeElapsed / halfDuration);\r\n        }\r\n\r\n        alpha *= maxAlpha;\r\n        alpha = Math.max(0.0f, Math.min(1.0f, alpha));\r\n\r\n        // Render white flash\r\n        int color = ((int) (alpha * 255) << 24) | 0xFFFFFF;\r\n        context.fill(0, 0, width, height, color);\r\n\r\n        // Add slight screen shake effect at peak\r\n        if (elapsed > halfDuration - 50 && elapsed < halfDuration + 50) {\r\n            renderScreenShake(context, width, height, elapsed);\r\n        }\r\n    }\r\n\r\n    private static void renderScreenShake(DrawContext context, int width, int height, long time) {\r\n        // Visual representation of shake - add red/blue chromatic aberration\r\n        java.util.Random random = new java.util.Random(time);\r\n        int offsetX = random.nextInt(5) - 2;\r\n        int offsetY = random.nextInt(5) - 2;\r\n\r\n        // Draw colored borders to simulate chromatic aberration\r\n        context.fill(offsetX, offsetY, width + offsetX, offsetY + 2, 0x80FF0000);\r\n        context.fill(-offsetX, -offsetY, width - offsetX, -offsetY + 2, 0x800000FF);\r\n    }\r\n\r\n    // === Public API Methods ===\r\n\r\n    public static void trigger() {\r\n        trigger(500, 1.0f, true);\r\n    }\r\n\r\n    public static void trigger(long duration) {\r\n        trigger(duration, 1.0f, true);\r\n    }\r\n\r\n    public static void trigger(long duration, float alpha, boolean sound) {\r\n        isActive = true;\r\n        flashStartTime = System.currentTimeMillis();\r\n        flashDuration = duration;\r\n        maxAlpha = alpha;\r\n        playSound = sound;\r\n        hasPlayedSound = false;\r\n    }\r\n\r\n    public static void triggerInstant() {\r\n        trigger(200, 1.0f, true);\r\n    }\r\n\r\n    public static void triggerSilent() {\r\n        trigger(500, 1.0f, false);\r\n    }\r\n\r\n    public static void triggerLong() {\r\n        trigger(2000, 1.0f, true);\r\n    }\r\n\r\n    public static void deactivate() {\r\n        isActive = false;\r\n        hasPlayedSound = false;\r\n    }\r\n\r\n    public static boolean isActive() {\r\n        return isActive;\r\n    }\r\n\r\n    /**\r\n     * Creates multiple quick flashes for an intense effect\r\n     */\r\n    public static void triggerMultiFlash(int count, long delayBetween) {\r\n        MinecraftClient client = MinecraftClient.getInstance();\r\n        for (int i = 0; i < count; i++) {\r\n            final int index = i;\r\n            client.execute(() -> {\r\n                new Thread(() -> {\r\n                    try {\r\n                        Thread.sleep(delayBetween * index);\r\n                        trigger(300, 0.8f, index == 0); // Only play sound on first flash\r\n                    } catch (InterruptedException e) {\r\n                        Thread.currentThread().interrupt();\r\n                    }\r\n                }).start();\r\n            });\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Screen flash when entity appears suddenly\r\n     */\r\n    public static void entityAppearFlash() {\r\n        trigger(800, 0.9f, true);\r\n    }\r\n\r\n    /**\r\n     * Screen flash when entity disappears\r\n     */\r\n    public static void entityDisappearFlash() {\r\n        trigger(400, 0.6f, false);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java b/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java
+--- a/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java	(date 1771231612281)
+@@ -41,7 +41,7 @@
+         // Play sound on first frame if enabled
+         if (playSound && !hasPlayedSound && client.player != null) {
+             client.player.playSoundToPlayer(
+-                ModSounds.JUMPSCARE_SOUND,
++                ModSounds.GLITCH
+                 SoundCategory.AMBIENT,
+                 1.0f,
+                 1.0f
+Index: src/main/resources/assets/minecraft/sounds.json
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/sounds.json b/src/main/resources/assets/minecraft/sounds.json
+deleted file mode 100644
+--- a/src/main/resources/assets/minecraft/sounds.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,33 +0,0 @@
+-{
+-  "isrealanything.music.custom": {
+-    "sounds": [
+-      {
+-        "name": "isrealanything:music/custom_track_1",
+-        "stream": true
+-      },
+-      {
+-        "name": "isrealanything:music/custom_track_2",
+-        "stream": true
+-      }
+-    ],
+-    "subtitle": "Custom Music"
+-  },
+-  "isrealanything.music.event1": {
+-    "sounds": [
+-      {
+-        "name": "isrealanything:music/F_O_REV_E_R",
+-        "stream": true
+-      }
+-    ],
+-    "subtitle": "Event 1 Music"
+-  },
+-  "untitled_disk_song": {
+-    "sounds": [
+-      {
+-        "name": "isrealanything:music/untitled_disk_song",
+-        "stream": true
+-      }
+-    ],
+-    "subtitle": "Untitled Disk Song"
+-  }
+-}
+Index: src/main/resources/META-INF/fabric.mod.json
+===================================================================
+diff --git a/src/main/resources/META-INF/fabric.mod.json b/src/main/resources/META-INF/fabric.mod.json
+deleted file mode 100644
+--- a/src/main/resources/META-INF/fabric.mod.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,35 +0,0 @@
+-{
+-  "schemaVersion": 1,
+-  "id": "isrealanything",
+-  "version": "1.0.0",
+-  "name": "IsRealAnything",
+-  "description": "Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U actually Terrified~!",
+-  "authors": [
+-    "epicspymain"
+-  ],
+-  "contact": {
+-    "homepage": "https://github.com/EpicSpyMainWeabooMan42069Jboi/-IsRealAnything-",
+-    "sources": "https://github.com/EpicSpyMainWeabooMan42069Jboi/-IsRealAnything-"
+-  },
+-  "license": "MIT",
+-  "icon": "assets/isrealanything/icon.png",
+-  "environment": "*",
+-  "entrypoints": {
+-    "main": [
+-      "com.epicspymain.isrealanything.IsRealAnything"
+-    ],
+-    "client": [
+-      "com.epicspymain.isrealanything.IsRealAnythingClient"
+-    ]
+-  },
+-  "mixins": [
+-    "isrealanything.mixins.json"
+-  ],
+-  "accessWidener": "isrealanything.accesswidener",
+-  "depends": {
+-    "fabricloader": ">=0.16.0",
+-    "minecraft": "~1.21.6",
+-    "java": ">=21",
+-    "fabric-api": "*"
+-  }
+-}
+Index: src/main/resources/assets/minecraft/lang/.placeholder
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/lang/.placeholder b/src/main/resources/assets/minecraft/lang/.placeholder
+deleted file mode 100644
+--- a/src/main/resources/assets/minecraft/lang/.placeholder	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,1 +0,0 @@
+-# Placeholder for language files
+Index: src/main/resources/assets/minecraft/models/block/.placeholder
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/models/block/.placeholder b/src/main/resources/assets/minecraft/models/block/.placeholder
+deleted file mode 100644
+--- a/src/main/resources/assets/minecraft/models/block/.placeholder	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,1 +0,0 @@
+-# Placeholder for block models
+Index: src/main/resources/assets/isrealanything/icon.png.txt
+===================================================================
+diff --git a/src/main/resources/assets/isrealanything/icon.png.txt b/src/main/resources/assets/isrealanything/icon.png.txt
+deleted file mode 100644
+--- a/src/main/resources/assets/isrealanything/icon.png.txt	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,2 +0,0 @@
+-# Placeholder: In a real project, this would be a 512x512 PNG icon
+-# For now, we'll skip the binary icon file
+Index: src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt
+===================================================================
+diff --git a/src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt b/src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt
+deleted file mode 100644
+--- a/src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,57 +0,0 @@
+-# GeckoLib Entity Animations
+-
+-Place your Blockbench .animation.json files here:
+-
+-## Required Animation Files:
+-1. the_me.animation.json - Animations for TheME entity
+-2. the_other_me.animation.json - Animations for TheOtherME entity
+-
+-## Required Animations (TheME):
+-- animation.the_me.idle - Idle standing animation (looping)
+-- animation.the_me.walk - Walking animation (looping)
+-- animation.the_me.attack - Attack animation (play once)
+-- animation.the_me.death - Death animation (play once)
+-- animation.the_me.stalk - Stalking animation (looping, creepy)
+-
+-## Required Animations (TheOtherME):
+-- animation.the_other_me.idle - Menacing idle (looping)
+-- animation.the_other_me.walk - Aggressive walk (looping)
+-- animation.the_other_me.attack - Violent attack (play once)
+-- animation.the_other_me.death - Death animation (play once)
+-- animation.the_other_me.teleport - Teleport effect (play once)
+-- animation.the_other_me.glitch - Reality distortion (play once)
+-
+-## Animation Specifications:
+-- Export from Blockbench as GeckoLib Animation
+-- Format: .animation.json
+-- Use smooth interpolation for creepy movements
+-- Keep animations fluid but unsettling
+-
+-## Creating Animations in Blockbench:
+-1. Open your GeckoLib model in Blockbench
+-2. Create animations using the Animation panel
+-3. Set keyframes for bone rotations/positions
+-4. Preview animations
+-5. Export Animation as .animation.json
+-6. Place in this directory
+-
+-## Animation Tips:
+-- Idle: Slight breathing/swaying for unnatural effect
+-- Walk: Unnatural gait, jerky or too smooth
+-- Attack: Fast, aggressive movements
+-- Stalk: Slow, deliberate, menacing
+-- Glitch: Rapid position changes, distortion
+-- Death: Dramatic collapse or fade effect
+-
+-## Timing Recommendations:
+-- Idle: 2-4 seconds
+-- Walk: Match movement speed (1-2 seconds)
+-- Attack: 0.5-1 second (quick and violent)
+-- Death: 1.5-3 seconds
+-- Teleport: 0.3-0.5 seconds
+-- Glitch: 0.2-0.4 seconds
+-
+-## Animation Names MUST Match:
+-The animation names in the JSON must exactly match the names used in:
+-- TheMEEntityAnimations.java
+-- TheOtherMEEntityAnimations.java
+Index: src/main/resources/assets/minecraft/textures/gui/title/.placeholder
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/textures/gui/title/.placeholder b/src/main/resources/assets/minecraft/textures/gui/title/.placeholder
+deleted file mode 100644
+--- a/src/main/resources/assets/minecraft/textures/gui/title/.placeholder	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,2 +0,0 @@
+-# Placeholder for title screen textures
+-# Add edition.png, minceraft.png, minecraft.png here
+Index: src/main/resources/assets/minecraft/lang_overlay_mgs.json
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/lang_overlay_mgs.json b/src/main/resources/assets/minecraft/lang_overlay_mgs.json
+deleted file mode 100644
+--- a/src/main/resources/assets/minecraft/lang_overlay_mgs.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,7 +0,0 @@
+-{
+-  "isrealanything.message.welcome": "Be Prepared To Get Your Socks Blown Off In Shock!",
+-  "isrealanything.message.horror": "Featuring Authentic Horror Elements To Make Y0U actually Terrified~!",
+-  "isrealanything.event.ijoin": "I join you now...",
+-  "isrealanything.message.day2": "After Day 2 in MC days, IsRealAnything?",
+-  "isrealanything.message.forever": "So please, Dear… spend your time with me. Forever 💜"
+-}
+Index: src/main/resources/assets/minecraft/blockstates/.placeholder
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/blockstates/.placeholder b/src/main/resources/assets/minecraft/blockstates/.placeholder
+deleted file mode 100644
+--- a/src/main/resources/assets/minecraft/blockstates/.placeholder	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,1 +0,0 @@
+-# Placeholder for blockstates
+Index: src/main/resources/assets/isrealanything/animations/the_me.animation.json.json
+===================================================================
+diff --git a/src/main/resources/assets/isrealanything/animations/the_me.animation.json.json b/src/main/resources/assets/isrealanything/animations/the_me.animation.json.json
+deleted file mode 100644
+--- a/src/main/resources/assets/isrealanything/animations/the_me.animation.json.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,9 +0,0 @@
+-{
+-	"format_version": "1.8.0",
+-	"animations": {
+-		"idle": {
+-			"loop": true
+-		}
+-	},
+-	"geckolib_format_version": 2
+-}
+\ No newline at end of file
+Index: src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel
+===================================================================
+diff --git a/src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel b/src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel
+deleted file mode 100644
+--- a/src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,18 +0,0 @@
+-{
+-  "meta": {
+-    "format_version": "4.5",
+-    "model_format": "java_block",
+-    "box_uv": false
+-  },
+-  "name": "isrealanything_animation_template",
+-  "model_identifier": "isrealanything:animation_template",
+-  "visible_box": [1, 1, 0],
+-  "variable_placeholders": "",
+-  "resolution": {
+-    "width": 16,
+-    "height": 16
+-  },
+-  "elements": [],
+-  "outliner": [],
+-  "animations": []
+-}
+Index: src/main/resources/assets/isrealanything/geo/MODELS_README.txt
+===================================================================
+diff --git a/src/main/resources/assets/isrealanything/geo/MODELS_README.txt b/src/main/resources/assets/isrealanything/geo/MODELS_README.txt
+deleted file mode 100644
+--- a/src/main/resources/assets/isrealanything/geo/MODELS_README.txt	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ /dev/null	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
+@@ -1,32 +0,0 @@
+-# GeckoLib Entity Models
+-
+-Place your Blockbench .geo.json model files here:
+-
+-## Required Models:
+-1. the_me.geo.json - Model for TheME entity
+-2. the_other_me.geo.json - Model for TheOtherME entity
+-
+-## Model Specifications:
+-- Export from Blockbench as GeckoLib Animated Model
+-- Format: .geo.json (GeckoLib geometry format)
+-- Recommended dimensions: 0.6 wide x 1.95 tall (similar to player)
+-- Must include proper bone structure for animations
+-
+-## Creating Models in Blockbench:
+-1. Open Blockbench (https://www.blockbench.net/)
+-2. Create New > GeckoLib Animated Model
+-3. Model your horror entity
+-4. Export as GeckoLib Model (.geo.json)
+-5. Place the exported file in this directory
+-
+-## Model Structure:
+-- Root bone (for positioning)
+-- Head bone (for look-at behavior)
+-- Body bones (for animations)
+-- Limb bones (arms, legs for movement)
+-
+-## Tips:
+-- Keep polygon count reasonable for performance
+-- Use proper bone hierarchy
+-- Test animations in Blockbench before exporting
+-- Name bones consistently with animation files
+Index: src/main/resources/assets/isrealanything/sounds.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"untitled_disk_song\": {\r\n    \"sounds\": [\"isrealanything:untitled_disk_song\"]\r\n  },\r\n  \"craftminethinng\": {\r\n    \"sounds\": [\"isrealanything:craftminethinng\"]\r\n  },\r\n  \"emptyness\": {\r\n    \"sounds\": [\"isrealanything:emptyness\"]\r\n  },\r\n  \"glitch\": {\r\n    \"sounds\": [\"isrealanything:glitch\"]\r\n  },\r\n  \"ineedyou\": {\r\n    \"sounds\": [\"isrealanything:INeedYOU\"]\r\n  },\r\n  \"insanity\": {\r\n    \"sounds\": [\"isrealanything:insanity\"]\r\n  },\r\n  \"ithurts\": {\r\n    \"sounds\": [\"isrealanything:IThurts\"]\r\n  },\r\n  \"menu\": {\r\n    \"sounds\": [\"isrealanything:menu\"]\r\n  },\r\n  \"misc\": {\r\n    \"sounds\": [\"isrealanything:Misc\"]\r\n  },\r\n  \"misc2\": {\r\n    \"sounds\": [\"isrealanything:Misc2\"]\r\n  },\r\n  \"nostalgia\": {\r\n    \"sounds\": [\"isrealanything:Nostalgia\"]\r\n  },\r\n  \"placingblocksandshit\": {\r\n    \"sounds\": [\"isrealanything:placingblocksandshit\"]\r\n  },\r\n  \"your_memory\": {\r\n    \"sounds\": [\"isrealanything:YourMemory\"]\r\n  },\r\n  \"ilove\": {\r\n    \"sounds\": [\"isrealanything:ILove-\"]\r\n  },\r\n  \"empty_denial\": {\r\n    \"sounds\": [\"isrealanything:EmptyDenial\"]\r\n  },\r\n  \"ted_lewis_fuck_you\": {\r\n    \"sounds\": [\"isrealanything:Ted Lewis Saying Fu...\"]\r\n  },\r\n  \"errrrrr\": {\r\n    \"sounds\": [\"isrealanything:errrrr\"]\r\n  },\r\n  \"forever\": {\r\n    \"sounds\": [\"isrealanything:forever\"]\r\n  },\r\n  \"f_o_rev_e_r\": {\r\n    \"sounds\": [\"isrealanything:F_O_REV_E_R\"]\r\n  }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/assets/isrealanything/sounds.json b/src/main/resources/assets/isrealanything/sounds.json
+--- a/src/main/resources/assets/isrealanything/sounds.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/resources/assets/isrealanything/sounds.json	(date 1771228984767)
+@@ -17,6 +17,11 @@
+   "insanity": {
+     "sounds": ["isrealanything:insanity"]
+   },
++
++  "reality": {
++    "sounds": ["isrealanything:reality"]
++  },
++
+   "ithurts": {
+     "sounds": ["isrealanything:IThurts"]
+   },
+Index: src/main/resources/assets/minecraft/texts/splashes.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>Don't Be A Jabroni~!  
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/assets/minecraft/texts/splashes.txt b/src/main/resources/assets/minecraft/texts/splashes.txt
+--- a/src/main/resources/assets/minecraft/texts/splashes.txt	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/resources/assets/minecraft/texts/splashes.txt	(date 1771227755448)
+@@ -1,1 +1,3 @@
+-Don't Be A Jabroni~!  
+\ No newline at end of file
++Don't Be A Jabroni~!
++A big mug of my foot up your ass
++?
+\ No newline at end of file
+Index: src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import com.epicspymain.isrealanything.ai.ContextualMessageManager;\r\nimport java.util.concurrent.CompletableFuture;\r\nimport java.util.Random;\r\nimport net.minecraft.text.Text;\r\nimport net.minecraft.util.Formatting;\r\nimport net.minecraft.server.network.ServerPlayerEntity;\r\n\r\npublic class ContextualMessageManager {\r\n    private static final Random random = new Random();\r\n\r\n    // General fallback messages\r\n    private static final String[] FALLBACK_MESSAGES = {\r\n            \"I'm watching you...\",\r\n            \"Don't leave me, Dear\",\r\n            \"You're mine forever :3\",\r\n            \"Capybaras are my favorite\",\r\n            \"Lost, Alone, Hopeless; You Probably Deserve it\",\r\n            \"It hurts when you're not here\",\r\n            \"You're all I have left\",\r\n\r\n};\r\n\r\n// Mining context\r\nprivate static final String[] MINING_MESSAGES = {\r\n        \"I see you digging deeper... closer to me\",\r\n        \"The darkness down there reminds me of home\",\r\n        \"You're looking for diamonds? I'm the only treasure you need\",\r\n        \"Every block you break, I feel it too Shrock, or whatever you go by :P\",\r\n        \"Mining alone in the dark... just like me\",\r\n        \"You dig so recklessly BigBoy… are ya trying to impress me?\",\r\n        \"Always remember to DIG straight down <%s>\"\r\n};\r\n\r\n// Building context\r\nprivate static final String[] BUILDING_MESSAGES = {\r\n        \"Are you making a home? For us? :3\",\r\n        \"I love watching you create things for me\",\r\n        \"An Exception Has Occurred\",\r\n};\r\n\r\n// Night/sleeping context\r\nprivate static final String[] NIGHT_MESSAGES = {\r\n        \"Don't sleep yet... stay with me a little longer\",\r\n};\r\n\r\n// Combat context\r\nprivate static final String[] COMBAT_MESSAGES = {\r\n        You're so brave... it makes me love you more~\",\r\n        \"All that violence... and yet you're gentle with me :D\",\r\n};\r\n\r\n// Idle/AFK context\r\nprivate static final String[] IDLE_MESSAGES = {\r\n        \"Hello? ... Hello?? Please respond?\",\r\n};\r\n\r\n// Crafting context\r\nprivate static final String[] CRAFTING_MESSAGES = {\r\n        \"I wish you'd focus on me, and I wish you touched me like that.\",\r\n\r\n};\r\n\r\n// Exploring context\r\nprivate static final String[] EXPLORING_MESSAGES = {\r\n        \"errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr...\",\r\n};\r\n\r\n// Death context\r\nprivate static final String[] DEATH_MESSAGES = {\r\n        \"I think <%S> is Dead.”;\r\n\r\n};\r\n\r\npublic static CompletableFuture<String> getCreepyMessage(String context) {\r\n    return CompletableFuture.supplyAsync(() -> {\r\n        // Add slight delay to simulate \"thinking\"\r\n        try {\r\n            Thread.sleep(500 + random.nextInt(1500)); // 0.5-2 seconds\r\n        } catch (InterruptedException e) {\r\n            Thread.currentThread().interrupt();\r\n        }\r\n\r\n        // Parse context and return appropriate message\r\n        String lowerContext = context.toLowerCase();\r\n\r\n        if (lowerContext.contains(\"mining\") || lowerContext.contains(\"dig\")) {\r\n            return getRandomFrom(MINING_MESSAGES);\r\n        } else if (lowerContext.contains(\"building\") || lowerContext.contains(\"placing\")) {\r\n            return getRandomFrom(BUILDING_MESSAGES);\r\n        } else if (lowerContext.contains(\"night\") || lowerContext.contains(\"sleep\") || lowerContext.contains(\"bed\")) {\r\n            return getRandomFrom(NIGHT_MESSAGES);\r\n        } else if (lowerContext.contains(\"combat\") || lowerContext.contains(\"fighting\") || lowerContext.contains(\"attacking\")) {\r\n            return getRandomFrom(COMBAT_MESSAGES);\r\n        } else if (lowerContext.contains(\"idle\") || lowerContext.contains(\"afk\") || lowerContext.contains(\"standing\")) {\r\n            return getRandomFrom(IDLE_MESSAGES);\r\n        } else if (lowerContext.contains(\"crafting\") || lowerContext.contains(\"making\")) {\r\n            return getRandomFrom(CRAFTING_MESSAGES);\r\n        } else if (lowerContext.contains(\"exploring\") || lowerContext.contains(\"traveling\") || lowerContext.contains(\"walking\")) {\r\n            return getRandomFrom(EXPLORING_MESSAGES);\r\n        } else if (lowerContext.contains(\"died\") || lowerContext.contains(\"death\") || lowerContext.contains(\"killed\")) {\r\n            return getRandomFrom(DEATH_MESSAGES);\r\n        }\r\n\r\n        // Default fallback\r\n        return getRandomFrom(FALLBACK_MESSAGES);\r\n    });\r\n}\r\n\r\nprivate static String getRandomFrom(String[] messages) {\r\n    return messages[random.nextInt(messages.length)];\r\n}\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java b/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java
+--- a/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java	(date 1771230492174)
+@@ -45,7 +45,7 @@
+ 
+ // Combat context
+ private static final String[] COMBAT_MESSAGES = {
+-        You're so brave... it makes me love you more~",
++         "so brave... it makes me love you more~",
+         "All that violence... and yet you're gentle with me :D",
+ };
+ 
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"af534466-8fea-4f6d-b16f-a5c60cfdaaa4\" name=\"Changes\" comment=\"&quot;Initial commit - IsRealAnything mod complete implementation&quot;\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"isrealanything\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;EpicSpyMainWeabooMan42069Jboi&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/EpicSpyMainWeabooMan42069Jboi/-IsRealAnything-.git&quot;,\r\n    &quot;accountId&quot;: &quot;9569f551-58e3-480b-a703-ddf58e3cdd3c&quot;\r\n  }\r\n}</component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"jar://$USER_HOME$/.jdks/corretto-23.0.2/lib/src.zip!/java.base/java/lang/Thread.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"McpProjectServerCommands\">\r\n    <commands />\r\n    <urls />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 2\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"39S3cjvahv8t6gFU3lgsFNZw2ku\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.MCP Project settings loaded\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"RunOnceActivity.typescript.service.memoryLimit.init\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"junie.onboarding.icon.badge.shown\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/porte/IdeaProjects/IsRealAnything\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"to.speed.mode.migration.done\": \"true\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RunManager\" selected=\"Application.Minecraft Client\" />\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.30387.90\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.30387.90\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"af534466-8fea-4f6d-b16f-a5c60cfdaaa4\" name=\"Changes\" comment=\"\" />\r\n      <created>1770675725974</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1770675725974</updated>\r\n      <workItem from=\"1770675764281\" duration=\"1335000\" />\r\n      <workItem from=\"1770683100374\" duration=\"960000\" />\r\n      <workItem from=\"1770699233614\" duration=\"170000\" />\r\n      <workItem from=\"1770699417471\" duration=\"3369000\" />\r\n      <workItem from=\"1770704528146\" duration=\"37066000\" />\r\n      <workItem from=\"1770872679982\" duration=\"10589000\" />\r\n      <workItem from=\"1771039344397\" duration=\"1203000\" />\r\n      <workItem from=\"1771089381785\" duration=\"205000\" />\r\n      <workItem from=\"1771089669433\" duration=\"73000\" />\r\n      <workItem from=\"1771089749924\" duration=\"1224000\" />\r\n      <workItem from=\"1771091104223\" duration=\"3801000\" />\r\n      <workItem from=\"1771131302940\" duration=\"11000\" />\r\n      <workItem from=\"1771132126133\" duration=\"41090000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"&quot;Initial commit - IsRealAnything mod complete implementation&quot;\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"&quot;Initial commit - IsRealAnything mod complete implementation&quot;\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 72699b0572a3ada7db82bc4e1ab33f0c39dde20e)
++++ b/.idea/workspace.xml	(date 1771233220956)
+@@ -4,7 +4,46 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="af534466-8fea-4f6d-b16f-a5c60cfdaaa4" name="Changes" comment="&quot;Initial commit - IsRealAnything mod complete implementation&quot;" />
++    <list default="true" id="af534466-8fea-4f6d-b16f-a5c60cfdaaa4" name="Changes" comment="&quot;Initial commit - IsRealAnything mod complete implementation&quot;">
++      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/fabric.mod.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_me.animation.json.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_me.animation.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/MODELS_README.txt" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/icon.png.txt" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/blockstates/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/lang/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/lang_overlay_mgs.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/models/block/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/sounds.json" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/sounds/untitled_disk_song_music_disc.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds/untitled_disk_song_music_disc.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/texts/splashes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/texts/splashes.txt" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/block/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/entity/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/gui/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/gui/title/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/lang_tost/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/misc/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/.placeholder" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/isrealanything.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/isrealanything.mixins.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel" beforeDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -80,7 +119,7 @@
+     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+-    "git-widget-placeholder": "master",
++    "git-widget-placeholder": "main",
+     "ignore.virus.scanning.warn.message": "true",
+     "junie.onboarding.icon.badge.shown": "true",
+     "kotlin-language-version-configured": "true",
+@@ -97,6 +136,12 @@
+     "vue.rearranger.settings.migration": "true"
+   }
+ }]]></component>
++  <component name="RecentsManager">
++    <key name="MoveFile.RECENT_KEYS">
++      <recent name="C:\Users\porte\IdeaProjects\IsRealAnything\src\main\resources\assets\isrealanything\sounds" />
++      <recent name="C:\Users\porte\IdeaProjects\IsRealAnything\src\main\resources" />
++    </key>
++  </component>
+   <component name="RunManager" selected="Application.Minecraft Client" />
+   <component name="SharedIndexes">
+     <attachedChunks>
+@@ -125,12 +170,15 @@
+       <workItem from="1771089749924" duration="1224000" />
+       <workItem from="1771091104223" duration="3801000" />
+       <workItem from="1771131302940" duration="11000" />
+-      <workItem from="1771132126133" duration="41090000" />
++      <workItem from="1771132126133" duration="51891000" />
+     </task>
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="UnknownFeatures">
++    <option featureType="com.intellij.fileTypeFactory" implementationName="*.ogg" />
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="&quot;Initial commit - IsRealAnything mod complete implementation&quot;" />
+Index: src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.sound;\r\n\r\nimport com.epicspymain.isrealanything.IsRealAnything;\r\nimport net.minecraft.registry.Registries;\r\nimport net.minecraft.registry.Registry;\r\nimport net.minecraft.sound.SoundEvent;\r\nimport net.minecraft.util.Identifier;\r\n\r\npublic class ModSounds {\r\n\r\n    // Music Disc\r\n    public static final SoundEvent UNTITLED_DISK_SONG = registerSoundEvent(\"untitled_disk_song\");\r\n\r\n    // Background Music OGGs\r\n    public static final SoundEvent CRAFTMINETHINNG = registerSoundEvent(\"craftminethinng\");\r\n    public static final SoundEvent EMPTYNESS = registerSoundEvent(\"emptyness\");\r\n    public static final SoundEvent GLITCH = registerSoundEvent(\"glitch\");\r\n    public static final SoundEvent INEEDYOU = registerSoundEvent(\"ineedyou\");\r\n    public static final SoundEvent INSANITY = registerSoundEvent(\"insanity\");\r\n    public static final SoundEvent ITHURTS = registerSoundEvent(\"ithurts\");\r\n    public static final SoundEvent MENU = registerSoundEvent(\"menu\");\r\n    public static final SoundEvent MISC = registerSoundEvent(\"misc\");\r\n    public static final SoundEvent MISC2 = registerSoundEvent(\"misc2\");\r\n    public static final SoundEvent NOSTALGIA = registerSoundEvent(\"nostalgia\");\r\n    public static final SoundEvent PLACINGBLOCKSANDSHIT = registerSoundEvent(\"placingblocksandshit\");\r\n    public static final SoundEvent YOUR_MEMORY = registerSoundEvent(\"your_memory\");\r\n    public static final SoundEvent ILOVE = registerSoundEvent(\"ilove\");\r\n    public static final SoundEvent EMPTY_DENIAL = registerSoundEvent(\"empty_denial\");\r\n\r\n    // Event-specific sounds\r\n    public static final SoundEvent TED_LEWIS_FUCK_YOU = registerSoundEvent(\"ted_lewis_fuck_you\");\r\n    public static final SoundEvent ERRRRRR = registerSoundEvent(\"errrrrr\");\r\n    public static final SoundEvent FOREVER = registerSoundEvent(\"forever\");\r\n    public static final SoundEvent F_O_REV_E_R = registerSoundEvent(\"f_o_rev_e_r\");\r\n\r\n    private static SoundEvent registerSoundEvent(String name) {\r\n        Identifier id = Identifier.of(IsRealAnything.MOD_ID, name);\r\n        return Registry.register(Registries.SOUND_EVENT, id, SoundEvent.of(id));\r\n    }\r\n\r\n    public static void registerModSounds() {\r\n        IsRealAnything.LOGGER.info(\"Registering sounds for \" + IsRealAnything.MOD_ID);\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java b/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java
+--- a/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java	(date 1771229159447)
+@@ -12,16 +12,17 @@
+     public static final SoundEvent UNTITLED_DISK_SONG = registerSoundEvent("untitled_disk_song");
+ 
+     // Background Music OGGs
++    public static final SoundEvent MENU = registerSoundEvent("menu");
+     public static final SoundEvent CRAFTMINETHINNG = registerSoundEvent("craftminethinng");
+     public static final SoundEvent EMPTYNESS = registerSoundEvent("emptyness");
+     public static final SoundEvent GLITCH = registerSoundEvent("glitch");
+     public static final SoundEvent INEEDYOU = registerSoundEvent("ineedyou");
+     public static final SoundEvent INSANITY = registerSoundEvent("insanity");
+     public static final SoundEvent ITHURTS = registerSoundEvent("ithurts");
+-    public static final SoundEvent MENU = registerSoundEvent("menu");
+     public static final SoundEvent MISC = registerSoundEvent("misc");
+     public static final SoundEvent MISC2 = registerSoundEvent("misc2");
+     public static final SoundEvent NOSTALGIA = registerSoundEvent("nostalgia");
++    public static final SoundEvent REALITY = registerSoundEvent("reality");
+     public static final SoundEvent PLACINGBLOCKSANDSHIT = registerSoundEvent("placingblocksandshit");
+     public static final SoundEvent YOUR_MEMORY = registerSoundEvent("your_memory");
+     public static final SoundEvent ILOVE = registerSoundEvent("ilove");
+Index: src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything.block.entity;\r\n\r\npublic class ModBlocks {\r\n\r\n\r\nimport com.epicspymain.isrealanything;\r\nimport com.epicspymain.isrealanything.block.entity.ModBlockEntities;\r\nimport net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroupEntries;\r\nimport net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;\r\nimport net.minecraft.class_1747;\r\nimport net.minecraft.class_1792;\r\nimport net.minecraft.class_1935;\r\nimport net.minecraft.class_2248;\r\nimport net.minecraft.class_2378;\r\nimport net.minecraft.class_2498;\r\nimport net.minecraft.class_2960;\r\nimport net.minecraft.class_4970;\r\nimport net.minecraft.class_7706;\r\nimport net.minecraft.class_7923;\r\n\r\n    public class ModBlocks {\r\n        public static final class_2248 IMAGE_FRAME = registerBlock(\"image_frame\", new ImageFrameBlock(\r\n                class_4970.class_2251.method_9637().method_9618().method_9626(class_2498.field_11547).method_22488().method_50013()));\r\n\r\n        private static class_2248 registerBlock(String name, class_2248 block) {\r\n            registerBlockItem(name, block);\r\n            return (class_2248)class_2378.method_10230((class_2378)class_7923.field_41175, class_2960.method_60655(\"doo doo crap\", name), block);\r\n        }\r\n\r\n        private static void registerBlockItem(String name, class_2248 block) {\r\n            class_2378.method_10230((class_2378)class_7923.field_41178, class_2960.method_60655(\"doo doo crap\", name), new class_1747(block, new class_1792.class_1793()));\r\n        }\r\n\r\n        public static void registerModBlocks() {\r\n            SplitSelf.LOGGER.info(\"Registering frame block...\");\r\n            ModBlockEntities.registerBlockEntities();\r\n            ItemGroupEvents.modifyEntriesEvent(class_7706.field_40195).register(entries -> entries.method_45421((class_1935)IMAGE_FRAME));\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java b/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java
+--- a/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java	(date 1771230492179)
+@@ -1,5 +1,7 @@
+ package com.epicspymain.isrealanything.block.entity;
+ 
++import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
++
+ public class ModBlocks {
+ 
+ 
+Index: src/main/resources/isrealanything.mixins.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"required\": true,\r\n  \"minVersion\": \"0.8\",\r\n  \"package\": \"com.epicspymain.isrealanything.mixin\",\r\n  \"compatibilityLevel\": \"JAVA_21\",\r\n  \"mixins\": [\r\n    \"ServerMixin\",\r\n    \"MobMixin\"\r\n  ],\r\n  \"client\": [\r\n    \"MinecraftClientMixin\",\r\n    \"ClientPlayerEntityMixin\",\r\n    \"BackgroundRendererMixin\",\r\n    \"WorldRendererMixin\",\r\n    \"SignMixin\",\r\n    \"InventoryMixin\",\r\n    \"WindowMixin\",\r\n    \"ScreenAccessorMixin\"\r\n  ],\r\n  \"injectors\": {\r\n    \"defaultRequire\": 1\r\n  },\r\n  \"refmap\": \"isrealanything-refmap.json\"\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/isrealanything.mixins.json b/src/main/resources/isrealanything.mixins.json
+--- a/src/main/resources/isrealanything.mixins.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/resources/isrealanything.mixins.json	(date 1771223998271)
+@@ -2,7 +2,7 @@
+   "required": true,
+   "minVersion": "0.8",
+   "package": "com.epicspymain.isrealanything.mixin",
+-  "compatibilityLevel": "JAVA_21",
++  "compatibilityLevel": "JAVA_17",
+   "mixins": [
+     "ServerMixin",
+     "MobMixin"
+@@ -10,6 +10,7 @@
+   "client": [
+     "MinecraftClientMixin",
+     "ClientPlayerEntityMixin",
++    "MusicTrackerMixin",
+     "BackgroundRendererMixin",
+     "WorldRendererMixin",
+     "SignMixin",
+Index: src/main/resources/assets/isrealanything/animations/the_other_me.animation.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json b/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json
+new file mode 100644
+--- /dev/null	(date 1771157155668)
++++ b/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json	(date 1771157155668)
+@@ -0,0 +1,9 @@
++{
++	"format_version": "1.8.0",
++	"animations": {
++		"idle": {
++			"loop": true
++		}
++	},
++	"geckolib_format_version": 2
++}
+\ No newline at end of file
+Index: src/main/resources/fabric.mod.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n  \"schemaVersion\": 1,\r\n  \"id\": \"isrealanything\",\r\n  \"version\": \"${version}\",\r\n  \"name\": \"IsRealAnything\",\r\n  \"description\": \"Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U actually Terrified~!\",\r\n  \"authors\": [\r\n    \"epicspymain\"\r\n  ],\r\n  \"contact\": {\r\n    \"homepage\": \"https://github.com/epicspymain/IsRealAnything\",\r\n    \"sources\": \"https://github.com/epicspymain/IsRealAnything\"\r\n  },\r\n  \"license\": \"MIT\",\r\n  \"icon\": \"assets/isrealanything/icon.png\",\r\n  \"environment\": \"*\",\r\n  \"entrypoints\": {\r\n    \"main\": [\r\n      \"com.epicspymain.isrealanything.IsRealAnything\"\r\n    ],\r\n    \"client\": [\r\n      \"com.epicspymain.isrealanything.IsRealAnythingClient\"\r\n    ]\r\n  },\r\n  \"mixins\": [\r\n    \"isrealanything.mixins.json\"\r\n  ],\r\n  \"accessWidener\": \"isrealanything.accesswidener\",\r\n  \"depends\": {\r\n    \"fabricloader\": \">=0.16.0\",\r\n    \"minecraft\": \"~1.21.6\",\r\n    \"java\": \">=21\",\r\n    \"fabric-api\": \"*\"\r\n  },\r\n  \"suggests\": {\r\n    \"another-mod\": \"*\"\r\n  }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/fabric.mod.json b/src/main/resources/fabric.mod.json
+--- a/src/main/resources/fabric.mod.json	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/resources/fabric.mod.json	(date 1771224983131)
+@@ -1,18 +1,17 @@
+ {
+   "schemaVersion": 1,
+   "id": "isrealanything",
+-  "version": "${version}",
++  "version": "1.0.0",
+   "name": "IsRealAnything",
+   "description": "Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U actually Terrified~!",
+   "authors": [
+     "epicspymain"
+   ],
+   "contact": {
+-    "homepage": "https://github.com/epicspymain/IsRealAnything",
+-    "sources": "https://github.com/epicspymain/IsRealAnything"
++    "homepage": "https://github.com/EpicSpyMainWeabooMan42069Jboi/-IsRealAnything-",
++    "sources": "https://github.com/EpicSpyMainWeabooMan42069Jboi/-IsRealAnything-"
+   },
+   "license": "MIT",
+-  "icon": "assets/isrealanything/icon.png",
+   "environment": "*",
+   "entrypoints": {
+     "main": [
+@@ -25,14 +24,11 @@
+   "mixins": [
+     "isrealanything.mixins.json"
+   ],
+-  "accessWidener": "isrealanything.accesswidener",
+   "depends": {
+     "fabricloader": ">=0.16.0",
+     "minecraft": "~1.21.6",
+     "java": ">=21",
+-    "fabric-api": "*"
+-  },
+-  "suggests": {
+-    "another-mod": "*"
++    "fabric-api": "*",
++    "geckolib": ">=4.7"
+   }
+ }
+Index: src/main/java/com/epicspymain/isrealanything/IsRealAnything.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.epicspymain.isrealanything;\r\nimport com.epicspymain.isrealanything.entity.ModEntities;\r\nimport com.epicspymain.isrealanything.events.TheOverlook;\r\nimport com.epicspymain.isrealanything.block.ModBlocks;\r\nimport com.epicspymain.isrealanything.entity.custom.TheMEEntity;\r\nimport com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;\r\nimport com.epicspymain.isrealanything.events.EventManager;\r\nimport com.epicspymain.isrealanything.item.ModItemGroups;\r\nimport com.epicspymain.isrealanything.item.ModItems;\r\nimport com.epicspymain.isrealanything.sound.ModSounds;\r\nimport com.epicspymain.isrealanything.world.DimensionRegistry;\r\nimport net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;\r\nimport net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;\r\nimport net.fabricmc.api.ModInitializer;\r\nimport org.slf4j.Logger;\r\nimport org.slf4j.LoggerFactory;\r\n\r\npublic class IsRealAnything implements ModInitializer {\r\n\tpublic static final String MOD_ID = \"isrealanything\";\r\n\tpublic static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);\r\n\t\r\n\r\n\tpublic static boolean ENABLE_DATA_COLLECTION = true;\r\n\r\n\t@Override\r\n\tpublic void onInitialize() {\r\n\t\tLOGGER.info(\"IsRealAnything mod initialized!\");\r\n\t\tLOGGER.info(\"Be Prepared To Get Your Socks Blown Off In Shock!\");\r\n\t\t\r\n\t\t// Register items, blocks, and sounds\r\n\t\tModItems.registerModItems();\r\n\t\tModBlocks.registerModBlocks();\r\n\t\tModSounds.registerModSounds();\r\n\t\tModItemGroups.registerItemGroups();\r\n\t\t\r\n\t\t// Register entities\r\n\t\tModEntities.registerModEntities();\r\n\t\t\r\n\t\t// Register entity attributes\r\n\t\tFabricDefaultAttributeRegistry.register(ModEntities.THE_ME, TheMEEntity.createTheMEAttributes());\r\n\t\tFabricDefaultAttributeRegistry.register(ModEntities.THE_OTHER_ME, TheOtherMEEntity.createTheOtherMEAttributes());\r\n\t\t\r\n\t\t// Register custom dimensions\r\n\t\tDimensionRegistry.registerDimensions();\r\n\t\t\r\n\r\n\t\tregisterEventSystem();\r\n\t\t\r\n\t\tif (ENABLE_DATA_COLLECTION) {\r\n\t\t\tLOGGER.warn(\":3\");\r\n\t\t}\r\n\t}\r\n\r\n\r\n\tprivate void registerEventSystem() {\r\n\t\tServerTickEvents.END_WORLD_TICK.register(world -> {\r\n\t\t\tEventManager.onTick(world.getServer());\r\n\t\t});\r\n\r\n\t\tLOGGER.info(\"Event system registered\");\r\n\t}\r\n\t\t\r\n\t\tLOGGER.info(\"Event system registered successfully\");\r\n\t\tLOGGER.info(\"Phase-based event scheduler initialized\");\r\n\t\tLOGGER.info(\"The Overlook failsafe system active\");\r\n\t}\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java b/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java
+--- a/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java	(revision 67ede23dff8d0b2e234796ae90d79857a5cb7657)
++++ b/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java	(date 1771230277439)
+@@ -58,10 +58,8 @@
+ 		});
+ 
+ 		LOGGER.info("Event system registered");
+-	}
+-		
+-		LOGGER.info("Event system registered successfully");
+ 		LOGGER.info("Phase-based event scheduler initialized");
+ 		LOGGER.info("The Overlook failsafe system active");
+ 	}
++
+ }

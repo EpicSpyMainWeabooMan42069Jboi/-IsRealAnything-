@@ -41,7 +41,7 @@ public class TheMEEntityWhiteOverlay {
         // Play sound on first frame if enabled
         if (playSound && !hasPlayedSound && client.player != null) {
             client.player.playSoundToPlayer(
-                ModSounds.JUMPSCARE_SOUND,
+                ModSounds.GLITCH
                 SoundCategory.AMBIENT,
                 1.0f,
                 1.0f

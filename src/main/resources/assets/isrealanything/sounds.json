@@ -17,6 +17,11 @@
   "insanity": {
     "sounds": ["isrealanything:insanity"]
   },
+
+  "reality": {
+    "sounds": ["isrealanything:reality"]
+  },
+
   "ithurts": {
     "sounds": ["isrealanything:IThurts"]
   },

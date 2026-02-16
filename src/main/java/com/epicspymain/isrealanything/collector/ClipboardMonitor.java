@@ -7,17 +7,11 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 
-/**
- * Monitors and reads system clipboard content.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class ClipboardMonitor {
 	private static String lastClipboardContent = "";
 	
-	/**
-	 * Reads the current system clipboard content.
-	 * Returns null if clipboard is empty or contains non-text data.
-	 */
+
 	public static String getClipboardContent() {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return null;
@@ -56,9 +50,7 @@ public class ClipboardMonitor {
 		return null;
 	}
 	
-	/**
-	 * Monitors clipboard for changes and triggers callback.
-	 */
+
 	public static void startMonitoring(ClipboardChangeListener listener) {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return;

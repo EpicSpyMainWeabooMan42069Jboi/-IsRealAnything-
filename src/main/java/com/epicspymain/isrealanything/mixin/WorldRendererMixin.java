@@ -24,21 +24,21 @@ public class WorldRendererMixin {
      * Override sky color to purple when event active
      */
     @Inject(
-        method = "getSkyColor",
-        at = @At("RETURN"),
-        cancellable = true
+            method = "getSkyColor",
+            at = @At("RETURN"),
+            cancellable = true
     )
     private void getPurpleSkyColor(
-        Vec3d cameraPos,
-        float tickDelta,
-        CallbackInfoReturnable<Vec3d> cir
+            Vec3d cameraPos,
+            float tickDelta,
+            CallbackInfoReturnable<Vec3d> cir
     ) {
         if (FileNamesInChatEvent.isSkyColorChanged()) {
-            // Purple sky color (0x800080)
-            double r = 0x80 / 255.0;
-            double g = 0x00 / 255.0;
-            double b = 0x80 / 255.0;
-            
+            // Purple sky color (0x9370DB)
+            double r = 0x93 / 255.0;
+            double g = 0x70 / 255.0;
+            double b = 0xDB / 255.0;
+
             cir.setReturnValue(new Vec3d(r, g, b));
         }
     }
@@ -47,22 +47,21 @@ public class WorldRendererMixin {
      * Override fog color to dark purple
      */
     @Inject(
-        method = "getFogColor",
-        at = @At("RETURN"),
-        cancellable = true
+            method = "getFogColor",
+            at = @At("RETURN"),
+            cancellable = true
     )
     private void getPurpleFogColor(
-        Vec3d cameraPos,
-        float tickDelta,
-        CallbackInfoReturnable<Vec3d> cir
+            Vec3d cameraPos,
+            float tickDelta,
+            CallbackInfoReturnable<Vec3d> cir
     ) {
         if (FileNamesInChatEvent.isSkyColorChanged()) {
-            // Dark purple fog (0x4B004B)
-            double r = 0x4B / 255.0;
-            double g = 0x00 / 255.0;
-            double b = 0x4B / 255.0;
-            
+            // Dark orchid fog (0x9932CC)
+            double r = 0x99 / 255.0;
+            double g = 0x32 / 255.0;
+            double b = 0xCC / 255.0;
+
             cir.setReturnValue(new Vec3d(r, g, b));
         }
     }
-}

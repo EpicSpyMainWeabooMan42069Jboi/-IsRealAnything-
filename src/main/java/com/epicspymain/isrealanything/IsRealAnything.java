@@ -58,10 +58,8 @@ public class IsRealAnything implements ModInitializer {
 		});
 
 		LOGGER.info("Event system registered");
-	}
-		
-		LOGGER.info("Event system registered successfully");
 		LOGGER.info("Phase-based event scheduler initialized");
 		LOGGER.info("The Overlook failsafe system active");
 	}
+
 }

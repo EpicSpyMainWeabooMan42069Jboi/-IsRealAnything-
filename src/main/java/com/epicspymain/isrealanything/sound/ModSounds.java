@@ -12,16 +12,17 @@ public class ModSounds {
     public static final SoundEvent UNTITLED_DISK_SONG = registerSoundEvent("untitled_disk_song");
 
     // Background Music OGGs
+    public static final SoundEvent MENU = registerSoundEvent("menu");
     public static final SoundEvent CRAFTMINETHINNG = registerSoundEvent("craftminethinng");
     public static final SoundEvent EMPTYNESS = registerSoundEvent("emptyness");
     public static final SoundEvent GLITCH = registerSoundEvent("glitch");
     public static final SoundEvent INEEDYOU = registerSoundEvent("ineedyou");
     public static final SoundEvent INSANITY = registerSoundEvent("insanity");
     public static final SoundEvent ITHURTS = registerSoundEvent("ithurts");
-    public static final SoundEvent MENU = registerSoundEvent("menu");
     public static final SoundEvent MISC = registerSoundEvent("misc");
     public static final SoundEvent MISC2 = registerSoundEvent("misc2");
     public static final SoundEvent NOSTALGIA = registerSoundEvent("nostalgia");
+    public static final SoundEvent REALITY = registerSoundEvent("reality");
     public static final SoundEvent PLACINGBLOCKSANDSHIT = registerSoundEvent("placingblocksandshit");
     public static final SoundEvent YOUR_MEMORY = registerSoundEvent("your_memory");
     public static final SoundEvent ILOVE = registerSoundEvent("ilove");

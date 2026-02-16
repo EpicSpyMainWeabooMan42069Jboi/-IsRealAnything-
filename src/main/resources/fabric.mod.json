@@ -12,7 +12,6 @@
     "sources": "https://github.com/EpicSpyMainWeabooMan42069Jboi/-IsRealAnything-"
   },
   "license": "MIT",
-  "icon": "assets/isrealanything/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -25,11 +24,11 @@
   "mixins": [
     "isrealanything.mixins.json"
   ],
-  "accessWidener": "isrealanything.accesswidener",
   "depends": {
     "fabricloader": ">=0.16.0",
     "minecraft": "~1.21.6",
     "java": ">=21",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "geckolib": ">=4.7"
   }
 }

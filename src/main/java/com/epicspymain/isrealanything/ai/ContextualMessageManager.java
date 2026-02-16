@@ -45,7 +45,7 @@ private static final String[] NIGHT_MESSAGES = {
 
 // Combat context
 private static final String[] COMBAT_MESSAGES = {
-        You're so brave... it makes me love you more~",
+         "so brave... it makes me love you more~",
         "All that violence... and yet you're gentle with me :D",
 };
 

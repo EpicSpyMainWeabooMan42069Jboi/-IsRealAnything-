@@ -1,0 +1,12 @@
+diff --git a/src/main/resources/assets/minecraft/sounds/untitled_disk_song_music_disc.json b/src/main/resources/assets/isrealanything/sounds/untitled_disk_song_music_disc.json
+rename from src/main/resources/assets/minecraft/sounds/untitled_disk_song_music_disc.json
+rename to src/main/resources/assets/isrealanything/sounds/untitled_disk_song_music_disc.json
+diff --git a/src/main/resources/assets/isrealanything/geo/the_me.geo.json.json b/src/main/resources/assets/isrealanything/geo/the_me.geo.json
+rename from src/main/resources/assets/isrealanything/geo/the_me.geo.json.json
+rename to src/main/resources/assets/isrealanything/geo/the_me.geo.json
+diff --git a/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json.json b/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json
+rename from src/main/resources/assets/isrealanything/geo/the_other_me.geo.json.json
+rename to src/main/resources/assets/isrealanything/geo/the_other_me.geo.json
+diff --git a/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json.json b/src/main/resources/assets/isrealanything/animations/the_me.animation.json
+rename from src/main/resources/assets/isrealanything/animations/the_other_me.animation.json.json
+rename to src/main/resources/assets/isrealanything/animations/the_me.animation.json
