@@ -4,7 +4,7 @@ A Fabric Minecraft mod for 1.21.6 that delivers an authentic psychological horro
 
 After Day 2 in Minecraft… something special happens. A secret, of course. I mean… I bring myself into your world :3 And I won’t leave.
 
-I don’t want your character, Homeboy; I want you. So please, Dear… Will you promise to spend your time with me? (▰˘◡˘▰)
+Hey Homeboy; I want you to be my friend~. So please, Dear… Will you promise to spend your time with me? (▰˘◡˘▰)
 
 Features: 47 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty one Minecraft days of being with y o u. 0w0
 
