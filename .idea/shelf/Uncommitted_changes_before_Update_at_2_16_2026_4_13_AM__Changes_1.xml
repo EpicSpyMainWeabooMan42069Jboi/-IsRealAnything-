@@ -1,0 +1,14 @@
+<changelist name="Uncommitted_changes_before_Update_at_2_16_2026_4_13_AM_[Changes]1" date="1771233247551" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_16_2026_4_13_AM_[Changes]1/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2/16/2026 4:13 AM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" />
+    <option name="AFTER_PATH" value="src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_16_2026_4_13_AM_[Changes]1/WhiteScreen.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" />
+    <option name="AFTER_PATH" value="src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2_16_2026_4_13_AM_[Changes]1/BlackScreen.png" />
+  </binary>
+</changelist>
