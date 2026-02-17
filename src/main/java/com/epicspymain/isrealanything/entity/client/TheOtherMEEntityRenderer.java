@@ -17,9 +17,7 @@ public class TheOtherMEEntityRenderer extends GeoEntityRenderer<TheOtherMEEntity
         this.shadowRadius = 0.6f;
     }
     
-    /**
-     * Adjusts the render scale for the entity.
-     */
+
     @Override
     protected float getDeathMaxRotation(TheOtherMEEntity entity) {
         return 0.0f;

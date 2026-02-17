@@ -10,11 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- * DataTracker - Persistent server state tracking
- * Stores player-specific data and event history
- * Persists across server restarts
- */
+
 public class DataTracker extends PersistentState {
     
     private static final String DATA_NAME = "isrealanything_data";
@@ -24,9 +20,7 @@ public class DataTracker extends PersistentState {
     
     // Player warning read status (for DoNotDeleteThis event)
     private final Map<UUID, Boolean> playerReadWarning = new HashMap<>();
-    
-    // Player PII consent (for data collection events)
-    private final Map<UUID, Boolean> playerPIIConsent = new HashMap<>();
+
     
     // Event history (event name -> last trigger time)
     private final Map<String, Long> eventHistory = new HashMap<>();
@@ -79,15 +73,7 @@ public class DataTracker extends PersistentState {
                 state.playerReadWarning.put(uuid, warningData.getBoolean(key));
             }
         }
-        
-        // Load PII consent
-        if (nbt.contains("PIIConsent")) {
-            NbtCompound piiData = nbt.getCompound("PIIConsent");
-            for (String key : piiData.getKeys()) {
-                UUID uuid = UUID.fromString(key);
-                state.playerPIIConsent.put(uuid, piiData.getBoolean(key));
-            }
-        }
+
         
         // Load event history
         if (nbt.contains("EventHistory")) {
@@ -123,13 +109,7 @@ public class DataTracker extends PersistentState {
             warningData.putBoolean(entry.getKey().toString(), entry.getValue());
         }
         nbt.put("ReadWarnings", warningData);
-        
-        // Save PII consent
-        NbtCompound piiData = new NbtCompound();
-        for (Map.Entry<UUID, Boolean> entry : playerPIIConsent.entrySet()) {
-            piiData.putBoolean(entry.getKey().toString(), entry.getValue());
-        }
-        nbt.put("PIIConsent", piiData);
+
         
         // Save event history
         NbtCompound historyData = new NbtCompound();
@@ -172,17 +152,7 @@ public class DataTracker extends PersistentState {
         playerReadWarning.put(playerUuid, read);
         markDirty();
     }
-    
-    // === PLAYER PII CONSENT ===
-    
-    public boolean getPlayerPIIConsent(UUID playerUuid) {
-        return playerPIIConsent.getOrDefault(playerUuid, false);
-    }
-    
-    public void setPlayerPIIConsent(UUID playerUuid, boolean consent) {
-        playerPIIConsent.put(playerUuid, consent);
-        markDirty();
-    }
+
     
     // === EVENT HISTORY ===
     
@@ -261,7 +231,6 @@ public class DataTracker extends PersistentState {
     public void resetAll() {
         playerSleepStages.clear();
         playerReadWarning.clear();
-        playerPIIConsent.clear();
         eventHistory.clear();
         playerEventCounts.clear();
         currentPhase = 1;

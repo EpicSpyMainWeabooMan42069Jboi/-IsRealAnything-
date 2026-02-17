@@ -17,16 +17,10 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Reads browser history from Chrome, Firefox, and Edge.
- * Extracts recent browsing history from SQLite databases.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class BrowserHistoryReader {
     
-    /**
-     * Represents a single browser history entry.
-     */
+
     public static class HistoryEntry {
         private final String url;
         private final String title;

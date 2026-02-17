@@ -30,9 +30,7 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
         this.experiencePoints = 20;
     }
     
-    /**
-     * Sets default entity attributes.
-     */
+
     public static DefaultAttributeContainer.Builder createTheMEAttributes() {
         return HostileEntity.createHostileAttributes()
             .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0)
@@ -78,9 +76,7 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
         return 0.8f;
     }
     
-    /**
-     * Makes the entity slightly faster when chasing.
-     */
+
     @Override
     public void tick() {
         super.tick();

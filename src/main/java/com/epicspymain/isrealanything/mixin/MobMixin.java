@@ -1,6 +1,5 @@
 package com.epicspymain.isrealanything.mixin;
 
-import com.epicspymain.isrealanything.events.MyMobPalsEvent;
 import net.minecraft.entity.mob.MobEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -57,7 +56,7 @@ public abstract class MobMixin {
      * Possess this mob
      */
     @Unique
-    private void isRealAnything$possess(int duration) {
+    public void isRealAnything$possess(int duration) {
         MobEntity mob = (MobEntity) (Object) this;
         
         isRealAnything$possessed = true;

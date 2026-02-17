@@ -16,7 +16,8 @@ public class ClipboardMonitor {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return null;
 		}
-		
+
+
 		try {
 			Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 			

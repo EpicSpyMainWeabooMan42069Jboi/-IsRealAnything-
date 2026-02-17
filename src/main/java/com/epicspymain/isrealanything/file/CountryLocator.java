@@ -10,22 +10,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 
-/**
- * Locates the user's country based on their IP address.
- * Uses ip-api.com for geolocation lookup.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class CountryLocator {
     
     private static final String IP_API_URL = "http://ip-api.com/json/";
     private static String cachedCountryCode = null;
     private static String cachedCountryName = null;
     
-    /**
-     * Gets the country code (e.g., "US", "GB", "CA") from the current IP.
-     * 
-     * @return Two-letter country code, or null if not found
-     */
+
     public static String getCountryCode() {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             IsRealAnything.LOGGER.warn("Country location disabled - ENABLE_DATA_COLLECTION is false");

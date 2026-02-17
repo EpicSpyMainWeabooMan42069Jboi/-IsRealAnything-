@@ -14,10 +14,7 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 
-/**
- * ImageFrameBlock - Custom block that displays screenshots
- * Integrates with FrameFileManager to show CURRENT_FRAME_TEXTURE
- */
+
 public class ImageFrameBlock extends Block {
     
     // Frame is thin like a painting

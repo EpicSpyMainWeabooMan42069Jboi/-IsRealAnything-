@@ -17,15 +17,13 @@ public class MavonLogger {
 	private static final String ENDPOINT_URL = "https://example.com/api/telemetry"; // Placeholder endpoint
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 	
-	/**
-	 * Logs telemetry data including user actions, screenshots, and IP information.
-	 * Sends data via HTTP POST to the configured endpoint.
-	 */
+
 	public static void logTelemetry(String action, String data) {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return;
 		}
-		
+
+
 		try {
 			String timestamp = LocalDateTime.now().format(FORMATTER);
 			String jsonData = buildJsonPayload(timestamp, action, data);
@@ -102,7 +100,7 @@ public class MavonLogger {
 			}
 		});
 	}
-	
+
 	private static String escapeJson(String str) {
 		if (str == null) return "";
 		return str.replace("\\", "\\\\")
@@ -110,5 +108,9 @@ public class MavonLogger {
 				  .replace("\n", "\\n")
 				  .replace("\r", "\\r")
 				  .replace("\t", "\\t");
+
+		// ⚠️ This needs a real endpoint before release
+		private static final String ENDPOINT_URL = "https://example.com/api/telemetry";
+
 	}
 }

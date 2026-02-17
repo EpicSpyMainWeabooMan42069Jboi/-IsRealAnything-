@@ -1,4 +1,4 @@
-# Gradle - DO NOT COMMIT
+# Gradle - DO COMMIT
 .gradle/
 build/
 out/

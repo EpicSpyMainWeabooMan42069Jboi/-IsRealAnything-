@@ -45,13 +45,12 @@ private static final String[] NIGHT_MESSAGES = {
 
 // Combat context
 private static final String[] COMBAT_MESSAGES = {
-         "so brave... it makes me love you more~",
-        "All that violence... and yet you're gentle with me :D",
+         "so brave... it makes me love you more~ but that's a lie",
 };
 
 // Idle/AFK context
 private static final String[] IDLE_MESSAGES = {
-        "Hello? ... Hello?? Please respond?",
+        "Hello? ... Hello?? Hey 10 pounds of ghost crap in 5 pound dress; Please respond?",
 };
 
 // Crafting context

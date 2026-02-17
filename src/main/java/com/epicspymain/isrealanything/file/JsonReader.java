@@ -29,13 +29,8 @@ public class JsonReader {
     
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final Map<String, JsonObject> configCache = new HashMap<>();
-    
-    /**
-     * Reads a JSON file from the file system.
-     * 
-     * @param filePath Path to the JSON file
-     * @return JsonObject, or null if failed
-     */
+
+
     public static JsonObject readJsonFile(String filePath) {
         try {
             Path path = Paths.get(filePath);

@@ -17,10 +17,7 @@ import net.minecraft.util.Identifier;
  */
 public class ModBlocks {
     
-    /**
-     * IMAGE_FRAME block - Displays screenshots from FrameFileManager
-     * Used to render captured images in-world
-     */
+
     public static final Block IMAGE_FRAME = registerBlock("image_frame",
         new ImageFrameBlock(FabricBlockSettings.of(Material.WOOD)
             .strength(2.0f)

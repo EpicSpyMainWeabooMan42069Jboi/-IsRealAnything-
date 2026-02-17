@@ -7,11 +7,7 @@ import net.minecraft.client.gui.DrawContext;
 
 import java.util.Random;
 
-/**
- * Renderer 4: GlitchOverlay - Screen distortion effects
- * Creates visual glitches and corruption
- * Used for various corruption events
- */
+
 public class GlitchOverlay {
     
     private static boolean glitchActive = false;
@@ -19,9 +15,7 @@ public class GlitchOverlay {
     private static float glitchIntensity = 0.5f;
     private static final Random random = new Random();
     
-    /**
-     * Register renderer
-     */
+
     public static void register() {
         HudRenderCallback.EVENT.register((drawContext, tickDelta) -> {
             if (glitchActive) {
@@ -35,18 +29,14 @@ public class GlitchOverlay {
         });
     }
     
-    /**
-     * Trigger glitch effect
-     */
+
     public static void trigger(int ticks, float intensity) {
         glitchActive = true;
         glitchTicks = ticks;
         glitchIntensity = Math.min(1.0f, Math.max(0.0f, intensity));
     }
     
-    /**
-     * Render glitch effects
-     */
+
     private static void renderGlitch(DrawContext context) {
         MinecraftClient client = MinecraftClient.getInstance();
         int width = client.getWindow().getScaledWidth();

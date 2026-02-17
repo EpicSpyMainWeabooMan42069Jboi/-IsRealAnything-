@@ -18,7 +18,7 @@ public class TheOtherMEEntityModel extends GeoModel<TheOtherMEEntity> {
     
     @Override
     public Identifier getTextureResource(TheOtherMEEntity entity) {
-        return Identifier.of(IsRealAnything.MOD_ID, "textures/entity/TheMEOTHER/the_other_me.png");;
+        return Identifier.of(IsRealAnything.MOD_ID, "textures/entity/TheMEOTHER/the_other_me.png");
     }
     
     @Override

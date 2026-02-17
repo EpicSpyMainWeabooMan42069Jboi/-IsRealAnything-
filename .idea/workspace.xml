@@ -5,44 +5,151 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af534466-8fea-4f6d-b16f-a5c60cfdaaa4" name="Changes" comment="&quot;Initial commit - IsRealAnything mod complete implementation&quot;">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LangToaster.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LangToasterOverlay.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/EventManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/LastChanceEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/WhiteScreenJumpscareEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/YouCouldHaveLeftEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/helpers/ChunkDestroyer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ChatMixin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/data/isrealanything/dimension_type/limbo.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/lang_overlay_msgs.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitinore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitinore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.10.2/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnything.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnythingClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/IsRealAnythingClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/ContextualMessageManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/StalkingBehavior.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/StalkingBehavior.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/StalkingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/ai/StalkingController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/audio/MusicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/audio/MusicManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/ImageFrameBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/ImageFrameBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/ModBlocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/ModBlocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ImageFrameBlock$1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ImageFrameBlock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ImageFrameBlock.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ImageFrameBlockEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ImageFrameBlockEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlockEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlockEntities.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/block/entity/ModBlocks.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LangTostMessages$Lines.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LangTostMessages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LangTostMessages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LangToster.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LanguageAdvisor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/client/lang/LanguageAdvisor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ClipboardMonitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/GeoLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/GeoLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/MavonLogger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/MavonLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ScreenGrabber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/collector/ScreenGrabber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/ModEntities.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/ModEntities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/TheMEEntitySpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/TheMEEntitySpawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/TheOtherMEEntitySpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/TheOtherMEEntitySpawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntityAnimations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntityAnimations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntityModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntityRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntityRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntitySpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheMEEntitySpawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntityAnimations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntityAnimations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntityModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntityModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntityRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntityRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntitySpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/client/TheOtherMEEntitySpawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/custom/TheMEEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/custom/TheMEEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/custom/TheOtherMEEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/entity/custom/TheOtherMEEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/AreYouLookingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/AreYouLookingEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/AshconNameAPI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/AshconNameAPI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/BrowserEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/BrowserEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/BurningMomentsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/BurningMomentsEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/CalmBeforeStormEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/CalmBeforeStormEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/CameraDistortionEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/CameraDistortionEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/ChatEchoEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/ChatEchoEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/CmdFakeTypingEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/CmdFakeTypingEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/CmdFloodEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/CmdFloodEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/DailyNotificationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/DailyNotificationEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/DoNotDeleteThisEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/DoNotDeleteThisEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/EntityAmbientAppearanceEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/EntityAmbientAppearanceEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/EpicSpawnsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/EpicSpawnsEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/Error404TexturesEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/Error404TexturesEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/EventManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/FakeBlueScreenEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/FakeBlueScreenEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/FakeDisconnectPopupEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/FakeDisconnectPopupEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/FileNamesInChatEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/FileNamesInChatEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/ForcedWakeupEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/ForcedWakeupEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/GlitchCorruptionEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/GlitchCorruptionEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/HaveYouEverBeenLonelyEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/HaveYouEverBeenLonelyEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/IJoinEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/IJoinEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/IStillLoveYouEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/IStillLoveYouEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/InventoryShuffleEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/InventoryShuffleEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/LastChanceEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/MeAndMyShadowEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/MeAndMyShadowEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/MemoryLeakEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/MemoryLeakEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/MirrorWorldEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/MirrorWorldEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/MyBeautifulFaceEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/MyBeautifulFaceEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/MyMobPalsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/MyMobPalsEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/MyVoiceSignsEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/MyVoiceSignsEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/NotepadManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/NotepadManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/OhThatsAShameEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/OhThatsAShameEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/OverlayTextEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/OverlayTextEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/PlayerControlInversionEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/PlayerControlInversionEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/RandomBlockReplaceEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/RandomBlockReplaceEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/RandomTPEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/RandomTPEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/RealDesktopMimicEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/RealDesktopMimicEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/SignEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/SignEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/SixtyNinthMoodEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/SixtyNinthMoodEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/SoundCreepEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/SoundCreepEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/StructureSpawnEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/StructureSpawnEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/TheOverlook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/TheOverlook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/TimeoutTextureGlitchEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/TimeoutTextureGlitchEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/UndergroundMiningEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/UndergroundMiningEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/WeatherInMyGraspEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/WeatherInMyGraspEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/WhiteScreenJumpscareEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/YouCouldHaveLeftEvent.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/ChatKeywordResponder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/ChunkDestroyer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/SleepTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/helpers/SleepTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/StructureManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/helpers/StructureManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/events/helpers/TNTSpawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/event/helpers/TNTSpawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/BackgroundManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/BackgroundManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/BrowserHistoryReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/BrowserHistoryReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/CityLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/CityLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/CountryLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/CountryLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/DesktopFileUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/DesktopFileUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/EntityScreenshotCapture.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/EntityScreenshotCapture.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/FrameFileManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/FrameFileManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/JsonReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/file/JsonReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/item/ModItemGroups.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/item/ModItemGroups.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/item/ModItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/item/ModItems.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/BackgroundRendererMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ClientPlayerEntityMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ClientPlayerEntityMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/InventoryMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/InventoryMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/MinecraftClientMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/MinecraftClientMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/MobMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/MobMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/MusicTrackerMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/MusicTrackerMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ScreenAccessorMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ScreenAccessorMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ServerMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/ServerMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/SignMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/SignMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WindowMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WindowMixin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/mixin/WorldRendererMixin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/BlueScreenOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/BlueScreenOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/FaceOverlayRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/FaceOverlayRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/FrozenOverlayRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/FrozenOverlayRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/GlitchOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/GlitchOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/InventoryOverlayRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/InventoryOverlayRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/KickScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/KickScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/LangToasterOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/LangToasterOverlay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/ScreenOverlayRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/ScreenOverlayRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/SkyImageRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/SkyImageRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityOverlay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/screen/TheMEEntityWhiteOverlay.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/sound/ModSounds.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/fabric.mod.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/ANIMATIONS_README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_me.animation.json.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_other_me.animation.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/animations/the_me.animation.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/MODELS_README.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/icon.png.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/util/NbtBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/world/DataTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/world/DataTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/world/DimensionRegistry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/epicspymain/isrealanything/world/DimensionRegistry.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_me.geo.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/geo/the_other_me.geo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/blockstates/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/lang/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/lang_overlay_mgs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/models/block/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/sounds.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/sounds/untitled_disk_song_music_disc.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds/untitled_disk_song_music_disc.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/texts/splashes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/texts/splashes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/block/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/entity/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/gui/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/gui/title/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/lang_tost/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/misc/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/.placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/BlackScreen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/screen/WhiteScreen.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/fabric.mod.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/isrealanything/sounds/F_O_REV_E_R.ogg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/wallpaper/doyouseeme.png.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/assets/minecraft/textures/wallpaper/doyouseeme.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/isrealanything.mixins.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/isrealanything.mixins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/misc/isrealanythingAnimationTemplate.bbmodel" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,34 +215,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/porte/IdeaProjects/IsRealAnything",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "to.speed.mode.migration.done": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/porte/IdeaProjects/IsRealAnything&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\porte\IdeaProjects\IsRealAnything\src\main\resources\assets\isrealanything\sounds" />
@@ -170,7 +277,14 @@
       <workItem from="1771089749924" duration="1224000" />
       <workItem from="1771091104223" duration="3801000" />
       <workItem from="1771131302940" duration="11000" />
-      <workItem from="1771132126133" duration="51891000" />
+      <workItem from="1771132126133" duration="53806000" />
+      <workItem from="1771270167317" duration="48000" />
+      <workItem from="1771270217009" duration="611000" />
+      <workItem from="1771271095671" duration="1740000" />
+      <workItem from="1771272969619" duration="21423000" />
+      <workItem from="1771302735107" duration="417000" />
+      <workItem from="1771303454993" duration="688000" />
+      <workItem from="1771304475895" duration="10008000" />
     </task>
     <servers />
   </component>

@@ -50,14 +50,7 @@ public class TheOtherMEEntitySpawner {
         return null;
     }
     
-    /**
-     * Spawns TheOtherME entity near a player.
-     * 
-     * @param world The world
-     * @param playerPos Player position
-     * @param distance Distance from player (blocks)
-     * @return The spawned entity, or null if failed
-     */
+
     public static TheOtherMEEntity spawnNearPlayer(World world, BlockPos playerPos, double distance) {
         if (world.isClient) {
             return null;

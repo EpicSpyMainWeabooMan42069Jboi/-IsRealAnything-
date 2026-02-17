@@ -22,7 +22,8 @@ public class DimensionRegistry {
         RegistryKeys.WORLD,
         new Identifier(IsRealAnything.MOD_ID, "limbo")
     );
-    
+
+
     /**
      * LIMBO_DIMENSION_TYPE - Dimension type configuration
      */

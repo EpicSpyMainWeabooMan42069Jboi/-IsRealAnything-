@@ -5,10 +5,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
 
-/**
- * Base overlay system for full-screen effects
- * Coordinates black screens, white screens, frozen screens, and other full overlays
- */
+
 public class ScreenOverlayRenderer {
     private static OverlayType currentOverlay = OverlayType.NONE;
     private static float overlayAlpha = 0.0f;

@@ -11,9 +11,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-/**
- * Registers custom creative mode item groups for IsRealAnything mod.
- */
+
 public class ModItemGroups {
     
     // Main item group for IsRealAnything
@@ -29,15 +27,10 @@ public class ModItemGroups {
         .entries((displayContext, entries) -> {
             // Add all mod items to the creative tab
             entries.add(ModItems.UNTITLED_DISK_SONG_MUSIC_DISC);
-            
-            // Add more items here as they are created
+
         })
         .build();
-    
-    /**
-     * Registers all mod item groups.
-     * Call this from the main mod initializer.
-     */
+
     public static void registerItemGroups() {
         IsRealAnything.LOGGER.info("Registering item groups for " + IsRealAnything.MOD_ID);
         

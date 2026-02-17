@@ -22,6 +22,7 @@ public class KickScreen extends Screen {
         this.reason = disconnectReason;
     }
 
+
     @Override
     protected void init() {
         super.init();

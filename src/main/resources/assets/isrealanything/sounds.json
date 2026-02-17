@@ -12,16 +12,26 @@
     "sounds": ["isrealanything:glitch"]
   },
   "ineedyou": {
-    "sounds": ["isrealanything:INeedYOU"]
+    "sounds": [
+      "isrealanything:INeedYOU"
+    ]
+
+  },
+    "scream": {
+      "sounds": ["isrealanything:scream"]
+    }
+
+
   },
   "insanity": {
     "sounds": ["isrealanything:insanity"]
   },
-
   "reality": {
     "sounds": ["isrealanything:reality"]
   },
-
+  "anyone": {
+    "sounds": ["isrealanything:Anyoneplayingthisi..."]
+  },
   "ithurts": {
     "sounds": ["isrealanything:IThurts"]
   },

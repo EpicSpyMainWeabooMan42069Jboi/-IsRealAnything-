@@ -11,10 +11,7 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.List;
 
-/**
- * Overlay effects when TheME or TheOtherME entities are nearby or watching the player
- * Creates visual distortion and vignette effects based on entity proximity
- */
+
 public class TheMEEntityOverlay {
     private static boolean isActive = false;
     private static float intensity = 0.0f;

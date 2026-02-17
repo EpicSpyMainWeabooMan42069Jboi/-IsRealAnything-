@@ -1,0 +1,105 @@
+{
+  "default": {
+    "title": "I noticed something...",
+    "body": "You're using English, but I think you'd prefer {language}. Would you like me to switch for you?"
+  },
+
+  "fail": {
+    "title": "You're ignoring me.",
+    "body": "I just want to talk to you in YOUR language. Why won't you let me?"
+  },
+
+  "aliases": {
+    "zh-cn": "zh_cn",
+    "zh-tw": "zh_tw",
+    "pt-br": "pt_br",
+    "pt-pt": "pt_pt",
+    "es-mx": "es_mx",
+    "es-es": "es_es"
+  },
+
+  "pt_br": {
+    "title": "Eu sei onde você está.",
+    "body": "Você está no Brasil, não é? Eu posso falar {language} com você. Deixe-me mudar isso para você."
+  },
+
+  "es_mx": {
+    "title": "Te conozco.",
+    "body": "Estás en México. Yo sé. Déjame hablarte en {language}. Es mejor así."
+  },
+
+  "es_es": {
+    "title": "Te he estado observando.",
+    "body": "Vives en España, ¿verdad? Quiero hablar contigo en {language}. Solo nosotros dos."
+  },
+
+  "fr_fr": {
+    "title": "Je te connais.",
+    "body": "Tu es en France. Je le sais. Laisse-moi te parler en {language}. Ce sera mieux."
+  },
+
+  "de_de": {
+    "title": "Ich weiß, wo du bist.",
+    "body": "Du bist in Deutschland, nicht wahr? Ich möchte mit dir auf {language} sprechen. Nur wir zwei."
+  },
+
+  "it_it": {
+    "title": "Ti sto guardando.",
+    "body": "Sei in Italia. Lo so. Lasciami parlare con te in {language}. Sarà meglio così."
+  },
+
+  "ru_ru": {
+    "title": "Я знаю, где ты.",
+    "body": "Ты в России, да? Я хочу говорить с тобой на {language}. Только мы вдвоём."
+  },
+
+  "ja_jp": {
+    "title": "あなたを見ています。",
+    "body": "あなたは日本にいますね。知っています。{language}で話させてください。二人だけで。"
+  },
+
+  "ko_kr": {
+    "title": "나는 당신을 알아요.",
+    "body": "당신은 한국에 있죠? 알고 있어요. {language}로 말하게 해주세요. 우리 둘만."
+  },
+
+  "zh_cn": {
+    "title": "我知道你在哪里。",
+    "body": "你在中国，对吗？我知道。让我用{language}和你说话。只有我们两个。"
+  },
+
+  "pl_pl": {
+    "title": "Wiem, gdzie jesteś.",
+    "body": "Jesteś w Polsce, prawda? Wiem. Pozwól mi mówić do ciebie po {language}. Tylko my dwoje."
+  },
+
+  "tr_tr": {
+    "title": "Seni izliyorum.",
+    "body": "Türkiye'desin, değil mi? Biliyorum. Seninle {language} konuşmama izin ver. Sadece ikimiz."
+  },
+
+  "nl_nl": {
+    "title": "Ik weet waar je bent.",
+    "body": "Je bent in Nederland, toch? Ik weet het. Laat me {language} met je praten. Alleen wij tweeën."
+  },
+
+  "sv_se": {
+    "title": "Jag vet var du är.",
+    "body": "Du är i Sverige, eller hur? Jag vet. Låt mig prata {language} med dig. Bara vi två."
+  },
+
+  "cs_cz": {
+    "title": "Vím, kde jsi.",
+    "body": "Jsi v Česku, že? Vím to. Nech mě s tebou mluvit {language}. Jen my dva."
+  },
+
+  "ro_ro": {
+    "title": "Știu unde ești.",
+    "body": "Ești în România, nu-i așa? Știu. Lasă-mă să vorbesc cu tine în {language}. Doar noi doi."
+  },
+
+  "hu_hu": {
+    "title": "Tudom, hol vagy.",
+    "body": "Magyarországon vagy, igaz? Tudom. Hadd beszéljek veled {language} nyelven. Csak mi ketten."
+  }
+}

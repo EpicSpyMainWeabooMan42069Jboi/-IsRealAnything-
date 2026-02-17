@@ -9,11 +9,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 
-/**
- * Controls stalking intensity and provides trigger methods for events.
- * Manages when and how aggressively entities stalk the player.
- * Respects OVERLOOK_TRIGGERED state from TheOverlook event.
- */
+
 public class StalkingController {
     
     private static int currentIntensity = 0;
@@ -100,7 +96,7 @@ public class StalkingController {
             TheMEEntitySpawner.spawnAt(world, peekPos);
             
             // Play subtle sound
-            world.playSound(null, peekPos, ModSounds.BREATHING, 
+            world.playSound(null, peekPos, ModSounds.SCREAM,
                 SoundCategory.AMBIENT, 0.4f, 0.9f);
             
             ticksSinceLastPeek = 0;
@@ -130,23 +126,10 @@ public class StalkingController {
             default -> 10;
         };
         
-        // Use TheOtherME for higher intensities
+
         if (currentIntensity >= 4) {
             TheOtherMEEntitySpawner.spawnBehindPlayer(world, playerPos, playerYaw, distance);
-            
-            // Play loud static
-            world.playSound(null, playerPos, ModSounds.STATIC_NOISE, 
-                SoundCategory.HOSTILE, 0.8f, 0.7f);
-            
-            // Send warning message
-            ContextualMessageManager.sendMessage(player, "Don't look behind you.");
-        } else {
-            TheMEEntitySpawner.spawnBehindPlayer(world, playerPos, playerYaw, distance);
-            
-            // Play whisper
-            world.playSound(null, playerPos, ModSounds.WHISPER_2, 
-                SoundCategory.AMBIENT, 0.5f, 1.0f);
-        }
+
         
         IsRealAnything.LOGGER.debug("Behind player trigger (distance: {})", distance);
     }
@@ -189,14 +172,7 @@ public class StalkingController {
         // Spawn group of TheOtherME entities
         int spawned = TheOtherMEEntitySpawner.spawnGroup(world, playerPos, count, radius);
         
-        if (spawned > 0) {
-            // Play heartbeat
-            world.playSound(null, playerPos, ModSounds.HEARTBEAT, 
-                SoundCategory.AMBIENT, 1.0f, 0.9f);
-            
-            // Send message
-            ContextualMessageManager.sendMessage(player, "You're surrounded.");
-            
+
             IsRealAnything.LOGGER.info("Group spawn triggered: {} entities", spawned);
         }
     }

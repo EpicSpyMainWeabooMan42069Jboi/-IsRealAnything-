@@ -33,9 +33,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
         this.experiencePoints = 30;
     }
     
-    /**
-     * Sets default entity attributes.
-     */
+
     public static DefaultAttributeContainer.Builder createTheOtherMEAttributes() {
         return HostileEntity.createHostileAttributes()
             .add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0)

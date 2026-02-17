@@ -10,9 +10,7 @@ import net.minecraft.util.math.BlockPos;
  */
 public class TheOtherMEEntitySpawner {
 
-    /**
-     * Spawns TheOtherME entity at a specific position.
-     */
+
     public static TheOtherMEEntity spawnAt(ServerWorld world, BlockPos pos) {
         TheOtherMEEntity entity = ModEntities.THE_OTHER_ME.create(world);
 

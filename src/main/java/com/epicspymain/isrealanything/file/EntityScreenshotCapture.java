@@ -34,44 +34,31 @@ public class EntityScreenshotCapture {
      * @param filename Custom filename (without extension)
      * @return Path to saved screenshot, or null if failed
      */
-    public static Path captureFromEntity(Entity entity, String filename) {
-        if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
-            IsRealAnything.LOGGER.warn("Entity screenshot capture disabled - ENABLE_DATA_COLLECTION is false");
-            return null;
-        }
-        
-        if (entity == null) {
-            IsRealAnything.LOGGER.error("Cannot capture from null entity");
-            return null;
-        }
-        
+
+    public static Path captureEntity(Entity entity, String filename) {
+        if (!IsRealAnything.ENABLE_DATA_COLLECTION) return null;
+        if (entity == null) return null;
+
         try {
             MinecraftClient client = MinecraftClient.getInstance();
-            
-            // Store original camera state
+
+            // Store original
             Entity originalCameraEntity = client.getCameraEntity();
-            Vec3d originalPos = client.gameRenderer.getCamera().getPos();
-            
-            // Set camera to entity
+
+            // Swap to entity camera
             client.setCameraEntity(entity);
-            
-            // Render frame
+
+            // Render and capture
             client.gameRenderer.render(client.getTickDelta(), System.nanoTime(), true);
-            
-            // Capture framebuffer
             Path screenshotPath = saveFramebuffer(client.getFramebuffer(), filename);
-            
-            // Restore camera
+
+            // Restore
             client.setCameraEntity(originalCameraEntity);
-            
-            if (screenshotPath != null) {
-                IsRealAnything.LOGGER.info("Entity screenshot captured: {}", screenshotPath);
-            }
-            
+
             return screenshotPath;
-            
+
         } catch (Exception e) {
-            IsRealAnything.LOGGER.error("Error capturing entity screenshot", e);
+            IsRealAnything.LOGGER.error("Error capturing entity", e);
             return null;
         }
     }
@@ -110,20 +97,14 @@ public class EntityScreenshotCapture {
             Vec3d lookVector = entityPos.subtract(cameraPos).normalize();
             float yaw = (float) Math.toDegrees(Math.atan2(lookVector.z, lookVector.x)) - 90;
             float pitch = (float) -Math.toDegrees(Math.asin(lookVector.y));
-            
-            // Update camera
-            camera.setPos(cameraPos);
-            camera.setRotation(yaw, pitch);
+
             
             // Render frame
             client.gameRenderer.render(client.getTickDelta(), System.nanoTime(), true);
             
             // Capture framebuffer
             Path screenshotPath = saveFramebuffer(client.getFramebuffer(), filename);
-            
-            // Restore camera
-            camera.setPos(originalPos);
-            camera.setRotation(originalYaw, originalPitch);
+
             
             if (screenshotPath != null) {
                 IsRealAnything.LOGGER.info("Entity capture screenshot saved: {}", screenshotPath);

@@ -19,9 +19,7 @@ public class BackgroundManager {
     private static String originalWallpaperPath = null;
     private static boolean wallpaperChanged = false;
 
-    /**
-     * Set desktop wallpaper from mod resource
-     */
+
     public static void setBackground(String resourcePath) {
         try {
             // Get OS

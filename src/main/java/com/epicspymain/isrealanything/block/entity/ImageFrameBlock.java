@@ -1,82 +1,134 @@
-package com.epicspymain.isrealanything.block.entity;
+package com.epicspymain.isrealanything.block;
 
-public class ImageFrameBlock {
-    import com.epicspymain.isrealanything.block.entity.ImageFrameBlockEntity;import net.minecraft.class_1750;
-import net.minecraft.class_1922;
-import net.minecraft.class_2248;
-import net.minecraft.class_2338;
-import net.minecraft.class_2343;
-import net.minecraft.class_2350;
-import net.minecraft.class_2464;
-import net.minecraft.class_2586;
-import net.minecraft.class_265;
-import net.minecraft.class_2680;
-import net.minecraft.class_2689;
-import net.minecraft.class_2741;
-import net.minecraft.class_2753;
-import net.minecraft.class_2769;
-import net.minecraft.class_3726;
-import net.minecraft.class_4970;
+import com.epicspymain.isrealanything.block.entity.ImageFrameBlockEntity;
+import com.epicspymain.isrealanything.file.FrameFileManager;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.ShapeContext;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.state.StateManager;
+import net.minecraft.state.property.DirectionProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.BlockMirror;
+import net.minecraft.util.BlockRotation;
+import net.minecraft.util.Hand;
+import net.minecraft.util.hit.BlockHitResult;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
-    public class ImageFrameBlock extends class_2248 implements class_2343 {
-        public static final class_2753 FACING = class_2741.field_12481;
+/**
+ * ImageFrameBlock - Displays screenshots from FrameFileManager
+ * Wall-mounted frame that shows captured images
+ */
+public class ImageFrameBlock extends BlockWithEntity {
 
-        private static final class_265 NORTH_SHAPE = class_2248.method_9541(1.0D, 4.0D, 14.0D, 15.0D, 12.0D, 16.0D);
+    public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
 
-        private static final class_265 SOUTH_SHAPE = class_2248.method_9541(1.0D, 4.0D, 0.0D, 15.0D, 12.0D, 2.0D);
+    // Frame shapes for each direction (thin like a painting)
+    private static final VoxelShape NORTH_SHAPE = Block.createCuboidShape(1.0, 4.0, 14.0, 15.0, 12.0, 16.0);
+    private static final VoxelShape SOUTH_SHAPE = Block.createCuboidShape(1.0, 4.0, 0.0, 15.0, 12.0, 2.0);
+    private static final VoxelShape EAST_SHAPE = Block.createCuboidShape(0.0, 4.0, 1.0, 2.0, 12.0, 15.0);
+    private static final VoxelShape WEST_SHAPE = Block.createCuboidShape(14.0, 4.0, 1.0, 16.0, 12.0, 15.0);
 
-        private static final class_265 EAST_SHAPE = class_2248.method_9541(0.0D, 4.0D, 1.0D, 2.0D, 12.0D, 15.0D);
+    public ImageFrameBlock(Settings settings) {
+        super(settings);
+        setDefaultState(getStateManager().getDefaultState().with(FACING, Direction.NORTH));
+    }
 
-        private static final class_265 WEST_SHAPE = class_2248.method_9541(14.0D, 4.0D, 1.0D, 16.0D, 12.0D, 15.0D);
+    @Override
+    protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
+        builder.add(FACING);
+    }
 
-        public ImageFrameBlock(class_4970.class_2251 settings) {
-            super(settings);
-            method_9590((class_2680)((class_2680)this.field_10647.method_11664()).method_11657((class_2769)FACING, (Comparable)class_2350.field_11043));
+    @Override
+    public BlockState getPlacementState(ItemPlacementContext ctx) {
+        Direction side = ctx.getSide();
+
+        // If placed on floor/ceiling, use player facing
+        if (side == Direction.UP || side == Direction.DOWN) {
+            return getDefaultState().with(FACING, ctx.getHorizontalPlayerFacing().getOpposite());
         }
 
-        protected void method_9515(class_2689.class_2690<class_2248, class_2680> builder) {
-            builder.method_11667(new class_2769[] { (class_2769)FACING });
-        }
+        // Otherwise use the side it's placed on
+        return getDefaultState().with(FACING, side);
+    }
 
-        public class_2680 method_9605(class_1750 ctx) {
-            class_2350 side = ctx.method_8038();
-            if (side == class_2350.field_11036 || side == class_2350.field_11033)
-                return (class_2680)method_9564().method_11657((class_2769)FACING, (Comparable)ctx.method_8042().method_10153());
-            return (class_2680)method_9564().method_11657((class_2769)FACING, (Comparable)side);
-        }
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return getShapeForDirection(state.get(FACING));
+    }
 
-        public class_265 method_9530(class_2680 state, class_1922 world, class_2338 pos, class_3726 context) {
-            return getShapeForDirection((class_2350)state.method_11654((class_2769)FACING));
-        }
+    @Override
+    public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return getShapeForDirection(state.get(FACING));
+    }
 
-        public class_265 method_9549(class_2680 state, class_1922 world, class_2338 pos, class_3726 context) {
-            return getShapeForDirection((class_2350)state.method_11654((class_2769)FACING));
-        }
+    private VoxelShape getShapeForDirection(Direction direction) {
+        return switch (direction) {
+            case NORTH -> NORTH_SHAPE;
+            case SOUTH -> SOUTH_SHAPE;
+            case EAST -> EAST_SHAPE;
+            case WEST -> WEST_SHAPE;
+            default -> NORTH_SHAPE;
+        };
+    }
 
-        private class_265 getShapeForDirection(class_2350 direction) {
-            switch (direction) {
-                case field_11043:
+    @Override
+    public BlockState rotate(BlockState state, BlockRotation rotation) {
+        return state.with(FACING, rotation.rotate(state.get(FACING)));
+    }
 
-                case field_11035:
+    @Override
+    public BlockState mirror(BlockState state, BlockMirror mirror) {
+        return state.rotate(mirror.getRotation(state.get(FACING)));
+    }
 
-                case field_11034:
-
-                case field_11039:
-
+    @Override
+    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+        if (!world.isClient) {
+            // Show info about current frame
+            String framePath = FrameFileManager.getCurrentFramePath();
+            if (framePath != null) {
+                player.sendMessage(
+                        Text.literal("Frame displaying: " + framePath),
+                        false
+                );
+            } else {
+                player.sendMessage(
+                        Text.literal("No frame loaded"),
+                        false
+                );
             }
-            return
-
-                    NORTH_SHAPE;
         }
+        return ActionResult.SUCCESS;
+    }
 
-        @Nullable
-        public class_2586 method_10123(class_2338 pos, class_2680 state) {
-            return (class_2586)new ImageFrameBlockEntity(pos, state);
-        }
+    @Nullable
+    @Override
+    public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
+        return new ImageFrameBlockEntity(pos, state);
+    }
 
-        public class_2464 method_9604(class_2680 state) {
-            return class_2464.field_11458;
-        }
+    @Override
+    public BlockRenderType getRenderType(BlockState state) {
+        return BlockRenderType.MODEL;
+    }
+
+    /**
+     * Get the current texture identifier for this frame
+     * Used by renderer to display the image
+     */
+    public static String getCurrentTexture() {
+        return FrameFileManager.CURRENT_FRAME_TEXTURE;
     }
 }

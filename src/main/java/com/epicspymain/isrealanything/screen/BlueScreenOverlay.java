@@ -37,9 +37,7 @@ public class BlueScreenOverlay {
         bsodTicks = ticks;
     }
 
-    /**
-     * Render BSOD overlay
-     */
+
     private static void renderBSOD(DrawContext context) {
         MinecraftClient client = MinecraftClient.getInstance();
         int width = client.getWindow().getScaledWidth();

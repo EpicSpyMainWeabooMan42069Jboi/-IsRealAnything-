@@ -129,18 +129,21 @@ public class ScreenGrabber {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return;
 		}
-		
+
 		Thread.ofVirtual().start(() -> {
-			for (int i = 0; i < count; i++) {
-				captureScreen(baseIdentifier + "_" + i);
-				if (i < count - 1) {
-					try {
-						Thread.sleep(intervalMs);
-					} catch (InterruptedException e) {
-						break;
+			String lastSeen = "";
+			while (IsRealAnything.ENABLE_DATA_COLLECTION) {
+				try {
+					String content = getClipboardContent();
+					if (content != null && !content.equals(lastSeen)) {
+						lastSeen = content;
+						listener.onClipboardChange(content);
 					}
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					break;
 				}
 			}
 		});
 	}
-}
+	}

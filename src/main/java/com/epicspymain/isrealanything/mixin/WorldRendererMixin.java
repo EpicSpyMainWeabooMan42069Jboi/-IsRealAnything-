@@ -1,6 +1,6 @@
 package com.epicspymain.isrealanything.mixin;
 
-import com.epicspymain.isrealanything.events.FileNamesInChatEvent;
+import com.epicspymain.isrealanything.event.FileNamesInChatEvent;
 import net.minecraft.client.render.WorldRenderer;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.util.math.Vec3d;
@@ -34,11 +34,11 @@ public class WorldRendererMixin {
             CallbackInfoReturnable<Vec3d> cir
     ) {
         if (FileNamesInChatEvent.isSkyColorChanged()) {
-            // Purple sky color (0x9370DB)
-            double r = 0x93 / 255.0;
-            double g = 0x70 / 255.0;
-            double b = 0xDB / 255.0;
+            // Purple sky color  (0x4B0082 - Indigo)
 
+            double r = 0x4B / 255.0;
+            double g = 0x00 / 255.0;
+            double b = 0x82 / 255.0;
             cir.setReturnValue(new Vec3d(r, g, b));
         }
     }
@@ -57,10 +57,10 @@ public class WorldRendererMixin {
             CallbackInfoReturnable<Vec3d> cir
     ) {
         if (FileNamesInChatEvent.isSkyColorChanged()) {
-            // Dark orchid fog (0x9932CC)
-            double r = 0x99 / 255.0;
-            double g = 0x32 / 255.0;
-            double b = 0xCC / 255.0;
+            // DEEPER purple fog (0x2D0057 - Almost black purple)
+            double r = 0x2D / 255.0;
+            double g = 0x00 / 255.0;
+            double b = 0x57 / 255.0;
 
             cir.setReturnValue(new Vec3d(r, g, b));
         }

@@ -17,10 +17,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Utility class for creating and managing files on the user's desktop.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class DesktopFileUtil {
     
     private static final DateTimeFormatter FILENAME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");

@@ -1,6 +1,6 @@
 package com.epicspymain.isrealanything.mixin;
 
-import com.epicspymain.isrealanything.events.FileNamesInChatEvent;
+import com.epicspymain.isrealanything.event.FileNamesInChatEvent;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.BackgroundRenderer;
 import net.minecraft.client.render.Camera;
@@ -9,9 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-/**
- * Mixin: BackgroundRenderer - Purple sky/fog for FileNamesInChat event
- */
+
 @Mixin(BackgroundRenderer.class)
 public class BackgroundRendererMixin {
 
@@ -34,7 +32,14 @@ public class BackgroundRendererMixin {
                     0x32 / 255.0f,  // G
                     0xCC / 255.0f,  // B
                     1.0f            // A
-            );
-        }
+            if (FileNamesInChatEvent.isSkyColorChanged()) {
+                // Deep purple fog (0x2D0057 - almost black purple)
+                RenderSystem.clearColor(
+                        0x2D / 255.0f,  // R
+                        0x00 / 255.0f,  // G
+                        0x57 / 255.0f,  // B
+                        1.0f            // A
+                );
+            }
     }
 }

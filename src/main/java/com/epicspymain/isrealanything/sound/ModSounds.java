@@ -18,10 +18,12 @@ public class ModSounds {
     public static final SoundEvent GLITCH = registerSoundEvent("glitch");
     public static final SoundEvent INEEDYOU = registerSoundEvent("ineedyou");
     public static final SoundEvent INSANITY = registerSoundEvent("insanity");
+    public static final SoundEvent SCREAM = registerSoundEvent("scream");
     public static final SoundEvent ITHURTS = registerSoundEvent("ithurts");
     public static final SoundEvent MISC = registerSoundEvent("misc");
     public static final SoundEvent MISC2 = registerSoundEvent("misc2");
     public static final SoundEvent NOSTALGIA = registerSoundEvent("nostalgia");
+    public static final SoundEvent ANYONE = registerSoundEvent("anyone");
     public static final SoundEvent REALITY = registerSoundEvent("reality");
     public static final SoundEvent PLACINGBLOCKSANDSHIT = registerSoundEvent("placingblocksandshit");
     public static final SoundEvent YOUR_MEMORY = registerSoundEvent("your_memory");
@@ -32,7 +34,7 @@ public class ModSounds {
     public static final SoundEvent TED_LEWIS_FUCK_YOU = registerSoundEvent("ted_lewis_fuck_you");
     public static final SoundEvent ERRRRRR = registerSoundEvent("errrrrr");
     public static final SoundEvent FOREVER = registerSoundEvent("forever");
-    public static final SoundEvent F_O_REV_E_R = registerSoundEvent("f_o_rev_e_r");
+    public static final SoundEvent F_O_REV_E_R = registerSoundEvent("f_o_rev_e_r");  // ← ADDED THIS
 
     private static SoundEvent registerSoundEvent(String name) {
         Identifier id = Identifier.of(IsRealAnything.MOD_ID, name);

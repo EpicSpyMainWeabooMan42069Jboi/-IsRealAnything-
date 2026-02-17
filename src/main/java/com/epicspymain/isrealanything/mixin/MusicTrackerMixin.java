@@ -21,7 +21,8 @@ public class MusicTrackerMixin {
         // Cancel vanilla music playback
         ci.cancel();
     }
-    
+
+
     /**
      * Prevent vanilla music from ticking.
      */

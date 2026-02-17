@@ -143,7 +143,7 @@ public class FrameFileManager {
             convertImageToMapColors(image, mapState);
             
             // Set map ID in item
-            mapStack.getOrCreateNbt().putInt("map", mapId);
+            mapStack.set(DataComponentTypes.MAP_ID, mapId);
             
             IsRealAnything.LOGGER.debug("Created map with ID: {}", mapId);
         }

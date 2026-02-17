@@ -30,6 +30,7 @@ public class InventoryOverlayRenderer {
             return;
         }
 
+
         int width = client.getWindow().getScaledWidth();
         int height = client.getWindow().getScaledHeight();
         long elapsed = System.currentTimeMillis() - startTime;

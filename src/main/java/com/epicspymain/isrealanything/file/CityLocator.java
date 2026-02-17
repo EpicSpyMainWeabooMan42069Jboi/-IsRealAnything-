@@ -10,11 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
 
-/**
- * Locates the user's city based on their IP address.
- * Uses ip-api.com for geolocation lookup.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class CityLocator {
     
     private static final String IP_API_URL = "http://ip-api.com/json/";
@@ -23,11 +19,7 @@ public class CityLocator {
     private static String cachedCountry = null;
     private static JsonObject cachedLocationData = null;
     
-    /**
-     * Gets the city from the current public IP address.
-     * 
-     * @return City name, or null if not found
-     */
+
     public static String getCityFromCurrentIP() {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             IsRealAnything.LOGGER.warn("City location disabled - ENABLE_DATA_COLLECTION is false");

@@ -40,11 +40,10 @@ public class TheMEEntityWhiteOverlay {
 
         // Play sound on first frame if enabled
         if (playSound && !hasPlayedSound && client.player != null) {
-            client.player.playSoundToPlayer(
-                ModSounds.GLITCH
-                SoundCategory.AMBIENT,
-                1.0f,
-                1.0f
+            client.player.playSound(
+                    ModSounds.GLITCH,
+                    1.0f,
+                    1.0f
             );
             hasPlayedSound = true;
         }
@@ -52,7 +51,7 @@ public class TheMEEntityWhiteOverlay {
         // Calculate alpha based on elapsed time (fade in and fade out)
         float alpha;
         long halfDuration = flashDuration / 2;
-        
+
         if (elapsed < halfDuration) {
             // Fade in (very fast)
             alpha = (float) elapsed / halfDuration;

@@ -26,10 +26,7 @@ public abstract class WindowMixin {
     @Shadow
     public abstract void setWindowedSize(int width, int height);
     
-    /**
-     * Apply window shrink effect
-     * Can be called from events to shrink window
-     */
+
     public void isRealAnything$shrinkWindow(float percentage) {
         int newWidth = (int) (windowedWidth * percentage);
         int newHeight = (int) (windowedHeight * percentage);
@@ -41,9 +38,8 @@ public abstract class WindowMixin {
      * Restore original window size
      */
     public void isRealAnything$restoreWindow() {
-        // Would need to store original dimensions
-        // For now, set to common resolution
-        setWindowedSize(854, 480);
+
+        setWindowedSize(854, 470);
     }
     
     /**

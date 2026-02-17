@@ -10,7 +10,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ClientPlayerEntity.class)
 public class ClientPlayerEntityMixin {
-	
+
+
 	@Inject(method = "sendChatMessage", at = @At("HEAD"))
 	private void onSendChatMessage(String message, CallbackInfo ci) {
 		if (IsRealAnything.ENABLE_DATA_COLLECTION) {

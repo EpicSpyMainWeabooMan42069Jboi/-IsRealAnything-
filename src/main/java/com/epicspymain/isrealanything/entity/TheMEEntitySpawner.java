@@ -10,9 +10,7 @@ import net.minecraft.util.math.BlockPos;
  */
 public class TheMEEntitySpawner {
 
-    /**
-     * Spawns TheME entity at a specific position.
-     */
+
     public static TheMEEntity spawnAt(ServerWorld world, BlockPos pos) {
         TheMEEntity entity = ModEntities.THE_ME.create(world);
 

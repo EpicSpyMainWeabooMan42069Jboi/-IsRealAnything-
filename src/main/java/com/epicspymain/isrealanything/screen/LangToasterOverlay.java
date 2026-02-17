@@ -13,10 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-/**
- * Displays toast-like notifications with custom messages from lang files
- * Renders custom toasts that can override or supplement vanilla toasts
- */
+
 public class LangToasterOverlay {
     private static final List<CustomToast> activeToasts = new ArrayList<>();
     private static final int TOAST_WIDTH = 160;

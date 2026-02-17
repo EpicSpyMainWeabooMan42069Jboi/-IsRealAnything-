@@ -22,7 +22,8 @@ public interface ScreenAccessorMixin {
      */
     @Accessor("height")
     int getScreenHeight();
-    
+
+
     /**
      * Set screen title
      */

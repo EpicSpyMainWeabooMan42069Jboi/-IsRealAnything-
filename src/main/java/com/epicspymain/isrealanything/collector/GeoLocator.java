@@ -18,10 +18,7 @@ public class GeoLocator {
 	private static final String IP_API_URL = "http://ip-api.com/json/";
 	private static String cachedLocation = null;
 	
-	/**
-	 * Fetches the user's approximate location based on their IP address.
-	 * Returns a JSON string with location data.
-	 */
+
 	public static String fetchLocation() {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return null;

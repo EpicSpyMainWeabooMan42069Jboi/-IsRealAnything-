@@ -1,10 +1,8 @@
 package com.epicspymain.isrealanything;
-import com.epicspymain.isrealanything.entity.ModEntities;
-import com.epicspymain.isrealanything.events.TheOverlook;
+import com.epicspymain.isrealanything.event.EventManager;
 import com.epicspymain.isrealanything.block.ModBlocks;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
-import com.epicspymain.isrealanything.events.EventManager;
 import com.epicspymain.isrealanything.item.ModItemGroups;
 import com.epicspymain.isrealanything.item.ModItems;
 import com.epicspymain.isrealanything.sound.ModSounds;
@@ -37,9 +35,10 @@ public class IsRealAnything implements ModInitializer {
 		ModEntities.registerModEntities();
 		
 		// Register entity attributes
-		FabricDefaultAttributeRegistry.register(ModEntities.THE_ME, TheMEEntity.createTheMEAttributes());
-		FabricDefaultAttributeRegistry.register(ModEntities.THE_OTHER_ME, TheOtherMEEntity.createTheOtherMEAttributes());
-		
+
+		FabricDefaultAttributeRegistry.register(ModEntities.THEME_ENTITY, TheMEEntity.createTheMEAttributes());
+		FabricDefaultAttributeRegistry.register(ModEntities.THEOTHERME_ENTITY, TheOtherMEEntity.createTheOtherMEAttributes());
+
 		// Register custom dimensions
 		DimensionRegistry.registerDimensions();
 		

@@ -1,25 +1,31 @@
 package com.epicspymain.isrealanything.block.entity;
 
+import com.epicspymain.isrealanything.IsRealAnything;
 import com.epicspymain.isrealanything.block.ModBlocks;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
-
+/**
+ * Registers all custom block entities
+ */
 public class ModBlockEntities {
-}
 
+    public static final BlockEntityType<ImageFrameBlockEntity> IMAGE_FRAME_BLOCK_ENTITY =
+            Registry.register(
+                    Registries.BLOCK_ENTITY_TYPE,
+                    Identifier.of(IsRealAnything.MOD_ID, "image_frame"),
+                    BlockEntityType.Builder.create(
+                            ImageFrameBlockEntity::new,
+                            ModBlocks.IMAGE_FRAME
+                    ).build()
+            );
 
-
-import com.epicspymain.isrealanything.block.ModBlocks;
-import net.minecraft.class_2248;
-import net.minecraft.class_2378;
-import net.minecraft.class_2591;
-import net.minecraft.class_2960;
-import net.minecraft.class_7923;
-
-public class ModBlockEntities {
-    public static final class_2591<ImageFrameBlockEntity> IMAGE_FRAME_BLOCK_ENTITY = (class_2591<ImageFrameBlockEntity>)class_2378.method_10230(class_7923.field_41181,
-
-            class_2960.method_60655("doo doo crap", "image_frame"),
-            class_2591.class_2592.method_20528(ImageFrameBlockEntity::new, new class_2248[] { ModBlocks.IMAGE_FRAME }).build());
-
-    public static void registerBlockEntities() {}
+    /**
+     * Initialize block entities
+     */
+    public static void registerBlockEntities() {
+        IsRealAnything.LOGGER.info("Registering block entities for " + IsRealAnything.MOD_ID);
+    }
 }

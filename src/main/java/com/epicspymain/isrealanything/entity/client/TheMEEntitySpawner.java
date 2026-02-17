@@ -14,13 +14,7 @@ import net.minecraft.world.World;
  */
 public class TheMEEntitySpawner {
     
-    /**
-     * Spawns TheME entity at a specific position.
-     * 
-     * @param world The world to spawn in
-     * @param pos Position to spawn at
-     * @return The spawned entity, or null if failed
-     */
+
     public static TheMEEntity spawnAt(World world, BlockPos pos) {
         if (world.isClient) {
             return null;

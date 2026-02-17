@@ -16,9 +16,7 @@ public class TheOtherMEEntityAnimations {
     public static final String TELEPORT = "animation.the_other_me.teleport";
     public static final String GLITCH = "animation.the_other_me.glitch";
     
-    /**
-     * Creates idle animation (menacing stance).
-     */
+
     public static RawAnimation createIdleAnimation() {
         return RawAnimation.begin().thenLoop(IDLE);
     }

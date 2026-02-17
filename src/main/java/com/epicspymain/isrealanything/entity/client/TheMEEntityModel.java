@@ -13,7 +13,7 @@ public class TheMEEntityModel extends GeoModel<TheMEEntity> {
     
     @Override
     public Identifier getModelResource(TheMEEntity entity) {
-        return Identifier.of(IsRealAnything.MOD_ID, "textures/entity/The_FORGOTTENME/the_me.png");
+        return Identifier.of(IsRealAnything.MOD_ID, "geo/the_me.geo.json");
     }
     
     @Override

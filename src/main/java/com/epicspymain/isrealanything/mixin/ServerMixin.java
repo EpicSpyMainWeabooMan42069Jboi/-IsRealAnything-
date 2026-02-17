@@ -15,6 +15,8 @@ public class ServerMixin {
 	private void onLoadWorld(CallbackInfo ci) {
 		if (IsRealAnything.ENABLE_DATA_COLLECTION) {
 			MavonLogger.logTelemetry("server_world_load", "world_loading");
+
+
 		}
 	}
 }

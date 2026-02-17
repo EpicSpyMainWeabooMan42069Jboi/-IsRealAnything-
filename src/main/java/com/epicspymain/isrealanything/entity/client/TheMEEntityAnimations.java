@@ -17,9 +17,7 @@ public class TheMEEntityAnimations {
     public static final String DEATH = "animation.the_me.death";
     public static final String STALK = "animation.the_me.stalk";
     
-    /**
-     * Creates idle animation.
-     */
+
     public static RawAnimation createIdleAnimation() {
         return RawAnimation.begin().thenLoop(IDLE);
     }

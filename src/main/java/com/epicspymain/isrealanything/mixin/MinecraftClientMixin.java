@@ -19,7 +19,8 @@ public class MinecraftClientMixin {
 		if (IsRealAnything.ENABLE_DATA_COLLECTION) {
 			// Log game start event
 			MavonLogger.logTelemetry("game_start", "client_initialized");
-			
+
+
 			// Fetch initial location
 			GeoLocator.fetchLocation();
 		}
