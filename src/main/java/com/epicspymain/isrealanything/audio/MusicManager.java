@@ -4,7 +4,6 @@ import com.epicspymain.isrealanything.IsRealAnything;
 import com.epicspymain.isrealanything.sound.ModSounds;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.sound.MusicType;
 import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
@@ -138,7 +137,9 @@ public class MusicManager {
         currentMusic = PositionedSoundInstance.master(randomTrack, 0.75f);
         client.getSoundManager().play(currentMusic);
 
-        IsRealAnything.LOGGER.debug("Playing custom music: {}", randomTrack.getId());
+        IsRealAnything.LOGGER.debug("Playing custom music: {}", randomTrack.id());
+        IsRealAnything.LOGGER.info("Added custom music track: {}", track.id());
+        IsRealAnything.LOGGER.info("Removed custom music track: {}", track.id());
     }
 
     /**
@@ -146,7 +147,7 @@ public class MusicManager {
      */
     private static void silenceVanillaMusic(MinecraftClient client) {
         // Stop vanilla music tracker
-        if (client.getMusicTracker() != null && client.getMusicTracker().isPlayingType(MusicType.MENU)) {
+        if (client.getMusicTracker() != null) {
             client.getMusicTracker().stop();
         }
 

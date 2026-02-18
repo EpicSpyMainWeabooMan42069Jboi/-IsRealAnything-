@@ -3,7 +3,7 @@
 	"minecraft:geometry": [
 		{
 			"description": {
-				"identifier": "geometry.the_other_me",
+				"identifier": "geometry.the_me",
 				"texture_width": 64,
 				"texture_height": 64,
 				"visible_bounds_width": 3,
@@ -62,7 +62,7 @@
 				},
 				{
 					"name": "right_sleeve",
-					"pivot": [-5, 22, 0],
+					"pivot": [-23, 22, 0],
 					"cubes": [
 						{"origin": [-8, 12, -2], "size": [4, 12, 4], "inflate": 0.25, "uv": [40, 32]}
 					]

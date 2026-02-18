@@ -23,20 +23,20 @@ public class AreYouLookingEvent {
      */
     public static void trigger(ServerWorld world, ServerPlayerEntity player) {
         BlockPos playerPos = player.getBlockPos();
-        
+
         // Send warning
         player.sendMessage(
-            Text.literal("Are you looking?")
-                .formatted(Formatting.DARK_RED, Formatting.BOLD),
-            false
+                Text.literal("Are you looking?")
+                        .formatted(Formatting.DARK_RED, Formatting.BOLD),
+                false
         );
-        
+
         // Create holes in nearby structures
         int holes = HOLE_COUNT + world.random.nextInt(6);
         for (int i = 0; i < holes; i++) {
             createHole(world, playerPos);
         }
-        
+
         // Replace ground with soul sand
         replaceSoulSand(world, playerPos);
 
@@ -54,11 +54,9 @@ public class AreYouLookingEvent {
                 Thread.currentThread().interrupt();
             }
         }).start();
-    
-    /**
-     * Create a hole in nearby structure
-     */
-    private static void createHole(ServerWorld world, BlockPos center) {
+
+
+    } private static void createHole(ServerWorld world, BlockPos center) {
         // Random position within 30 blocks
         int x = center.getX() + world.random.nextInt(60) - 30;
         int y = center.getY() + world.random.nextInt(20) - 10;

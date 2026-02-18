@@ -12,14 +12,6 @@ public class TheOtherMEEntityRenderer extends GeoEntityRenderer<TheOtherMEEntity
     
     public TheOtherMEEntityRenderer(EntityRendererFactory.Context context) {
         super(context, new TheOtherMEEntityModel());
-        
-        // Adjust shadow size
-        this.shadowRadius = 0.6f;
-    }
-    
 
-    @Override
-    protected float getDeathMaxRotation(TheOtherMEEntity entity) {
-        return 0.0f;
     }
 }

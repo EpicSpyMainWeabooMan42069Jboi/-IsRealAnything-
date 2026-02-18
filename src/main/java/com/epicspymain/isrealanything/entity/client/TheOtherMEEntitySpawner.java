@@ -4,6 +4,7 @@ import com.epicspymain.isrealanything.IsRealAnything;
 import com.epicspymain.isrealanything.entity.ModEntities;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.world.Heightmap;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -27,7 +28,7 @@ public class TheOtherMEEntitySpawner {
         }
         
         try {
-            TheOtherMEEntity entity = ModEntities.THE_OTHER_ME.create(world);
+            TheOtherMEEntity entity = ModEntities.THEOTHERME_ENTITY.create(world, SpawnReason.COMMAND);
             if (entity != null) {
                 entity.refreshPositionAndAngles(
                     pos.getX() + 0.5,
@@ -60,7 +61,7 @@ public class TheOtherMEEntitySpawner {
         double angle = world.random.nextDouble() * 2 * Math.PI;
         int x = (int) (playerPos.getX() + distance * Math.cos(angle));
         int z = (int) (playerPos.getZ() + distance * Math.sin(angle));
-        int y = world.getTopY(x, z);
+        int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
         
         BlockPos spawnPos = new BlockPos(x, y, z);
         return spawnAt(world, spawnPos);
@@ -83,7 +84,7 @@ public class TheOtherMEEntitySpawner {
         for (int attempt = 0; attempt < 20; attempt++) {
             int x = playerPos.getX() + world.random.nextInt(searchRadius * 2) - searchRadius;
             int z = playerPos.getZ() + world.random.nextInt(searchRadius * 2) - searchRadius;
-            int y = world.getTopY(x, z);
+            int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
             
             BlockPos pos = new BlockPos(x, y, z);
             
@@ -114,7 +115,7 @@ public class TheOtherMEEntitySpawner {
         double radians = Math.toRadians(playerYaw);
         int x = (int) (playerPos.getX() - distance * Math.sin(radians));
         int z = (int) (playerPos.getZ() + distance * Math.cos(radians));
-        int y = world.getTopY(x, z);
+        int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
         
         BlockPos spawnPos = new BlockPos(x, y, z);
         TheOtherMEEntity entity = spawnAt(world, spawnPos);
@@ -183,7 +184,7 @@ public class TheOtherMEEntitySpawner {
         for (int i = 0; i < count; i++) {
             int x = centerPos.getX() + world.random.nextInt(radius * 2) - radius;
             int z = centerPos.getZ() + world.random.nextInt(radius * 2) - radius;
-            int y = world.getTopY(x, z);
+            int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
             
             BlockPos pos = new BlockPos(x, y, z);
             

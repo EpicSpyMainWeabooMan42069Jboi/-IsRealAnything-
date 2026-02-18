@@ -6,7 +6,6 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtIo;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.structure.Structure;
 import net.minecraft.structure.StructurePlacementData;
 import net.minecraft.structure.StructureTemplate;
 import net.minecraft.util.BlockMirror;
@@ -14,6 +13,7 @@ import net.minecraft.util.BlockRotation;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
+import net.minecraft.nbt.NbtSizeTracker;
 
 import java.io.InputStream;
 import java.util.*;
@@ -83,7 +83,7 @@ public class StructureSpawnEvent {
     private static boolean placeStructure(ServerWorld world, BlockPos pos, String structureName) {
         try {
             // Load structure from resources
-            Identifier structureId = new Identifier("isrealanything", "structures/" + structureName + ".nbt");
+            Identifier structureId = Identifier.of("isrealanything", "structures/" + structureName + ".nbt");
             InputStream stream = StructureSpawnEvent.class.getResourceAsStream(
                 "/assets/isrealanything/structures/" + structureName + ".nbt"
             );
@@ -91,8 +91,8 @@ public class StructureSpawnEvent {
             if (stream == null) {
                 return false; // Structure file not found
             }
-            
-            NbtCompound nbt = NbtIo.readCompressed(stream);
+
+            NbtCompound nbt = NbtIo.readCompressed(stream, NbtSizeTracker.ofUnlimitedBytes());
             StructureTemplate template = new StructureTemplate();
             template.readNbt(world.getRegistryManager(), nbt);
             

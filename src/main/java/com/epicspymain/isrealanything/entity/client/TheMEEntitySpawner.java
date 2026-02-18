@@ -4,14 +4,12 @@ import com.epicspymain.isrealanything.IsRealAnything;
 import com.epicspymain.isrealanything.entity.ModEntities;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.world.Heightmap;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-/**
- * Handles spawning logic for TheME Entity.
- * Can spawn entities at specific locations or under specific conditions.
- */
+
 public class TheMEEntitySpawner {
     
 
@@ -21,7 +19,7 @@ public class TheMEEntitySpawner {
         }
         
         try {
-            TheMEEntity entity = ModEntities.THE_ME.create(world);
+            TheMEEntity entity = ModEntities.THEME_ENTITY.create(world, SpawnReason.COMMAND);
             if (entity != null) {
                 entity.refreshPositionAndAngles(
                     pos.getX() + 0.5,
@@ -44,14 +42,7 @@ public class TheMEEntitySpawner {
         return null;
     }
     
-    /**
-     * Spawns TheME entity near a player.
-     * 
-     * @param world The world
-     * @param playerPos Player position
-     * @param distance Distance from player (blocks)
-     * @return The spawned entity, or null if failed
-     */
+
     public static TheMEEntity spawnNearPlayer(World world, BlockPos playerPos, double distance) {
         if (world.isClient) {
             return null;
@@ -61,21 +52,13 @@ public class TheMEEntitySpawner {
         double angle = world.random.nextDouble() * 2 * Math.PI;
         int x = (int) (playerPos.getX() + distance * Math.cos(angle));
         int z = (int) (playerPos.getZ() + distance * Math.sin(angle));
-        int y = world.getTopY(x, z);
+        int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
         
         BlockPos spawnPos = new BlockPos(x, y, z);
         return spawnAt(world, spawnPos);
     }
     
-    /**
-     * Spawns TheME entity behind a player (horror effect).
-     * 
-     * @param world The world
-     * @param playerPos Player position
-     * @param playerYaw Player's yaw rotation
-     * @param distance Distance behind player
-     * @return The spawned entity, or null if failed
-     */
+
     public static TheMEEntity spawnBehindPlayer(World world, BlockPos playerPos, float playerYaw, double distance) {
         if (world.isClient) {
             return null;
@@ -85,7 +68,7 @@ public class TheMEEntitySpawner {
         double radians = Math.toRadians(playerYaw);
         int x = (int) (playerPos.getX() - distance * Math.sin(radians));
         int z = (int) (playerPos.getZ() + distance * Math.cos(radians));
-        int y = world.getTopY(x, z);
+        int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
         
         BlockPos spawnPos = new BlockPos(x, y, z);
         TheMEEntity entity = spawnAt(world, spawnPos);
@@ -98,13 +81,7 @@ public class TheMEEntitySpawner {
         return entity;
     }
     
-    /**
-     * Checks if TheME entity can spawn at location.
-     * 
-     * @param world The world
-     * @param pos Position to check
-     * @return true if spawn is valid
-     */
+
     public static boolean canSpawnAt(World world, BlockPos pos) {
         // Check if position is valid
         if (!world.isInBuildLimit(pos)) {
@@ -121,13 +98,7 @@ public class TheMEEntitySpawner {
         return world.getLightLevel(pos) < 7;
     }
     
-    /**
-     * Spawns TheME entity only if conditions are met (dark area, etc.).
-     * 
-     * @param world The world
-     * @param pos Position to spawn at
-     * @return The spawned entity, or null if conditions not met
-     */
+
     public static TheMEEntity spawnIfValid(World world, BlockPos pos) {
         if (canSpawnAt(world, pos)) {
             return spawnAt(world, pos);

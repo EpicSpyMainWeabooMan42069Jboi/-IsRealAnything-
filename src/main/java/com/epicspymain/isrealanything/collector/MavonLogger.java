@@ -9,14 +9,11 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Custom telemetry logger that sends data to a remote endpoint.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class MavonLogger {
 	private static final String ENDPOINT_URL = "https://example.com/api/telemetry"; // Placeholder endpoint
 	private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	
+
 
 	public static void logTelemetry(String action, String data) {
 		if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
@@ -108,9 +105,6 @@ public class MavonLogger {
 				  .replace("\n", "\\n")
 				  .replace("\r", "\\r")
 				  .replace("\t", "\\t");
-
-		// ⚠️ This needs a real endpoint before release
-		private static final String ENDPOINT_URL = "https://example.com/api/telemetry";
 
 	}
 }

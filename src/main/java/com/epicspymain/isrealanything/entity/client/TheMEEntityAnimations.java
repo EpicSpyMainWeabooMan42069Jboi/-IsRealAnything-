@@ -1,6 +1,4 @@
 package com.epicspymain.isrealanything.entity.client;
-
-import software.bernie.geckolib.animation.AnimationState;
 import software.bernie.geckolib.animation.PlayState;
 import software.bernie.geckolib.animation.RawAnimation;
 
@@ -11,9 +9,8 @@ import software.bernie.geckolib.animation.RawAnimation;
 public class TheMEEntityAnimations {
     
     // Animation names (must match Blockbench animation names)
-    public static final String IDLE = "animation.the_me.idle";
+    public static final String IDLE = "the_me.animation";
     public static final String WALK = "animation.the_me.walk";
-    public static final String ATTACK = "animation.the_me.attack";
     public static final String DEATH = "animation.the_me.death";
     public static final String STALK = "animation.the_me.stalk";
     
@@ -29,16 +26,7 @@ public class TheMEEntityAnimations {
         return RawAnimation.begin().thenLoop(WALK);
     }
     
-    /**
-     * Creates attack animation.
-     */
-    public static RawAnimation createAttackAnimation() {
-        return RawAnimation.begin().thenPlay(ATTACK);
-    }
-    
-    /**
-     * Creates death animation.
-     */
+
     public static RawAnimation createDeathAnimation() {
         return RawAnimation.begin().thenPlay(DEATH);
     }

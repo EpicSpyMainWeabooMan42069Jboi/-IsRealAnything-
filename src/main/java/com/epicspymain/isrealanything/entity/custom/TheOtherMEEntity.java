@@ -12,16 +12,15 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.manager.AnimatableManager;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.processing.AnimationState;
+import software.bernie.geckolib.animatable.processing.AnimationController;
 
-/**
- * TheOtherME Entity - Secondary horror entity for IsRealAnything mod.
- * A more aggressive variant that inflicts blindness and slowness.
- * Uses GeckoLib for smooth animations.
- */
+
 public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
     
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -36,11 +35,9 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder createTheOtherMEAttributes() {
         return HostileEntity.createHostileAttributes()
-            .add(EntityAttributes.GENERIC_MAX_HEALTH, 50.0)
-            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3)
-            .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 12.0)
-            .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 64.0)
-            .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.7);
+                .add(EntityAttributes.MAX_HEALTH, 40.0)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.FOLLOW_RANGE, 48.0);
     }
     
     /**
@@ -49,13 +46,9 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.2, true));
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.9));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 32.0f));
         this.goalSelector.add(4, new LookAroundGoal(this));
-        
-        this.targetSelector.add(1, new RevengeTargetGoal(this));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
     }
 
     @Override
@@ -92,8 +85,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
         
         // Aggressive speed boost when targeting player
         if (this.getTarget() != null && this.getTarget() instanceof PlayerEntity) {
-            this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                .setBaseValue(0.4);
+            this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)                .setBaseValue(0.4);
             
             // Attempt to teleport behind player occasionally
             if (teleportCooldown == 0 && this.random.nextFloat() < 0.01f) {
@@ -101,8 +93,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
                 teleportCooldown = 200; // 10 seconds
             }
         } else {
-            this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
-                .setBaseValue(0.3);
+            this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)                .setBaseValue(0.3);
         }
     }
     
@@ -110,8 +101,8 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
      * Inflicts status effects when attacking.
      */
     @Override
-    public boolean tryAttack(net.minecraft.entity.Entity target) {
-        boolean attacked = super.tryAttack(target);
+    public boolean tryAttack(net.minecraft.server.world.ServerWorld world, net.minecraft.entity.Entity target) {
+        boolean attacked = super.tryAttack(world, target);
         
         if (attacked && target instanceof PlayerEntity player) {
             // Apply blindness and slowness
@@ -119,7 +110,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1));
             
             // Play horror sound
-            this.getWorld().playSoundFromEntity(null, this, ModSounds.WHISPER_1, 
+            this.getWorld().playSoundFromEntity(null, this, ModSounds.REALITY,
                 this.getSoundCategory(), 1.0f, 1.0f);
         }
         
@@ -145,10 +136,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
         
         // Teleport
         this.teleport(x, y, z, true);
-        
-        // Play glitch sound
-        this.getWorld().playSoundFromEntity(null, this, ModSounds.EVENT_GLITCH, 
-            this.getSoundCategory(), 1.0f, 0.8f);
+
     }
     
     // ========== GeckoLib Animation Implementation ==========
@@ -196,8 +184,8 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
         this.getNavigation().stop();
         
         // Disable AI temporarily
-        this.goalSelector.clear();
-        this.targetSelector.clear();
+        this.goalSelector.clear(goal -> true);
+        this.targetSelector.clear(goal -> true);
         
         // Play overlook snap animation
         AnimationController<?> controller = this.getAnimatableInstanceCache()
@@ -214,7 +202,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
         }
         
         // Play ominous sound
-        this.playSound(ModSounds.LAUGH_DISTANT, 1.5f, 0.5f);
+        this.playSound(ModSounds.SCREAM, 1.5f, 0.5f);
         
         // Schedule vanish after animation (100 ticks = 5 seconds)
         this.getWorld().getServer().execute(() -> {

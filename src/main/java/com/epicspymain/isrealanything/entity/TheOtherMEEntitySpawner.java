@@ -3,6 +3,8 @@ package com.epicspymain.isrealanything.entity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.world.Heightmap;
 
 /**
  * Helper class for spawning TheOtherME entities at specific locations.
@@ -12,7 +14,7 @@ public class TheOtherMEEntitySpawner {
 
 
     public static TheOtherMEEntity spawnAt(ServerWorld world, BlockPos pos) {
-        TheOtherMEEntity entity = ModEntities.THE_OTHER_ME.create(world);
+        TheOtherMEEntity entity = ModEntities.THEOTHERME_ENTITY.create(world, SpawnReason.COMMAND);
 
         if (entity != null) {
             entity.refreshPositionAndAngles(
@@ -38,7 +40,7 @@ public class TheOtherMEEntitySpawner {
         double radians = Math.toRadians(playerYaw);
         int x = (int) (playerPos.getX() - distance * Math.sin(radians));
         int z = (int) (playerPos.getZ() + distance * Math.cos(radians));
-        int y = world.getTopY(x, z);
+        int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 
         BlockPos behindPos = new BlockPos(x, y, z);
 
@@ -55,7 +57,7 @@ public class TheOtherMEEntitySpawner {
 
             int x = (int) (playerPos.getX() + distance * Math.cos(angle));
             int z = (int) (playerPos.getZ() + distance * Math.sin(angle));
-            int y = world.getTopY(x, z);
+            int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 
             BlockPos spawnPos = new BlockPos(x, y, z);
 

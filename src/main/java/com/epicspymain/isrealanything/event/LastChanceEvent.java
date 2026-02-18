@@ -150,12 +150,12 @@ public class LastChanceEvent {
     private static void buildVillagerHouse(ServerWorld world, BlockPos pos) {
         // THIS is where it loads your NBT ↓
         StructureTemplateManager manager = world.getStructureTemplateManager();
-        Identifier structureId = Identifier.of("isrealanything", "villager_trap");
+        Identifier structureId = Identifier.of("isrealanything", "villagertrap");
 
         Optional<StructureTemplate> template = manager.getTemplate(structureId);
 
         if (template.isPresent()) {
-            // ✅ Loads your villager_trap.nbt
+            // ✅ Loads your villagertrap.nbt
             template.get().place(world, pos, pos,
                     new StructurePlacementData()
                             .setRotation(BlockRotation.NONE)

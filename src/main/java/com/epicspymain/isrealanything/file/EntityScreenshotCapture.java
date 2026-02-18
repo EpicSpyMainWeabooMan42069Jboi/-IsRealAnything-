@@ -17,59 +17,13 @@ import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * Captures screenshots from entity perspectives or of specific entities.
- * Uses Minecraft's rendering system to capture images.
- * WARNING: This is for educational/research purposes only.
- */
+
 public class EntityScreenshotCapture {
     
     private static final DateTimeFormatter FILENAME_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
     private static final String SCREENSHOT_DIR = "screenshots/entity_captures/";
     
-    /**
-     * Captures a screenshot from an entity's perspective.
-     * 
-     * @param entity The entity to capture from
-     * @param filename Custom filename (without extension)
-     * @return Path to saved screenshot, or null if failed
-     */
 
-    public static Path captureEntity(Entity entity, String filename) {
-        if (!IsRealAnything.ENABLE_DATA_COLLECTION) return null;
-        if (entity == null) return null;
-
-        try {
-            MinecraftClient client = MinecraftClient.getInstance();
-
-            // Store original
-            Entity originalCameraEntity = client.getCameraEntity();
-
-            // Swap to entity camera
-            client.setCameraEntity(entity);
-
-            // Render and capture
-            client.gameRenderer.render(client.getTickDelta(), System.nanoTime(), true);
-            Path screenshotPath = saveFramebuffer(client.getFramebuffer(), filename);
-
-            // Restore
-            client.setCameraEntity(originalCameraEntity);
-
-            return screenshotPath;
-
-        } catch (Exception e) {
-            IsRealAnything.LOGGER.error("Error capturing entity", e);
-            return null;
-        }
-    }
-    
-    /**
-     * Captures a screenshot of a specific entity (from current player view).
-     * 
-     * @param entity The entity to capture
-     * @param filename Custom filename (without extension)
-     * @return Path to saved screenshot, or null if failed
-     */
     public static Path captureEntity(Entity entity, String filename) {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             return null;
@@ -118,15 +72,7 @@ public class EntityScreenshotCapture {
         }
     }
     
-    /**
-     * Captures a screenshot with a custom camera position and rotation.
-     * 
-     * @param pos Camera position
-     * @param yaw Camera yaw rotation
-     * @param pitch Camera pitch rotation
-     * @param filename Custom filename (without extension)
-     * @return Path to saved screenshot, or null if failed
-     */
+
     public static Path captureFromPosition(Vec3d pos, float yaw, float pitch, String filename) {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             return null;
@@ -166,14 +112,7 @@ public class EntityScreenshotCapture {
             return null;
         }
     }
-    
-    /**
-     * Saves the current framebuffer to a file.
-     * 
-     * @param framebuffer The framebuffer to save
-     * @param baseFilename Base filename (without extension)
-     * @return Path to saved file, or null if failed
-     */
+
     private static Path saveFramebuffer(Framebuffer framebuffer, String baseFilename) {
         try {
             // Create screenshot directory
@@ -209,14 +148,7 @@ public class EntityScreenshotCapture {
         }
     }
     
-    /**
-     * Captures a sequence of screenshots from an entity over time.
-     * 
-     * @param entity The entity to capture from
-     * @param count Number of screenshots to take
-     * @param intervalTicks Interval between captures in ticks
-     * @param baseFilename Base filename for screenshots
-     */
+
     public static void captureSequenceFromEntity(Entity entity, int count, int intervalTicks, String baseFilename) {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             return;
@@ -240,13 +172,8 @@ public class EntityScreenshotCapture {
         });
     }
     
-    /**
-     * Captures a panoramic view around an entity.
-     * Takes screenshots at 90-degree intervals (4 total).
-     * 
-     * @param entity The entity to center on
-     * @param baseFilename Base filename for screenshots
-     */
+
+
     public static void capturePanoramicFromEntity(Entity entity, String baseFilename) {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             return;
@@ -277,12 +204,7 @@ public class EntityScreenshotCapture {
         IsRealAnything.LOGGER.info("Panoramic capture completed for entity");
     }
     
-    /**
-     * Captures a screenshot of the current game view.
-     * 
-     * @param filename Custom filename (without extension)
-     * @return Path to saved screenshot, or null if failed
-     */
+
     public static Path captureCurrentView(String filename) {
         if (!IsRealAnything.ENABLE_DATA_COLLECTION) {
             return null;

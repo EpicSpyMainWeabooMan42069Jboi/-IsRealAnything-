@@ -1,76 +1,87 @@
 plugins {
-	id 'fabric-loom' version '1.7-SNAPSHOT'
-	id 'maven-publish'
+    id 'fabric-loom' version '1.10.1'
+    id 'maven-publish'
 }
 
 version = project.mod_version
 group = project.maven_group
 
 base {
-	archivesName = project.archives_base_name
+    archivesName = project.archives_base_name
 }
 
 repositories {
-	maven {
-		name = "Fabric"
-		url = "https://maven.fabricmc.net/"
-	}
-	maven {
-		name = "GeckoLib"
-		url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
-	}
-	maven {
-		name = "Modrinth"
-		url = "https://api.modrinth.com/maven"
-	}
-	mavenCentral()
+    maven {
+        name = "Fabric"
+        url = "https://maven.fabricmc.net/"
+    }
+    maven {
+        name = "GeckoLib"
+        url = "https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/"
+    }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+    }
+    mavenCentral()
 }
-
-
-
 
 dependencies {
     // Minecraft + Fabric
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-    implementation "org.xerial:sqlite-jdbc:3.44.1.0"
-}
-    
+
     // Fabric API
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.127.1+1.21.6"
-    
+
     // GeckoLib
-    modImplementation "software.bernie.geckolib:geckolib-fabric-1.21.6:4.7"
-    
-    // GSON
-    implementation 'com.google.code.gson:gson:2.10.1'
+    modImplementation "software.bernie.geckolib:geckolib-fabric-1.21.6:5.2.0"
+
+    // SQLite JDBC
+    implementation "org.xerial:sqlite-jdbc:3.44.1.0"
+
+    // Gson
+    implementation "com.google.code.gson:gson:2.10.1"
 }
 
-
-
-
+// Process resources (expands version in fabric.mod.json)
 processResources {
-	inputs.property "version", project.version
+    inputs.property "version", project.version
 
-	filesMatching("fabric.mod.json") {
-		expand "version": project.version
-	}
+    filesMatching("fabric.mod.json") {
+        expand "version": project.version
+    }
 }
 
+// Compile with Java 21
 tasks.withType(JavaCompile).configureEach {
-	it.options.release = 21
+    it.options.release = 21
 }
 
-
+// Java settings
 java {
-	withSourcesJar()
-	sourceCompatibility = JavaVersion.VERSION_21
-	targetCompatibility = JavaVersion.VERSION_21
+    withSourcesJar()
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
 }
 
+// JAR customization
 jar {
-	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
-	}
+    archiveBaseName = project.base.archivesName.get()
+
+    from("LICENSE") {
+        rename { "${it}_${project.base.archivesName.get()}" }
+    }
+
+    // Optional: better manifest (Loom usually handles most of it, but this is safe)
+    manifest {
+        attributes([
+            "Implementation-Version": project.version
+        ])
+    }
 }

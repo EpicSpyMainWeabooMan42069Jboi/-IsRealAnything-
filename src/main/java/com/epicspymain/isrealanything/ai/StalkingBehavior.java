@@ -5,6 +5,8 @@ import com.epicspymain.isrealanything.entity.ModEntities;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
 import com.epicspymain.isrealanything.sound.ModSounds;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.world.Heightmap;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -38,9 +40,7 @@ public class StalkingBehavior {
     private static int globalTick = 0;
     private static boolean overlookTriggered = false;
 
-    /**
-     * Internal data class to track stalking entity state.
-     */
+
     private static class StalkingData {
         UUID entityId;
         BlockPos lastPosition;
@@ -255,10 +255,10 @@ public class StalkingBehavior {
 
         if (phase >= 4 || RANDOM.nextFloat() < 0.3f) {
             // Spawn TheOtherME for higher phases
-            entity = ModEntities.THEOTHERME_ENTITY.create(world);
+            entity = ModEntities.THEOTHERME_ENTITY.create(world, SpawnReason.COMMAND);
         } else {
             // Spawn TheME for lower phases
-            entity = ModEntities.THEME_ENTITY.create(world);
+            entity = ModEntities.THEME_ENTITY.create(world, SpawnReason.COMMAND);
         }
 
         if (entity != null) {
@@ -292,7 +292,8 @@ public class StalkingBehavior {
         for (int attempt = 0; attempt < 20; attempt++) {
             int x = center.getX() + RANDOM.nextInt(range * 2) - range;
             int z = center.getZ() + RANDOM.nextInt(range * 2) - range;
-            int y = world.getTopY(x, z);
+            int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
+
 
             BlockPos pos = new BlockPos(x, y, z);
 
@@ -316,7 +317,7 @@ public class StalkingBehavior {
 
         int x = (int) (player.getX() - distance * Math.sin(radians));
         int z = (int) (player.getZ() + distance * Math.cos(radians));
-        int y = player.getWorld().getTopY(x, z);
+        int y = player.getWorld().getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 
         return new BlockPos(x, y, z);
     }

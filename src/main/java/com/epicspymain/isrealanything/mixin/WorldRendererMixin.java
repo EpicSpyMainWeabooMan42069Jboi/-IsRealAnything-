@@ -65,3 +65,5 @@ public class WorldRendererMixin {
             cir.setReturnValue(new Vec3d(r, g, b));
         }
     }
+
+}

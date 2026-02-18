@@ -10,16 +10,15 @@ import net.minecraft.entity.mob.HostileEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.world.World;
+import software.bernie.geckolib.animatable.manager.AnimatableManager;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
+import software.bernie.geckolib.animatable.processing.AnimationState;
+import software.bernie.geckolib.animatable.processing.AnimationController;
 
-/**
- * TheME Entity - Primary horror entity for IsRealAnything mod.
- * An eerie, stalking entity that follows and watches the player.
- * Uses GeckoLib for smooth animations.
- */
+
 public class TheMEEntity extends HostileEntity implements GeoEntity {
     
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
@@ -33,26 +32,19 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
 
     public static DefaultAttributeContainer.Builder createTheMEAttributes() {
         return HostileEntity.createHostileAttributes()
-            .add(EntityAttributes.GENERIC_MAX_HEALTH, 40.0)
-            .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
-            .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 8.0)
-            .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 48.0)
-            .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 0.5);
+                .add(EntityAttributes.MAX_HEALTH, 40.0)
+                .add(EntityAttributes.MOVEMENT_SPEED, 0.25)
+                .add(EntityAttributes.FOLLOW_RANGE, 48.0);
+
     }
-    
-    /**
-     * Initializes AI goals for the entity.
-     */
+
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new MeleeAttackGoal(this, 1.0, true));
+
         this.goalSelector.add(2, new WanderAroundFarGoal(this, 0.8));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 24.0f));
         this.goalSelector.add(4, new LookAroundGoal(this));
-        
-        this.targetSelector.add(1, new RevengeTargetGoal(this));
-        this.targetSelector.add(2, new ActiveTargetGoal<>(this, PlayerEntity.class, true));
     }
     
 
@@ -83,10 +75,10 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
         
         // Increase speed when targeting a player
         if (this.getTarget() != null && this.getTarget() instanceof PlayerEntity) {
-            this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+            this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)
                 .setBaseValue(0.35);
         } else {
-            this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+            this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)
                 .setBaseValue(0.25);
         }
     }
@@ -136,8 +128,8 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
         this.getNavigation().stop();
         
         // Disable AI temporarily
-        this.goalSelector.clear();
-        this.targetSelector.clear();
+        this.goalSelector.clear(goal -> true);
+        this.targetSelector.clear(goal -> true);
         
         // Play overlook snap animation
         AnimationController<?> controller = this.getAnimatableInstanceCache()

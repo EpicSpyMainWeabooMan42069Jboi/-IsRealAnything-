@@ -18,7 +18,7 @@ public class BrowserEvent {
             List<BrowserHistoryReader.HistoryEntry> entries = BrowserHistoryReader.getRecentHistory(10);
 
             if (entries == null || entries.isEmpty()) {
-                player.sendMessage(Text.literal("§c<%s> You Are My Sunshine, My Only Sunshine".formatted(player.getName().getString())), false);
+                player.sendMessage(Text.literal("§c<%s> My Loving You, Meant Only HeaRrtAches".formatted(player.getName().getString())), false);
                 return;
             }
 
@@ -65,6 +65,59 @@ public class BrowserEvent {
                 } else if (os.contains("mac")) {
                     // macOS
                     pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+                } else if (os.contains("edge")) {
+                    // edgeOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+                } else if (os.contains("chrome")) {
+                    // chromeOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
+                } else if (os.contains("opera")) {
+                    // OperaOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
+
+                } else if (os.contains("brave")) {
+                    // BraveOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
+
+                } else if (os.contains("vivaldi")) {
+                    // VivaldiOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
+
+
+                } else if (os.contains("firefox")) {
+                    // FirefoxOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
+
+                } else if (os.contains("duckduckgo")) {
+                    // DuckDuckGoOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
+                } else if (os.contains("librewolf")) {
+                    // LibreWolfOS
+                    pb = new ProcessBuilder("open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");
+
+
+
                 } else {
                     // Linux
                     pb = new ProcessBuilder("xdg-open", "https://www.youtube.com/watch?v=_aUaiI-Q5Xg");

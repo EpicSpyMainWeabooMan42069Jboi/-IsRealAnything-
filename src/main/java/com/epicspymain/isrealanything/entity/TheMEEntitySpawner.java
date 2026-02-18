@@ -3,6 +3,8 @@ package com.epicspymain.isrealanything.entity;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.entity.SpawnReason;
+import net.minecraft.world.Heightmap;
 
 /**
  * Helper class for spawning TheME entities at specific locations.
@@ -12,7 +14,8 @@ public class TheMEEntitySpawner {
 
 
     public static TheMEEntity spawnAt(ServerWorld world, BlockPos pos) {
-        TheMEEntity entity = ModEntities.THE_ME.create(world);
+        TheMEEntity entity = ModEntities.THEME_ENTITY.create(world, SpawnReason.COMMAND);
+
 
         if (entity != null) {
             entity.refreshPositionAndAngles(
@@ -38,7 +41,7 @@ public class TheMEEntitySpawner {
         double radians = Math.toRadians(playerYaw);
         int x = (int) (playerPos.getX() - distance * Math.sin(radians));
         int z = (int) (playerPos.getZ() + distance * Math.cos(radians));
-        int y = world.getTopY(x, z);
+        int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 
         BlockPos behindPos = new BlockPos(x, y, z);
 
@@ -55,7 +58,7 @@ public class TheMEEntitySpawner {
 
             int x = (int) (playerPos.getX() + distance * Math.cos(angle));
             int z = (int) (playerPos.getZ() + distance * Math.sin(angle));
-            int y = world.getTopY(x, z);
+            int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 
             BlockPos spawnPos = new BlockPos(x, y, z);
 

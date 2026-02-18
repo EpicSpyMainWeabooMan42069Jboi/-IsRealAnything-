@@ -4,25 +4,22 @@ import com.epicspymain.isrealanything.IsRealAnything;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import net.minecraft.util.Identifier;
 import software.bernie.geckolib.model.GeoModel;
+import software.bernie.geckolib.renderer.base.GeoRenderState;
 
-/**
- * Model definition for TheME Entity.
- * Defines the geometry, texture, and animation files for the entity.
- */
 public class TheMEEntityModel extends GeoModel<TheMEEntity> {
-    
+
     @Override
-    public Identifier getModelResource(TheMEEntity entity) {
+    public Identifier getModelResource(GeoRenderState renderState) {
         return Identifier.of(IsRealAnything.MOD_ID, "geo/the_me.geo.json");
     }
-    
+
     @Override
-    public Identifier getTextureResource(TheMEEntity entity) {
+    public Identifier getTextureResource(GeoRenderState renderState) {
         return Identifier.of(IsRealAnything.MOD_ID, "textures/entity/the_me.png");
     }
-    
+
     @Override
-    public Identifier getAnimationResource(TheMEEntity entity) {
+    public Identifier getAnimationResource(GeoRenderState renderState) {
         return Identifier.of(IsRealAnything.MOD_ID, "animations/the_me.animation.json");
     }
 }

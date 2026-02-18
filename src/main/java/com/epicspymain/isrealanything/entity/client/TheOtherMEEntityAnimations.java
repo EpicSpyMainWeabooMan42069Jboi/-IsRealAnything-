@@ -9,9 +9,8 @@ import software.bernie.geckolib.animation.RawAnimation;
 public class TheOtherMEEntityAnimations {
     
     // Animation names (must match Blockbench animation names)
-    public static final String IDLE = "animation.the_other_me.idle";
+    public static final String IDLE = "the_otherme.animation";
     public static final String WALK = "animation.the_other_me.walk";
-    public static final String ATTACK = "animation.the_other_me.attack";
     public static final String DEATH = "animation.the_other_me.death";
     public static final String TELEPORT = "animation.the_other_me.teleport";
     public static final String GLITCH = "animation.the_other_me.glitch";

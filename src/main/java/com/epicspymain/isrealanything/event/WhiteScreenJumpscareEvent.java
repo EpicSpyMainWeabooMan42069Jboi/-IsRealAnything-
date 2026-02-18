@@ -35,7 +35,7 @@ public class WhiteScreenJumpscareEvent {
                             world.playSound(
                                     null,
                                     player.getBlockPos(),
-                                    ModSounds.,
+                                    ModSounds.ERRRRRR,
                                     SoundCategory.MASTER,
                                     1.5f,
                                     1.2f

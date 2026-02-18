@@ -47,7 +47,7 @@ public final class LangToastMessages {
     // Fail message - used when player ignores language suggestion
     private static Lines fail = new Lines(
             "Recommendation",
-            "I encourage you to play this with me and ONLY ME"
+            "I encourage you to play this correctly dipshit"
     );
 
     private static boolean loaded = false;

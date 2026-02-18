@@ -241,8 +241,8 @@ public final class LanguageAdvisor {
             LOG.info("[LanguageAdvisor] Starting IP country async fetch...");
 
             CountryLocator.getCountryCodeAsync().thenAccept(opt -> {
-                if (opt != null && opt.isPresent()) {
-                    IP_COUNTRY = opt.get().toUpperCase(Locale.ROOT);
+                if (opt != null && !opt.isEmpty()) {
+                    IP_COUNTRY = opt.toUpperCase(Locale.ROOT);
                     LOG.info("[LanguageAdvisor] IP country resolved = {}", IP_COUNTRY);
                 } else {
                     LOG.info("[LanguageAdvisor] IP country not resolved");

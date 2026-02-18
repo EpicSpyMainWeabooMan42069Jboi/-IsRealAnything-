@@ -1,4 +1,3 @@
-import com.epicspymain.isrealanything.ai.ContextualMessageManager;
 import java.util.concurrent.CompletableFuture;
 import java.util.Random;
 import net.minecraft.text.Text;
@@ -66,8 +65,7 @@ private static final String[] EXPLORING_MESSAGES = {
 
 // Death context
 private static final String[] DEATH_MESSAGES = {
-        "I think <%S> is Dead.”;
-
+        "I think <%S> is Dead"
 };
 
 public static CompletableFuture<String> getCreepyMessage(String context) {
