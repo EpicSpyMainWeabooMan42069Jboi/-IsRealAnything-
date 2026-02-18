@@ -81,7 +81,7 @@ public class DoNotDeleteThisEvent {
      */
     private static ItemStack createWarningBook() {
         ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-        NbtCompound bookNbt = book.getOrCreateNbt();
+        NbtCompound bookNbt = book.get(net.minecraft.component.DataComponentTypes.CUSTOM_DATA).copyNbt();
         
         // Set title and author
         bookNbt.putString("title", BOOK_TITLE);

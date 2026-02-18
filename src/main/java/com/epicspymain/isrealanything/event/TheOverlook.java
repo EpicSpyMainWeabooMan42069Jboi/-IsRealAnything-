@@ -110,7 +110,7 @@ public class TheOverlook {
         stopAllSystems();
 
         // Trigger entity animations
-        triggerEntityAnimations(player.getServerWorld());
+        triggerEntityAnimations((ServerWorld) player.getWorld());
 
         // Begin meltdown sequence
         beginMeltdown(player, serverInstance);
@@ -167,7 +167,7 @@ public class TheOverlook {
         meltdownInProgress = true;
         meltdownTicks = 0;
 
-        ServerWorld world = player.getServerWorld();
+        ServerWorld world = (ServerWorld) player.getWorld();
 
         // Force all remaining events except Event 47
         EventManager.forceRunAllExcept(47);

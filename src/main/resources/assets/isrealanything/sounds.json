@@ -19,10 +19,20 @@
   },
     "scream": {
       "sounds": ["isrealanything:scream"]
-    }
+    },
 
+  "laugh_distant": { "sounds": [{"name": "isrealanything:laugh_distant"}]
 
   },
+  "whisper_2": { "sounds": [{"name": "isrealanything:whisper_2"}] },
+  "static_noise": { "sounds": [{"name": "isrealanything:static_noise"}] },
+  "event_glitch": { "sounds": [{"name": "isrealanything:event_glitch"}] },
+  "footsteps_horror": { "sounds": [{"name": "isrealanything:footsteps_horror"}] },
+  "door_creak": { "sounds": [{"name": "isrealanything:door_creak"}] },
+  "breathing": { "sounds": [{"name": "isrealanything:breathing"}] }
+
+
+  }
   "insanity": {
     "sounds": ["isrealanything:insanity"]
   },

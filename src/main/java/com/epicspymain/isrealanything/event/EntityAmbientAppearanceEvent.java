@@ -44,7 +44,7 @@ public class EntityAmbientAppearanceEvent {
         }
         
         // Spawn TheME entity
-        TheMEEntity entity = ModEntities.THE_ME.create(world);
+        TheMEEntity entity = ModEntities.THEME_ENTITY.create(world);
         if (entity == null) {
             return;
         }

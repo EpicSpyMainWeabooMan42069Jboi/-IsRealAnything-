@@ -54,8 +54,8 @@ public class MyMobPalsEvent {
      */
     private static void possessMob(MobEntity mob, ServerPlayerEntity player) {
         // Store original stats
-        double originalSpeed = mob.getAttributeValue(EntityAttributes.GENERIC_MOVEMENT_SPEED);
-        double originalDamage = mob.getAttributeValue(EntityAttributes.GENERIC_ATTACK_DAMAGE);
+        double originalSpeed = mob.getAttributeValue(EntityAttributes.MOVEMENT_SPEED);
+        double originalDamage = mob.getAttributeValue(EntityAttributes.MOVEMENT_SPEED);
         
         PossessedMobData data = new PossessedMobData(
             originalSpeed,
@@ -67,10 +67,10 @@ public class MyMobPalsEvent {
         possessedMobs.put(mob.getUuid(), data);
         
         // Apply possession effects
-        mob.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+        mob.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)
             .setBaseValue(originalSpeed * SPEED_MULTIPLIER);
-        mob.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE)
-            .setBaseValue(originalDamage + DAMAGE_MULTIPLIER);
+        mob.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE)
+                .setBaseValue(originalDamage + DAMAGE_MULTIPLIER);
         
         // Make mob look at player
         mob.getLookControl().lookAt(player, 180f, 180f);
@@ -107,9 +107,9 @@ public class MyMobPalsEvent {
      * Restore mob to original state
      */
     private static void restoreMob(MobEntity mob, PossessedMobData data) {
-        mob.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED)
+        mob.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)
             .setBaseValue(data.originalSpeed);
-        mob.getAttributeInstance(EntityAttributes.GENERIC_ATTACK_DAMAGE)
+        mob.getAttributeInstance(EntityAttributes.ATTACK_DAMAGE)
             .setBaseValue(data.originalDamage);
         
         // Clear target

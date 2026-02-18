@@ -76,7 +76,7 @@ public class MeAndMyShadowEvent {
             player.getRotationVec(1.0f).multiply(8.0)
         );
         
-        TheOtherMEEntity shadow = ModEntities.THE_OTHER_ME.create(world);
+        TheOtherMEEntity shadow = ModEntities.THEOTHERME_ENTITY.create(world);
         if (shadow == null) {
             return null;
         }

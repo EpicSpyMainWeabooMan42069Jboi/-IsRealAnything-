@@ -26,7 +26,7 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private int teleportCooldown = 0;
     private boolean overlookAnimationPlaying = false;
-    
+
     public TheOtherMEEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
         this.experiencePoints = 30;
@@ -143,27 +143,17 @@ public class TheOtherMEEntity extends HostileEntity implements GeoEntity {
     
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
+        controllers.add(new AnimationController<TheOtherMEEntity>(this, "controller", 5, this::predicate));
     }
-    
+
     private PlayState predicate(AnimationState<TheOtherMEEntity> state) {
-        // Walking animation
         if (state.isMoving()) {
-            state.getController().setAnimation(RawAnimation.begin()
-                .then("animation.the_other_me.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
+            state.setAnimation(RawAnimation.begin()
+                    .then("animation.the_other_me.walk", Animation.LoopType.LOOP));
+        } else {
+            state.setAnimation(RawAnimation.begin()
+                    .then("animation.the_other_me.idle", Animation.LoopType.LOOP));
         }
-        
-        // Attacking animation
-        if (this.isAttacking()) {
-            state.getController().setAnimation(RawAnimation.begin()
-                .then("animation.the_other_me.attack", Animation.LoopType.PLAY_ONCE));
-            return PlayState.CONTINUE;
-        }
-        
-        // Idle animation (menacing)
-        state.getController().setAnimation(RawAnimation.begin()
-            .then("animation.the_other_me.idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
     

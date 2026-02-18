@@ -215,7 +215,7 @@ public class MirrorWorldEvent {
      */
     private static ItemStack createReflectionBook() {
         ItemStack book = new ItemStack(Items.WRITTEN_BOOK);
-        NbtCompound nbt = book.getOrCreateNbt();
+        NbtCompound bookNbt = book.get(net.minecraft.component.DataComponentTypes.CUSTOM_DATA).copyNbt();
         
         nbt.putString("title", "Reflection");
         nbt.putString("author", "TheME");

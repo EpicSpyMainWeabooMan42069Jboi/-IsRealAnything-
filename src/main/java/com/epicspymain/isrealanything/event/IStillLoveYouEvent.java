@@ -253,7 +253,7 @@ public class IStillLoveYouEvent {
             }
             
             // Kill player
-            player.kill();
+            player.kill((ServerWorld) player.getWorld());
             
             // Create desktop file
             createGoodbyeFile(player);

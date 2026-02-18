@@ -332,7 +332,7 @@ public class StalkingBehavior {
 
             int x = (int) (center.getX() + distance * Math.cos(angle));
             int z = (int) (center.getZ() + distance * Math.sin(angle));
-            int y = world.getTopY(x, z);
+            int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z);
 
             BlockPos pos = new BlockPos(x, y, z);
 

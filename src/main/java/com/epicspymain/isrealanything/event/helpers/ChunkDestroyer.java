@@ -36,7 +36,7 @@ public class ChunkDestroyer {
     public static void destroyChunksFull(ServerWorld world, BlockPos center, int radius) {
         for (int x = -radius; x <= radius; x++) {
             for (int z = -radius; z <= radius; z++) {
-                for (int y = world.getTopY(); y >= world.getBottomY() + 1; y--) {
+                for (int y = world.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, x, z); y >= world.getBottomY() + 1; y--) {
                     BlockPos pos = center.add(x, y - center.getY(), z);
 
                     if (!world.getBlockState(pos).isOf(Blocks.BEDROCK)) {

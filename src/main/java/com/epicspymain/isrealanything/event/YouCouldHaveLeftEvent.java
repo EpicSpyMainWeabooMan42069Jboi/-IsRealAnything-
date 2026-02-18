@@ -78,9 +78,7 @@ public class YouCouldHaveLeftEvent {
         }).start();
     }
 
-    /**
-     * Present YES/NO choice after 20 seconds
-     */
+
     private static void presentChoice(ServerPlayerEntity player) {
         waitingForChoice = true;
 

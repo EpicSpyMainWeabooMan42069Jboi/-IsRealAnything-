@@ -19,6 +19,13 @@ public class ModSounds {
     public static final SoundEvent INEEDYOU = registerSoundEvent("ineedyou");
     public static final SoundEvent INSANITY = registerSoundEvent("insanity");
     public static final SoundEvent SCREAM = registerSoundEvent("scream");
+    public static final SoundEvent LAUGH_DISTANT = registerSoundEvent("laugh_distant");
+    public static final SoundEvent WHISPER_2 = registerSoundEvent("whisper_2");
+    public static final SoundEvent STATIC_NOISE = registerSoundEvent("static_noise");
+    public static final SoundEvent EVENT_GLITCH = registerSoundEvent("event_glitch");
+    public static final SoundEvent FOOTSTEPS_HORROR = registerSoundEvent("footsteps_horror");
+    public static final SoundEvent DOOR_CREAK = registerSoundEvent("door_creak");
+    public static final SoundEvent BREATHING = registerSoundEvent("breathing");
     public static final SoundEvent ITHURTS = registerSoundEvent("ithurts");
     public static final SoundEvent MISC = registerSoundEvent("misc");
     public static final SoundEvent MISC2 = registerSoundEvent("misc2");
@@ -28,6 +35,12 @@ public class ModSounds {
     public static final SoundEvent PLACINGBLOCKSANDSHIT = registerSoundEvent("placingblocksandshit");
     public static final SoundEvent YOUR_MEMORY = registerSoundEvent("your_memory");
     public static final SoundEvent ILOVE = registerSoundEvent("ilove");
+
+
+
+
+
+
     public static final SoundEvent EMPTY_DENIAL = registerSoundEvent("empty_denial");
 
     // Event-specific sounds

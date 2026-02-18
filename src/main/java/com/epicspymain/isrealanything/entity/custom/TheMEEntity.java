@@ -87,27 +87,17 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
     
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        controllers.add(new AnimationController<>(this, "controller", 5, this::predicate));
+        controllers.add(new AnimationController<TheMEEntity>(this, "controller", 5, this::predicate));
     }
-    
+
     private PlayState predicate(AnimationState<TheMEEntity> state) {
-        // Walking animation
         if (state.isMoving()) {
-            state.getController().setAnimation(RawAnimation.begin()
-                .then("animation.the_me.walk", Animation.LoopType.LOOP));
-            return PlayState.CONTINUE;
+            state.setAnimation(RawAnimation.begin()
+                    .then("animation.the_me.walk", Animation.LoopType.LOOP));
+        } else {
+            state.setAnimation(RawAnimation.begin()
+                    .then("animation.the_me.idle", Animation.LoopType.LOOP));
         }
-        
-        // Attacking animation
-        if (this.isAttacking()) {
-            state.getController().setAnimation(RawAnimation.begin()
-                .then("animation.the_me.attack", Animation.LoopType.PLAY_ONCE));
-            return PlayState.CONTINUE;
-        }
-        
-        // Idle animation
-        state.getController().setAnimation(RawAnimation.begin()
-            .then("animation.the_me.idle", Animation.LoopType.LOOP));
         return PlayState.CONTINUE;
     }
     

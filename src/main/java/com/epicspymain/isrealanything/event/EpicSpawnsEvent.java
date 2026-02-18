@@ -37,7 +37,7 @@ public class EpicSpawnsEvent {
         }
         
         // Spawn TheOtherME (more sinister variant)
-        TheOtherMEEntity entity = ModEntities.THE_OTHER_ME.create(world);
+        TheOtherMEEntity entity = ModEntities.THEOTHERME_ENTITY.create(world);
         if (entity == null) {
             return;
         }

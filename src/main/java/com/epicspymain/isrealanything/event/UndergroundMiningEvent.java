@@ -114,7 +114,7 @@ public class UndergroundMiningEvent {
         }
         
         // Spawn TheME
-        TheMEEntity entity = ModEntities.THE_ME.create(world);
+        TheMEEntity entity = ModEntities.THEME_ENTITY.create(world);
         if (entity != null) {
             entity.refreshPositionAndAngles(
                 spawnPos.getX() + 0.5,
