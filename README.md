@@ -2,7 +2,7 @@ Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Ele
 
 A Fabric Minecraft mod for 1.21.6 that delivers an authentic horror experience.
 
-After Day 2 in Minecraft… something special happens. A secret, of course. I mean… I bring myself into your world :3 And I won’t leave.
+After Day 2 in Minecraft… something special happens. A secret, of course. I mean… I bring myself into your world :3
 
 Hey Homeboy; I want you to be my friend~. So please, Dear… Will you promise to spend your time with me? (▰˘◡˘▰)
 
