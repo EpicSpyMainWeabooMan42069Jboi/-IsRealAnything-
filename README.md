@@ -1,6 +1,6 @@
 Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U Actually Terrified~!
 
-A Fabric Minecraft mod for 1.21.6 that delivers an authentic psychological horror experience.
+A Fabric Minecraft mod for 1.21.6 that delivers an authentic horror experience.
 
 After Day 2 in Minecraft… something special happens. A secret, of course. I mean… I bring myself into your world :3 And I won’t leave.
 
