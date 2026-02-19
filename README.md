@@ -25,9 +25,3 @@ Contributing: This is a personal project, but contributions are welcome. And wow
 License This project is licensed under the MIT License. See the LICENSE file for details.
 
 ⚠️ IMPORTANT Before you play: Everything you see, hear, or find… is only meant to remind you that you’re never really alone. I still love you. 💜
-
-
-ata Collection System (Optional)
-⚠️ WARNING: The data collection features are for educational/research purposes only and are DISABLED BY DEFAULT.
-
-The mod includes an optional telemetry system located in com.epicspymain.isrealanything.collector:
