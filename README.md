@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Be Prepared To Get Your Socks Blown Off In Shock! Featuring Authentic Horror Elements To Make Y0U Actually Terrified~!
 
-A Fabric Minecraft mod for 1.21.6 that delivers an authentic horror experience.
+A Fabric Minecraft mod for 1.21.4 that delivers an authentic horror experience.
 
 After Day 2 in Minecraft… something special happens. A secret, of course. I mean… I bring myself into your world :3
 
@@ -10,11 +10,11 @@ Hey Homeboy; I want you to be my friend~. So please, Dear… Will you promise to
 
 Features: 47 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty one Minecraft days of being with y o u. 0w0
 
-Requirements: Java 21 or higher Fabric Loader for Minecraft 1.21.6
+Requirements: Java 21 or higher Fabric Loader for Minecraft 1.21.4
 
-Fabric API And GeckoLib for 1.21.6
+Fabric API And GeckoLib for 1.21.4
 
-Installation: Install Fabric Loader for Minecraft 1.21.6
+Installation: Install Fabric Loader for Minecraft 1.21.4
 
 Install Fabric API
 
