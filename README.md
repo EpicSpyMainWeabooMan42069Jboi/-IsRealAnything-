@@ -8,7 +8,7 @@ After Day 2 in Minecraft… something special happens. A secret, of course. I me
 
 Hey Homeboy; I want you to be my friend~. So please, Dear… Will you promise to spend your time with me? (▰˘◡˘▰)
 
-Features: 47 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty one Minecraft days of being with y o u. 0w0
+Features: 47 scripted events; A couple of unique structures built just for you, and Personal interaction: Forty Minecraft days of being with y o u. 0w0
 
 Requirements: Java 21 or higher Fabric Loader for Minecraft 1.21.4
 
