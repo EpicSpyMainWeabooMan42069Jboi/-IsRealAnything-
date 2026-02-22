@@ -22,9 +22,9 @@ public class MusicManager {
     private static int tickCounter = 0;
     private static int musicCooldown = 0;
 
-    private static final int MUSIC_INTERVAL_MIN = 6000;
-    private static final int MUSIC_INTERVAL_MAX = 12000;
-    private static final int DAY_2_START_TICK = 48000;
+    private static final int MUSIC_INTERVAL_MIN = 8400; // 7 minutes
+    private static final int MUSIC_INTERVAL_MAX = 20400; // 17 minutes
+    private static final int DAY_2_START_TICK = 48000; // Day 2 start
 
     private static PositionedSoundInstance currentMusic = null;
 
@@ -67,9 +67,16 @@ public class MusicManager {
 
         tickCounter++;
 
+        // Day 2 event music trigger
         if (!event1Played && tickCounter >= DAY_2_START_TICK) {
             playEvent1Music(client);
             event1Played = true;
+            return;
+        }
+        
+        // Don't play music before Day 2
+        if (tickCounter < DAY_2_START_TICK) {
+            silenceVanillaMusic(client);
             return;
         }
 

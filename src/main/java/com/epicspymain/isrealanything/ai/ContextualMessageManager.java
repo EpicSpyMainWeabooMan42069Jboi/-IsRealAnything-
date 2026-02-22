@@ -1,8 +1,7 @@
+package com.epicspymain.isrealanything.ai;
+
 import java.util.concurrent.CompletableFuture;
 import java.util.Random;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
-import net.minecraft.server.network.ServerPlayerEntity;
 
 public class ContextualMessageManager {
     private static final Random random = new Random();

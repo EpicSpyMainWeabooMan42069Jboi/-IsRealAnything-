@@ -1,6 +1,7 @@
 package com.epicspymain.isrealanything.entity.custom;
 
 import com.epicspymain.isrealanything.sound.ModSounds;
+import com.epicspymain.isrealanything.ai.ContextualMessageManager;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
@@ -17,12 +18,17 @@ import software.bernie.geckolib.animation.*;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.animatable.processing.AnimationState;
 import software.bernie.geckolib.animatable.processing.AnimationController;
+import net.minecraft.text.Text;
 
 
 public class TheMEEntity extends HostileEntity implements GeoEntity {
     
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private boolean overlookAnimationPlaying = false;
+    
+    // Dialogue system
+    private int dialogueCooldown = 0;
+    private static final int DIALOGUE_INTERVAL = 15600; // 13 minutes (780 seconds)
     
     public TheMEEntity(EntityType<? extends HostileEntity> entityType, World world) {
         super(entityType, world);
@@ -81,6 +87,48 @@ public class TheMEEntity extends HostileEntity implements GeoEntity {
             this.getAttributeInstance(EntityAttributes.MOVEMENT_SPEED)
                 .setBaseValue(0.25);
         }
+        
+        // Dialogue system - starts after Day 2 end (48000 ticks)
+        if (!this.getWorld().isClient && this.getWorld().getTimeOfDay() > 48000) {
+            if (dialogueCooldown > 0) {
+                dialogueCooldown--;
+            } else {
+                // Trigger dialogue
+                PlayerEntity nearestPlayer = this.getWorld().getClosestPlayer(this, 32.0);
+                if (nearestPlayer != null) {
+                    sendDialogue(nearestPlayer);
+                    dialogueCooldown = DIALOGUE_INTERVAL;
+                }
+            }
+        }
+    }
+    
+    /**
+     * Send contextual dialogue to player
+     */
+    private void sendDialogue(PlayerEntity player) {
+        // Determine context based on player state
+        String context = "default";
+        
+        if (player.getY() < 32) {
+            context = "mining";
+        } else if (player.isSneaking()) {
+            context = "idle";
+        } else if (player.isAttacking()) {
+            context = "combat";
+        } else if (this.getWorld().isNight()) {
+            context = "night";
+        }
+        
+        // Get message asynchronously
+        ContextualMessageManager.getCreepyMessage(context).thenAccept(message -> {
+            if (player != null && !player.isRemoved()) {
+                // Format message with player name
+                String formatted = message.replace("<%s>", player.getName().getString())
+                                         .replace("<%S>", player.getName().getString());
+                player.sendMessage(net.minecraft.text.Text.literal("§8" + formatted), false);
+            }
+        });
     }
     
     // ========== GeckoLib Animation Implementation ==========

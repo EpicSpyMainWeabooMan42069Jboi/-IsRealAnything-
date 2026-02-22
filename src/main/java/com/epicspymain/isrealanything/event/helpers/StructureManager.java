@@ -35,7 +35,7 @@ public class StructureManager {
                 return false;
             }
             
-            NbtCompound nbt = NbtIo.readCompressed(stream);
+            NbtCompound nbt = NbtIo.readCompressed(stream, net.minecraft.nbt.NbtSizeTracker.ofUnlimitedBytes());
             StructureTemplate template = new StructureTemplate();
             template.readNbt(world.getRegistryManager(), nbt);
             
@@ -78,7 +78,7 @@ public class StructureManager {
                 return false;
             }
             
-            NbtCompound nbt = NbtIo.readCompressed(stream);
+            NbtCompound nbt = NbtIo.readCompressed(stream, net.minecraft.nbt.NbtSizeTracker.ofUnlimitedBytes());
             StructureTemplate template = new StructureTemplate();
             template.readNbt(world.getRegistryManager(), nbt);
             

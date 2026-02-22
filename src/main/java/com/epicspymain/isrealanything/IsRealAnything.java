@@ -1,6 +1,8 @@
 package com.epicspymain.isrealanything;
 import com.epicspymain.isrealanything.event.EventManager;
+import com.epicspymain.isrealanything.event.LimboExileEvent;
 import com.epicspymain.isrealanything.block.ModBlocks;
+import com.epicspymain.isrealanything.entity.ModEntities;
 import com.epicspymain.isrealanything.entity.custom.TheMEEntity;
 import com.epicspymain.isrealanything.entity.custom.TheOtherMEEntity;
 import com.epicspymain.isrealanything.item.ModItemGroups;
@@ -55,11 +57,14 @@ public class IsRealAnything implements ModInitializer {
 	private void registerEventSystem() {
 		ServerTickEvents.END_WORLD_TICK.register(world -> {
 			EventManager.onTick(world.getServer());
+			// Tick limbo exile system
+			LimboExileEvent.tickExiledPlayers(world.getServer());
 		});
 
 		LOGGER.info("Event system registered");
 		LOGGER.info("Phase-based event scheduler initialized");
 		LOGGER.info("The Overlook failsafe system active");
+		LOGGER.info("Limbo exile system initialized");
 	}
 
 }

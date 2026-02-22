@@ -83,14 +83,17 @@ public class StructureSpawnEvent {
     private static boolean placeStructure(ServerWorld world, BlockPos pos, String structureName) {
         try {
             // Load structure from resources
-            Identifier structureId = Identifier.of("isrealanything", "structures/" + structureName + ".nbt");
             InputStream stream = StructureSpawnEvent.class.getResourceAsStream(
-                "/assets/isrealanything/structures/" + structureName + ".nbt"
+                "/data/isrealanything/structures/" + structureName + ".nbt"
             );
             
             if (stream == null) {
-                return false; // Structure file not found
+                // Try logging and returning false
+                System.err.println("[IsRealAnything] Structure file not found: " + structureName + ".nbt");
+                return false;
             }
+            
+            System.out.println("[IsRealAnything] Spawning structure: " + structureName + " at " + pos);
 
             NbtCompound nbt = NbtIo.readCompressed(stream, NbtSizeTracker.ofUnlimitedBytes());
             StructureTemplate template = new StructureTemplate();
@@ -106,9 +109,12 @@ public class StructureSpawnEvent {
             // Place structure
             template.place(world, pos, pos, placementData, world.getRandom(), Block.NOTIFY_ALL);
             
+            System.out.println("[IsRealAnything] Successfully placed structure: " + structureName);
             return true;
             
         } catch (Exception e) {
+            System.err.println("[IsRealAnything] Error placing structure " + structureName + ": " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }
@@ -184,51 +190,45 @@ public class StructureSpawnEvent {
     // ===== SPECIFIC STRUCTURE SPAWNERS =====
     
     /**
-     * Freedom Home (Americanized version) - Day 3+
+     * Freedom Home - Day 2+
      */
     public static boolean spawnFreedomHome(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "freedom_home_americanized", 3);
+        return spawnStructure(world, player, "freedomhome", 2);
     }
     
     /**
-     * Meadow - Day 6+
+     * Meadow - Day 10+
      */
     public static boolean spawnMeadow(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "meadow", 6);
+        return spawnStructure(world, player, "meadow", 10);
     }
     
     /**
-     * Iron Trap - Day 3+
+     * Iron Trap - Day 5+
      */
     public static boolean spawnIronTrap(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "irontrap", 3);
+        return spawnStructure(world, player, "irontrap", 5);
     }
     
     /**
-     * Memory - Day 10+
+     * Memory - Day 20+
      */
     public static boolean spawnMemory(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "memory", 10);
+        return spawnStructure(world, player, "memory", 20);
     }
     
     /**
-     * Bedrock Pillar - Day 5+
+     * Bedrock Pillar - Day 10+
      */
     public static boolean spawnBedrockPillar(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "bedrockpillar", 5);
+        return spawnStructure(world, player, "bedrockpillar", 10);
     }
     
     /**
-     * Strip Mine - Day 4+
+     * Strip Mine - Day 10+
      */
     public static boolean spawnStripMine(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "stripmine", 4);
+        return spawnStructure(world, player, "stripmine", 10);
     }
     
-    /**
-     * Corrupted Freedom Home - Day 6+
-     */
-    public static boolean spawnCorruptedFreedomHome(ServerWorld world, ServerPlayerEntity player) {
-        return spawnStructure(world, player, "freedom_home_corrupted", 6);
-    }
 }
